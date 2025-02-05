@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Main_Thread.BLL</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Main-Thread.DAL\Main-Thread.DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\IAuthentication\" />
+    <Folder Include="Contracts\IPageHandlers\" />
+    <Folder Include="Contracts\ISecurity\" />
+    <Folder Include="Services\Authentication\" />
+    <Folder Include="Services\Security\" />
+    <Folder Include="Services\PageHandlers\" />
+  </ItemGroup>
+
+</Project>
