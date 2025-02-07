@@ -1,10 +1,20 @@
-﻿namespace Main_Thread.PL
+﻿using System.Windows.Input;
+
+namespace Main_Thread.PL
 {
     public partial class MainPage : ContentPage
     {
+        // Links to the developers' social media profiles and application repository
+        public ICommand ClickedDevOne => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        public ICommand ClickedDevTwo => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        public ICommand ClickedGitHubRepository => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        public ICommand ClickedDiscussAndSupport => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        public ICommand ClickedSecurityPolicy => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = this;
 
             BoxView[] leftStripes = { StripeOneL, StripeTwoL, StripeThreeL, StripeFourL, StripeFiveL, StripeSixL, StripeSevenL, StripeEigthL, StripeNineL, StripeTenL, StripeElevenL };
             BoxView[] rightStripes = { StripeOneR, StripeTwoR, StripeThreeR, StripeFourR, StripeFiveR, StripeSixR, StripeSevenR, StripeEigthR, StripeNineR, StripeTenR, StripeElevenR };
