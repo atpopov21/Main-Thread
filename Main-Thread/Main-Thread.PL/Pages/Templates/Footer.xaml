@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Main_Thread.PL.Pages.Templates.Footer">
+    <VerticalStackLayout>
+        <!-- Footer -->
+        <!-- Attention Line One -->
+        <BoxView
+            CornerRadius="60"
+            HeightRequest="10"
+            WidthRequest="600"
+            BackgroundColor="LightGray"
+            Margin="-30, 0, 0, 5" />
+
+        <!-- Attention Line Two -->
+        <BoxView
+            CornerRadius="60"
+            HeightRequest="10"
+            WidthRequest="800"
+            BackgroundColor="Gray"
+            Margin="-30, 0, 0, 5" />
+
+        <!-- Main Body of Footer -->
+        <Border
+            Stroke="#343434"
+            BackgroundColor="#343434"
+            StrokeShape="RoundRectangle 60, 60, 0, 0"
+            Margin="0, 0, 0, 0">
+
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                Margin="0, -130, 0, 0">
+                <BoxView
+                    BackgroundColor="#343434"
+                    HeightRequest="220" />
+
+                <!-- Footer Details -->
+                <HorizontalStackLayout
+                    Spacing="150"
+                    HorizontalOptions="Center"
+                    Margin="0, -40, 0, 0">
+
+                    <!-- Section "Main Thread" of Footer details -->
+                    <VerticalStackLayout Margin="20, 0, 0, 0">
+                        <Label
+                            Text="Main Thread"
+                            TextColor="AliceBlue"
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Center" />
+                        <BoxView
+                            CornerRadius="60"
+                            HeightRequest="5"
+                            WidthRequest="30"
+                            BackgroundColor="Gray"
+                            Margin="0, 0, 0, 5" />
+                        <BoxView
+                            CornerRadius="60"
+                            HeightRequest="5"
+                            WidthRequest="10"
+                            BackgroundColor="AliceBlue"
+                            Margin="-5, -10, 0, 10" />
+                        <Label
+                            Text="Main Thread is a powerful management software for&#10; businesses like restaurants, pharmacies, and grocery stores.&#10; It streamlines employee and stock management,&#10; tracks revenues and costs, and provides tools &#10;for scheduling and performance monitoring.&#10; With reports and diagrams, it helps analyze profits &#10;and optimize operations, giving businesses &#10;full control over their management needs."
+                            TextColor="LightGray"
+                            FontSize="Micro"
+                            HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+
+                    <!-- Section "Contact Us" of Footer details -->
+                    <VerticalStackLayout>
+                        <Label
+                            Text="Contact Us"
+                            TextColor="AliceBlue"
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Center" />
+                        <BoxView
+                            CornerRadius="60"
+                            HeightRequest="5"
+                            WidthRequest="30"
+                            BackgroundColor="Gray"
+                            Margin="0, 0, 0, 5" />
+                        <BoxView
+                            CornerRadius="60"
+                            HeightRequest="5"
+                            WidthRequest="10"
+                            BackgroundColor="AliceBlue"
+                            Margin="0, -10, 0, 10" />
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Margin="0, 0, 0, 5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        Text="ATPopov21@codingburgas.bg"
+                                        TextColor="MediumSlateBlue"
+                                        TextDecorations="Underline"
+                                        FontSize="Small">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickedDevOne}"
+                                                CommandParameter="mailto:ATPopov21@codingburgas.bg" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Margin="0, 0, 0, 5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        Text="GGDimitrov21@codingburgas.bg"
+                                        TextColor="MediumSlateBlue"
+                                        TextDecorations="Underline"
+                                        FontSize="Small">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickedDevTwo}"
+                                                CommandParameter="mailto:GGDimitrov21@codingburgas.bg" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+
+                    <!-- Section "Useful Links" of Footer details -->
+                    <VerticalStackLayout>
+                        <Label
+                            Text="Useful Links"
+                            TextColor="AliceBlue"
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Center" />
+                        <BoxView
+                            CornerRadius="60"
+                            HeightRequest="5"
+                            WidthRequest="30"
+                            BackgroundColor="Gray"
+                            Margin="0, 0, 0, 5" />
+                        <BoxView
+                            CornerRadius="60"
+                            HeightRequest="5"
+                            WidthRequest="10"
+                            BackgroundColor="AliceBlue"
+                            Margin="5, -10, 0, 10" />
+
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Margin="0, 0, 0, 5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        Text="GithHub Repository"
+                                        TextColor="PowderBlue"
+                                        TextDecorations="Underline"
+                                        FontSize="Small">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickedGitHubRepository}"
+                                                CommandParameter="https://github.com/atpopov21/Main-Thread" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Margin="0, 0, 0, 5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        Text="Discussions and Support"
+                                        TextColor="PowderBlue"
+                                        TextDecorations="Underline"
+                                        FontSize="Small">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickedDiscussAndSupport}"
+                                                CommandParameter="https://github.com/atpopov21/Main-Thread/discussions" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Margin="0, 0, 0, 5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        Text="Security Policy"
+                                        TextColor="PowderBlue"
+                                        TextDecorations="Underline"
+                                        FontSize="Small">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickedSecurityPolicy}"
+                                                CommandParameter="https://github.com/atpopov21/Main-Thread?tab=security-ov-file#security-policy" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                <!-- END OF: Footer Details -->
+
+                <!-- Separator line -->
+                <BoxView
+                    CornerRadius="60"
+                    HeightRequest="2"
+                    WidthRequest="1600"
+                    BackgroundColor="AliceBlue"
+                    Margin="0, 50, 0, 0" />
+
+                <!-- Copyright Notice-->
+                <Label
+                    Text="© 2024-2025 Main Thread. All rights reserved."
+                    TextColor="AliceBlue"
+                    FontSize="Default"
+                    HorizontalOptions="Center"
+                    Margin="0, 10, 0, 2" />
+
+                <!-- Version of application -->
+                <Label
+                    Text="Main Thread Public Beta 2025"
+                    TextColor="#77DD77"
+                    FontSize="Caption"
+                    HorizontalTextAlignment="Center"
+                    Margin="0, 0, 0, 5"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

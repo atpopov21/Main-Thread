@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Main_Thread.PL.Pages.Templates.Background">
+    <StackLayout Spacing="8">
+        <!-- Background stripes -->
+        <FlexLayout>
+            <BoxView
+                x:Name="StripeOneL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeOneR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout
+            Margin="0, 0, 0, 30">
+            <BoxView
+                x:Name="StripeTwoL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeTwoR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout>
+            <BoxView
+                x:Name="StripeThreeL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start" />
+            <BoxView
+                x:Name="StripeThreeR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout>
+            <BoxView
+                x:Name="StripeFourL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeFourR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout>
+            <BoxView
+                x:Name="StripeFiveL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeFiveR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout
+            Margin="0, 0, 0, 50" >
+            <BoxView
+                x:Name="StripeSixL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeSixR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout>
+            <BoxView
+                x:Name="StripeSevenL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeSevenR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout
+            Margin="0, 0, 0, 70">
+            <BoxView
+                x:Name="StripeEigthL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeEigthR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout>
+            <BoxView
+                x:Name="StripeNineL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeNineR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout>
+            <BoxView
+                x:Name="StripeTenL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeTenR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <FlexLayout>
+            <BoxView
+                x:Name="StripeElevenL"
+                FlexLayout.Grow="1"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"
+                CornerRadius="0, 50, 0, 50"
+                HorizontalOptions="Start"/>
+            <BoxView
+                x:Name="StripeElevenR"
+                BackgroundColor="LightSkyBlue"
+                HeightRequest="50"               
+                CornerRadius="50, 0, 50, 0"
+                HorizontalOptions="End"/>
+        </FlexLayout>
+        <!-- END OF: Background stripes -->
+    </StackLayout>
+</ContentView>
