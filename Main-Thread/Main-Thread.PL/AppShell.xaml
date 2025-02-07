@@ -5,10 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Main_Thread.PL"
     Shell.FlyoutBehavior="Disabled"
-    Title="Main_Thread.PL">
+    Title="Main Thread"
+    FlyoutBackgroundColor="AliceBlue">
 
     <ShellContent
-        Title="Home"
+        Title="Main Thread | Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
