@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:template="clr-namespace:Main_Thread.PL.Pages.Templates"
+             x:Class="Main_Thread.PL.Pages.RegisterCompany"
+             Title="Main Thread | Register a company">
+    <ScrollView
+        BackgroundColor="AliceBlue">
+        <StackLayout Spacing="8">
+            <!-- Display background of page (stripes) -->
+            <template:Background />
+
+            <!-- User interactive space -->
+            
+            <!-- END OF: User interactive space -->
+            
+            <!-- Display footer -->
+            <template:Footer />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

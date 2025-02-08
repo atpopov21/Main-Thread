@@ -17,7 +17,7 @@ public partial class Background : ContentView
         foreach (BoxView stripe in stripes)
         {
             Random randomValue = new Random();
-            int randomLength = randomValue.Next(50, 380);
+            int randomLength = randomValue.Next(50, 380); // for ANDROID (50, 160)
             Color randomColor = Color.FromRgb(randomValue.Next(150, 235), randomValue.Next(140, 235), randomValue.Next(150, 235));
             stripe.WidthRequest = randomLength;
             stripe.BackgroundColor = randomColor;
