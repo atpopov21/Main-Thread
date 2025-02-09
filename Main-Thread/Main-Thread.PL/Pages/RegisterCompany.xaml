@@ -2,18 +2,411 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:template="clr-namespace:Main_Thread.PL.Pages.Templates"
+             xmlns:resource="clr-namespace:Main_Thread.PL.Pages.Resources"
              x:Class="Main_Thread.PL.Pages.RegisterCompany"
              Title="Main Thread | Register a company">
     <ScrollView
         BackgroundColor="AliceBlue">
+
         <StackLayout Spacing="8">
             <!-- Display background of page (stripes) -->
             <template:Background />
+            <template:Background 
+                Margin="0, 50, 0, 0"/>
 
             <!-- User interactive space -->
-            
+            <Frame
+                WidthRequest="800"
+                BackgroundColor="White"
+                Margin="0, -1500, 0, 300">
+
+                <VerticalStackLayout>
+                    <!-- Header -->
+                    <StackLayout
+                        Padding="0, 0, 0, 20">
+                        <Label
+                            Text="Register Your Business"
+                            FontSize="Large"
+                            FontAttributes="Bold"/>
+                        <Label
+                            Text="Please provide all required details to register your business with Main Thread Inc."
+                            FontSize="Body"
+                            TextColor="DimGray"
+                            Padding="2, 0, 0, 0"/>
+                    </StackLayout>
+                    <!-- END OF: Header -->
+
+                    <!-- Horizontal line-->
+                    <BoxView
+                        BackgroundColor="LightGray"
+                        HeightRequest="1"
+                        WidthRequest="800"
+                        Margin="0, 0, 0, 0"/>
+
+                    <!-- Business Owner Section -->
+                    <HorizontalStackLayout
+                        x:Name="FormRowOne"
+                        FlowDirection="LeftToRight"
+                        Margin="0, 20, 0, 0"
+                        VerticalOptions="Start">
+                        <Label
+                            Text="Business Owner"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 22, 120, 0"/>
+                        <VerticalStackLayout
+                            Margin="0, 0, 10, 0">
+                            <resource:BorderlessEntry
+                                x:Name="FirstNameBox"
+                                WidthRequest="200"
+                                Keyboard="Text"
+                                Focused="FirstNameBox_Focused"
+                                Unfocused="FirstNameBox_Unfocused"
+                                TextChanged="FirstNameBox_TextChanged"
+                                MaxLength="20"
+                                Margin="0, 18, 0, 10"/>
+                            <Label
+                                Text="First Name"
+                                FontSize="Caption"
+                                TextColor="DimGray"
+                                Padding="5, 0, 0, 0"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <resource:BorderlessEntry
+                                x:Name="LastNameBox"
+                                WidthRequest="200"
+                                Keyboard="Text"
+                                Focused="LastNameBox_Focused"
+                                Unfocused="LastNameBox_Unfocused"
+                                TextChanged="LastNameBox_TextChanged"
+                                MaxLength="20"
+                                Margin="0, 18, 0, 10"/>
+                            <Label
+                                Text="Last Name"
+                                FontSize="Caption"
+                                TextColor="DimGray"
+                                Padding="5, 0, 0, 0"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <!-- END OF: Business Owner Section -->
+
+                    <!-- Business Name Section -->
+                    <HorizontalStackLayout
+                        x:Name="FormRowTwo"
+                        Margin="0, 20, 0, 0">
+                        <Label
+                            Text="Business Name"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 22, 120, 0"/>
+                        <resource:BorderlessEntry
+                            x:Name="BusinessNameBox"
+                            WidthRequest="410"
+                            Keyboard="Default"
+                            Focused="BusinessNameBox_Focused"
+                            Unfocused="BusinessNameBox_Unfocused"
+                            TextChanged="BusinessNameBox_TextChanged"
+                            MaxLength="60"
+                            Margin="5, 18, 0, 10"/>
+                    </HorizontalStackLayout>
+                    <!-- END OF: Business Name Section -->
+
+                    <!-- Contact Number Section -->
+                    <HorizontalStackLayout
+                        x:Name="FormRowThree"
+                        Margin="0, 20, 0, 0">
+                        <Label
+                            Text="Contact Number"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 22, 120, 0"/>
+                        <resource:BorderlessEntry
+                            x:Name="ContactNumberBox"
+                            WidthRequest="410"
+                            Keyboard="Telephone"
+                            Focused="ContactNumberBox_Focused"
+                            Unfocused="ContactNumberBox_Unfocused"
+                            TextChanged="ContactNumberBox_TextChanged"
+                            MaxLength="10"
+                            Placeholder="(000) 000-0000"
+                            PlaceholderColor="LightGray"
+                            Margin="-4, 18, 0, 10"/>
+                    </HorizontalStackLayout>
+                    <!-- END OF: Contact Number Section -->
+
+                    <!-- E-mail Section -->
+                    <HorizontalStackLayout
+                        x:Name="FormRowFour"
+                        Margin="0, 20, 0, 0">
+                        <Label
+                            Text="E-mail"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 22, 120, 0"/>
+                        <VerticalStackLayout>
+                            <resource:BorderlessEntry
+                                x:Name="EmailBox"
+                                WidthRequest="410"
+                                Keyboard="Email"
+                                Focused="EmailBox_Focused"
+                                Unfocused="EmailBox_Unfocused"
+                                TextChanged="EmailBox_TextChanged"
+                                MaxLength="40"
+                                Placeholder="ex: myname@gmail.com"
+                                PlaceholderColor="LightGray"
+                                Margin="72, 18, 0, 10"/>
+                            <Label
+                                Text="example@gmail.com"
+                                FontSize="Caption"
+                                TextColor="DimGray"
+                                Padding="80, 0, 0, 0"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <!-- END OF: E-mail Section -->
+
+                    <!-- State Entity Registration # Section-->
+                    <HorizontalStackLayout
+                        x:Name="FormRowFive"
+                        Margin="0, 20, 0, 0">
+                        <Label
+                            Text="State Entity Registration #"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 22, 48, 0"/>
+                        <VerticalStackLayout>
+                            <resource:BorderlessEntry
+                                x:Name="SERBox"
+                                WidthRequest="410"
+                                Keyboard="Default"
+                                Focused="SERBox_Focused"
+                                Unfocused="SERBox_Unfocused"
+                                TextChanged="SERBox_TextChanged"
+                                MaxLength="10"
+                                Placeholder="C1234567"
+                                PlaceholderColor="LightGray"
+                                Margin="0, 18, 0, 10"/>
+                            <Label
+                                Text="ex: C1234567"
+                                FontSize="Caption"
+                                TextColor="DimGray"
+                                Padding="10, 0, 0, 0"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <!-- END OF: State Entity Registration # -->
+
+                    <!-- Employer Identification Number Section -->
+                    <HorizontalStackLayout
+                        x:Name="FormRowSix"
+                        Margin="0, 20, 0, 0">
+                        <Label
+                            Text="Employer Identification&#10;Number"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 22, 67, 0"/>
+                        <VerticalStackLayout>
+                            <resource:BorderlessEntry
+                                x:Name="PINBox"
+                                WidthRequest="410"
+                                Keyboard="Default"
+                                Focused="PINBox_Focused"
+                                Unfocused="PINBox_Unfocused"
+                                TextChanged="PINBox_TextChanged"
+                                MaxLength="10"
+                                Margin="0, 18, 0, 10"/>
+                            <Label
+                                Text="ex: 9706230016"
+                                FontSize="Caption"
+                                TextColor="DimGray"
+                                Padding="10, 0, 0, 0"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <!-- END OF: Employer Identification Number Section -->
+
+                    <!-- Address Section -->
+                    <HorizontalStackLayout
+                        x:Name="FormRowSeven"
+                        Margin="0, 20, 0, 0">
+                        <Label
+                            Text="Address"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 22, 176, 0"/>
+                        <VerticalStackLayout>
+                            <resource:BorderlessEntry
+                                x:Name="StreetAddressBox1"
+                                WidthRequest="410"
+                                Keyboard="Default"
+                                Focused="StreetAddressBox1_Focused"
+                                Unfocused="StreetAddressBox1_Unfocused"
+                                TextChanged="StreetAddressBox1_TextChanged"
+                                MaxLength="60"
+                                Margin="0, 18, 0, 10"/>
+                            <Label
+                                Text="Street Address"
+                                FontSize="Caption"
+                                TextColor="DimGray"
+                                Padding="10, 0, 0, 0"/>
+
+                            <resource:BorderlessEntry
+                                x:Name="StreetAddressBox2"
+                                WidthRequest="410"
+                                Keyboard="Default"
+                                Focused="StreetAddressBox2_Focused"
+                                Unfocused="StreetAddressBox2_Unfocused"
+                                TextChanged="StreetAddressBox2_TextChanged"
+                                Placeholder="Optional"
+                                PlaceholderColor="LightGray"
+                                MaxLength="60"
+                                Margin="0, 18, 0, 10"/>
+                            <Label
+                                Text="Street Address Line 2"
+                                FontSize="Caption"
+                                TextColor="DimGray"
+                                Padding="10, 0, 0, 0"/>
+
+                            <HorizontalStackLayout>
+                                <VerticalStackLayout
+                                    Margin="0, 0, 10, 0">
+                                    <resource:BorderlessEntry
+                                        x:Name="CityBox"
+                                        WidthRequest="200"
+                                        Keyboard="Text"
+                                        Focused="CityBox_Focused"
+                                        Unfocused="CityBox_Unfocused"
+                                        TextChanged="CityBox_TextChanged"
+                                        MaxLength="20"
+                                        Margin="0, 18, 0, 10"/>
+                                    <Label
+                                        Text="City"
+                                        FontSize="Caption"
+                                        TextColor="DimGray"
+                                        Padding="5, 0, 0, 0"/>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout>
+                                    <resource:BorderlessEntry
+                                        x:Name="StateProvinceBox"
+                                        WidthRequest="200"
+                                        Keyboard="Text"
+                                        Focused="CityBox_Focused"
+                                        Unfocused="CityBox_Unfocused"
+                                        TextChanged="CityBox_TextChanged"
+                                        MaxLength="20"
+                                        Margin="0, 18, 0, 10"/>
+                                    <Label
+                                        Text="State / Province"
+                                        FontSize="Caption"
+                                        TextColor="DimGray"
+                                        Padding="5, 0, 0, 0"/>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                            
+                            <VerticalStackLayout>
+                                <resource:BorderlessEntry
+                                    x:Name="ZipCodeBox"
+                                    WidthRequest="410"
+                                    Keyboard="Numeric"
+                                    Focused="ZipCodeBox_Focused"
+                                    Unfocused="ZipCodeBox_Unfocused"
+                                    TextChanged="ZipCodeBox_TextChanged"
+                                    MaxLength="10"
+                                    Margin="0, 18, 0, 10"/>
+                                <Label
+                                    Text="Postal / Zip Code"
+                                    FontSize="Caption"
+                                    TextColor="DimGray"
+                                    Padding="10, 0, 0, 0"/>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <!-- END OF: Address Section -->
+
+                    <!-- Type of Business Section -->
+                    <HorizontalStackLayout
+                        x:Name="FormRowEight"
+                        Margin="0, 20, 0, 0">
+                        <Label
+                            Text="Type of Business"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 30, 113, 0"/>
+                        <Picker
+                            x:Name="CategoryPicker"
+                            WidthRequest="410"
+                            Focused="CategoryPicker_Focused"
+                            Unfocused="CategoryPicker_Unfocused"
+                            Margin="0, 18, 0, 10"
+                            SelectedIndex="0"
+                            SelectedIndexChanged="CategoryPicker_SelectedIndexChanged">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Please Select</x:String>
+                                    <x:String>Sole Proprietorship</x:String>
+                                    <x:String>Partnership</x:String>
+                                    <x:String>Limited Liability Company (LLC)</x:String>
+                                    <x:String>Corporation (C Corp)</x:String>
+                                    <x:String>S Corporation (S Corp)</x:String>
+                                    <x:String>Cooperative</x:String>
+                                    <x:String>Others, please specify below</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </HorizontalStackLayout>
+                    <!-- END OF: Type of Business Section -->
+                    
+                    <!-- Others Section -->
+                    <HorizontalStackLayout
+                        x:Name="FormRowNine"
+                        Margin="0, 20, 0, 0">
+                        <Label
+                            x:Name="OthersLabel"
+                            Text="Others"
+                            FontSize="Micro"
+                            TextColor="#28282B"
+                            Padding="30, 23, 185, 0"/>
+                        <resource:BorderlessEntry
+                            x:Name="OthersBox"
+                            WidthRequest="410"
+                            Keyboard="Numeric"
+                            Focused="OthersBox_Focused"
+                            Unfocused="OthersBox_Unfocused"
+                            TextChanged="OthersBox_TextChanged"
+                            MaxLength="60"
+                            Margin="0, 18, 0, 10"/>
+                    </HorizontalStackLayout>
+                    <!-- END OF: Others Section -->
+
+                    <!-- Horizontal line-->
+                    <BoxView
+                        BackgroundColor="LightGray"
+                        HeightRequest="1"
+                        WidthRequest="800"
+                        Margin="0, 20, 0, 20"/>
+
+                    <!-- Footer -->
+                    <Button
+                        x:Name="SubmitRegistratonButton"
+                        Text="Submit Registration"
+                        FontSize="Small"
+                        FontAttributes="Bold"
+                        BackgroundColor="#18bd5b"
+                        WidthRequest="220"
+                        CornerRadius="5"
+                        Clicked="SubmitRegistratonButton_Clicked"
+                        Margin="0, 10, 0, 10"/>
+                    <!-- END OF: Footer -->
+                </VerticalStackLayout>
+            </Frame>
             <!-- END OF: User interactive space -->
-            
+
+            <Label
+                x:Name="SuccessfulRegistrationCOMPANY"
+                Text="Company registered successfully!"
+                FontSize="Micro"
+                TextColor="#18bd5b"
+                HorizontalOptions="Center"
+                IsVisible="False"
+                Margin="0, -290, 0, 280"/>
+
             <!-- Display footer -->
             <template:Footer />
         </StackLayout>
