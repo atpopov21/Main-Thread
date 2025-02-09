@@ -73,6 +73,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\LoginToCompany.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Templates\Background.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

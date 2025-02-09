@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Main_Thread.PL"
+    xmlns:pages="clr-namespace:Main_Thread.PL.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="Main Thread"
     FlyoutBackgroundColor="AliceBlue">
@@ -12,5 +13,15 @@
         Title="Main Thread | Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    
+    <ShellContent
+    Title="Main Thread | Register a company"
+    ContentTemplate="{DataTemplate pages:RegisterCompany}"
+    Route="RegisterCompany" />
+    
+    <ShellContent
+    Title="Main Thread | Login to a company"
+    ContentTemplate="{DataTemplate pages:LoginToCompany}"
+    Route="LoginToCompany" />
 
 </Shell>
