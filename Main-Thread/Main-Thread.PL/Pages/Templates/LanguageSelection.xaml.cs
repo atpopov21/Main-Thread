@@ -1,23 +1,35 @@
-using System;
+using Main_Thread.PL.Pages.Resources;
 
 namespace Main_Thread.PL.Pages.Templates
 {
     public partial class LanguageSelection : ContentView
     {
-        public string languageSelection = "";
+        private string languageSelection = "";
+        private string selectedLanguage = ClientSettingsVisuals.Instance.SelectedLanguage;
 
         // Define the event
         public event Action<string> LanguageChanged;
 
-        public string GetLanguageSelection()
-        {
-            return languageSelection;
-        }
-
         public LanguageSelection()
         {
             InitializeComponent();
-            EnglishCheckbox.IsChecked = true;
+            LanguageHanlder();
+        }
+
+        private void LanguageHanlder()
+        {
+            if (selectedLanguage == "English")
+            {
+                EnglishCheckbox.IsChecked = true;
+            }
+            else if (selectedLanguage == "Bulgarian")
+            {
+                BulgarianCheckbox.IsChecked = true;
+            }
+            else
+            {
+                EnglishCheckbox.IsChecked = true;
+            }
         }
 
         private void EnglishCheckbox_CheckedChanged(object sender, CheckedChangedEventArgs e)
