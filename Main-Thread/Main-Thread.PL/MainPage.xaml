@@ -26,6 +26,7 @@
                     </Button.ImageSource>
                 </Button>
                 <Button
+                    x:Name="RegisterACompanyButton"
                     Text="Register a company"
                     TextColor="AliceBlue"
                     FontSize="Small"
@@ -34,6 +35,7 @@
                     WidthRequest="220"
                     Clicked="Register_Company_Clicked"/>
                 <Button
+                    x:Name="LoginToACompanyButton"
                     Text="Login into a company"
                     TextColor="AliceBlue"
                     FontSize="Small"
@@ -44,9 +46,17 @@
             </VerticalStackLayout>
             <!-- END OF: User interactive space -->
 
+            <!-- Display language selection -->
+            <template:LanguageSelection
+                LanguageChanged="OnLanguageChanged"
+                Margin="0, -770, 20, 760"/>
+            
             <!-- Display footer -->
-            <template:Footer />
-
+            <template:Footer
+                x:Name="FooterENG"/>
+            <template:Footer_BG
+                x:Name="FooterBG"
+                IsVisible="False"/>
         </StackLayout>
     </ScrollView>
 
