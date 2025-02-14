@@ -64,11 +64,15 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Main-Thread.BLL\Main-Thread.BLL.csproj" />
+	  <ProjectReference Include="..\Main-Thread.Shared\Main-Thread.Shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Update="Pages\Templates\Background.xaml.cs">
 	    <DependentUpon>Background.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\Templates\Footer_BG.xaml.cs">
+	    <DependentUpon>Footer_BG.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -79,7 +83,13 @@
 	  <MauiXaml Update="Pages\Templates\Background.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Templates\Footer_BG.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Templates\Footer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Templates\LanguageSelection.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

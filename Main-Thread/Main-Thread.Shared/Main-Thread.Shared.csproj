@@ -13,7 +13,6 @@
     <Folder Include="DTOs\" />
     <Folder Include="InputModels\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

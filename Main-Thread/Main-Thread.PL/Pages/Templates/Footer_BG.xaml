@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Main_Thread.PL.Pages.Templates.Footer">
+             x:Class="Main_Thread.PL.Pages.Templates.Footer_BG">
     <VerticalStackLayout>
         <!-- Footer -->
         <!-- Attention Line One -->
@@ -60,7 +60,7 @@
                             BackgroundColor="AliceBlue"
                             Margin="-5, -10, 0, 10" />
                         <Label
-                            Text="Main Thread is a powerful management software for&#10; businesses like restaurants, pharmacies, and grocery stores.&#10; It streamlines employee and stock management,&#10; tracks revenues and costs, and provides tools &#10;for scheduling and performance monitoring.&#10; With reports and diagrams, it helps analyze profits &#10;and optimize operations, giving businesses &#10;full control over their management needs."
+                            Text="Main Thread е мощен софтуер за управление на бизнеси&#10; като ресторанти, аптеки и хранителни магазини.&#10; Той оптимизира управлението на служители и наличности,&#10; следи приходите и разходите и предоставя инструменти &#10;за планиране и мониторинг на производителността.&#10; С помощта на отчети и диаграми помага за &#10;анализ на печалбите и оптимизиране на операциите, &#10;давайки на бизнеса пълен контрол върху управленските им нужди."
                             TextColor="LightGray"
                             FontSize="Micro"
                             HorizontalTextAlignment="Center" />
@@ -69,7 +69,7 @@
                     <!-- Section "Contact Us" of Footer details -->
                     <VerticalStackLayout>
                         <Label
-                            Text="Contact Us"
+                            Text="Свържете се с нас"
                             TextColor="AliceBlue"
                             FontSize="Medium"
                             HorizontalTextAlignment="Center" />
@@ -129,7 +129,7 @@
                     <!-- Section "Useful Links" of Footer details -->
                     <VerticalStackLayout>
                         <Label
-                            Text="Useful Links"
+                            Text="Полезни линкове"
                             TextColor="AliceBlue"
                             FontSize="Medium"
                             HorizontalTextAlignment="Center" />
