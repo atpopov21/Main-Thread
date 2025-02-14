@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:template="clr-namespace:Main_Thread.PL.Pages.Templates"
+             xmlns:resource="clr-namespace:Main_Thread.PL.Pages.Resources"
              x:Class="Main_Thread.PL.Pages.LoginToCompany"
              Title="Main Thread | Login to a Company">
     <ScrollView
@@ -11,11 +12,109 @@
             <template:Background />
 
             <!-- User interactive space -->
+            <VerticalStackLayout
+                Margin="0, -600, 0, 0">
+                <Border
+                    Stroke="Transparent">
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Offset="20, 20"
+                            Radius="20"
+                            Opacity="0.3"/>
+                    </Border.Shadow>
 
+                    <Frame
+                        WidthRequest="600"
+                        BackgroundColor="White"
+                        BorderColor="Transparent"
+                        CornerRadius="10">
+
+                        <VerticalStackLayout>
+                            <!-- Header -->
+                            <Label
+                                x:Name="LoginToCompanyLabel"
+                                FontSize="Large"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Padding="0, 0, 0, 20"/>
+
+                            <!-- Horizontal line-->
+                            <BoxView
+                                BackgroundColor="LightGray"
+                                HeightRequest="5"
+                                WidthRequest="200"
+                                Margin="0, 0, 0, 0"/>
+
+                            <!-- Email Section -->
+                            <Label
+                                x:Name="EmailLabel"
+                                FontSize="Micro"
+                                HorizontalOptions="Start"
+                                Margin="145, 30, 0, 0" />
+                            <Border
+                                Stroke="LightGray"
+                                StrokeShape="RoundRectangle 20, 20, 20, 20"
+                                WidthRequest="302">
+                                <resource:BorderlessEntry
+                                    x:Name="EmailBox"
+                                    Placeholder="Enter email"
+                                    PlaceholderColor="LightGray"
+                                    WidthRequest="300"
+                                    HeightRequest="35"
+                                    TextChanged="EmailBox_TextChanged"/>
+                            </Border>
+                            <!-- END OF: Email Section -->
+                            
+                            <!-- Password Section -->
+                            <Label
+                                x:Name="PasswordLabel"
+                                FontSize="Micro"
+                                HorizontalOptions="Start"
+                                Margin="145, 20, 0, 0" />
+                            <Border
+                                Stroke="LightGray"
+                                StrokeShape="RoundRectangle 20, 20, 20, 20"
+                                WidthRequest="302">
+                                <resource:BorderlessEntry
+                                    x:Name="PasswordBox"
+                                    Placeholder="Enter password"
+                                    PlaceholderColor="LightGray"
+                                    WidthRequest="300"
+                                    HeightRequest="35"
+                                    IsPassword="True"
+                                    TextChanged="PasswordBox_TextChanged"/>
+                            </Border>
+                            <!-- END OF: Password Section -->
+
+                            <!-- Footer -->
+                            <Border
+                                HeightRequest="2"
+                                StrokeDashArray="34" 
+                                Margin="0, 40, 0, 20"/>
+                            <Button
+                                x:Name="LoginButton"
+                                FontSize="Small"
+                                WidthRequest="200"
+                                Clicked="LoginButton_Clicked"/>
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </Border>
+
+            </VerticalStackLayout>
             <!-- END OF: User interactive space -->
 
+            <template:LanguageSelection
+                LanguageChanged="OnLanguageChanged"
+                Margin="0, -560, 20, 740"/>
+            
             <!-- Display footer -->
-            <template:Footer />
+            <template:Footer
+                x:Name="FooterENG"/>
+            <template:Footer_BG
+                x:Name="FooterBG"
+                IsVisible="False"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

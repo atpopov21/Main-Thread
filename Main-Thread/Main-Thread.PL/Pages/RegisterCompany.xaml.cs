@@ -1,7 +1,5 @@
 using Main_Thread.PL.Pages.Resources;
-using Microsoft.Maui;
 using System.Diagnostics;
-using System.Numerics;   // SHOULD be removed in production
 
 namespace Main_Thread.PL.Pages;
 
