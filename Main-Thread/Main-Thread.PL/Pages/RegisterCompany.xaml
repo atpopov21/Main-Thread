@@ -25,10 +25,11 @@
                     <StackLayout
                         Padding="0, 0, 0, 20">
                         <Label
-                            Text="Register Your Business"
+                            x:Name="RegisterBusinessLabel"
                             FontSize="Large"
                             FontAttributes="Bold"/>
                         <Label
+                            x:Name="RegisterBusinessSubtitleLabel"
                             Text="Please provide all required details to register your business with Main Thread Inc."
                             FontSize="Body"
                             TextColor="DimGray"
@@ -50,7 +51,7 @@
                         Margin="0, 20, 0, 0"
                         VerticalOptions="Start">
                         <Label
-                            Text="Business Owner"
+                            x:Name="BusinessOwnerLabel"
                             FontSize="Micro"
                             TextColor="#28282B"
                             Padding="30, 22, 120, 0"/>
@@ -66,7 +67,7 @@
                                 MaxLength="20"
                                 Margin="0, 18, 0, 10"/>
                             <Label
-                                Text="First Name"
+                                x:Name="FirstNameLabel"
                                 FontSize="Caption"
                                 TextColor="DimGray"
                                 Padding="5, 0, 0, 0"/>
@@ -82,7 +83,7 @@
                                 MaxLength="20"
                                 Margin="0, 18, 0, 10"/>
                             <Label
-                                Text="Last Name"
+                                x:Name="LastNameLabel"
                                 FontSize="Caption"
                                 TextColor="DimGray"
                                 Padding="5, 0, 0, 0"/>
@@ -95,7 +96,7 @@
                         x:Name="FormRowTwo"
                         Margin="0, 20, 0, 0">
                         <Label
-                            Text="Business Name"
+                            x:Name="BusinessNameLabel"
                             FontSize="Micro"
                             TextColor="#28282B"
                             Padding="30, 22, 120, 0"/>
@@ -116,7 +117,7 @@
                         x:Name="FormRowThree"
                         Margin="0, 20, 0, 0">
                         <Label
-                            Text="Contact Number"
+                            x:Name="ContactNumberLabel"
                             FontSize="Micro"
                             TextColor="#28282B"
                             Padding="30, 22, 120, 0"/>
@@ -139,7 +140,7 @@
                         x:Name="FormRowFour"
                         Margin="0, 20, 0, 0">
                         <Label
-                            Text="E-mail"
+                            x:Name="EmailLabel"
                             FontSize="Micro"
                             TextColor="#28282B"
                             Padding="30, 22, 120, 0"/>
@@ -169,7 +170,7 @@
                         x:Name="FormRowFive"
                         Margin="0, 20, 0, 0">
                         <Label
-                            Text="State Entity Registration #"
+                            x:Name="SERLabel"
                             FontSize="Micro"
                             TextColor="#28282B"
                             Padding="30, 22, 48, 0"/>
@@ -199,7 +200,7 @@
                         x:Name="FormRowSix"
                         Margin="0, 20, 0, 0">
                         <Label
-                            Text="Employer Identification&#10;Number"
+                            x:Name="EINLabel"
                             FontSize="Micro"
                             TextColor="#28282B"
                             Padding="30, 22, 67, 0"/>
@@ -227,10 +228,10 @@
                         x:Name="FormRowSeven"
                         Margin="0, 20, 0, 0">
                         <Label
-                            Text="Address"
+                            x:Name="AddressLabel"
                             FontSize="Micro"
                             TextColor="#28282B"
-                            Padding="30, 22, 176, 0"/>
+                            Padding="30, 22, 103, 0"/>
                         <VerticalStackLayout>
                             <resource:BorderlessEntry
                                 x:Name="StreetAddressBox1"
@@ -242,7 +243,7 @@
                                 MaxLength="60"
                                 Margin="0, 18, 0, 10"/>
                             <Label
-                                Text="Street Address"
+                                x:Name="StreetAddressOneLabel"
                                 FontSize="Caption"
                                 TextColor="DimGray"
                                 Padding="10, 0, 0, 0"/>
@@ -259,7 +260,7 @@
                                 MaxLength="60"
                                 Margin="0, 18, 0, 10"/>
                             <Label
-                                Text="Street Address Line 2"
+                                x:Name="StreetAddressLineTwoLabel"
                                 FontSize="Caption"
                                 TextColor="DimGray"
                                 Padding="10, 0, 0, 0"/>
@@ -277,7 +278,7 @@
                                         MaxLength="20"
                                         Margin="0, 18, 0, 10"/>
                                     <Label
-                                        Text="City"
+                                        x:Name="CityLabel"
                                         FontSize="Caption"
                                         TextColor="DimGray"
                                         Padding="5, 0, 0, 0"/>
@@ -287,13 +288,13 @@
                                         x:Name="StateProvinceBox"
                                         WidthRequest="200"
                                         Keyboard="Text"
-                                        Focused="CityBox_Focused"
-                                        Unfocused="CityBox_Unfocused"
-                                        TextChanged="CityBox_TextChanged"
+                                        Focused="StateProvinceBox_Focused"
+                                        Unfocused="StateProvinceBox_Unfocused"
+                                        TextChanged="StateProvinceBox_TextChanged"
                                         MaxLength="20"
                                         Margin="0, 18, 0, 10"/>
                                     <Label
-                                        Text="State / Province"
+                                        x:Name="StateProvinceLabel"
                                         FontSize="Caption"
                                         TextColor="DimGray"
                                         Padding="5, 0, 0, 0"/>
@@ -308,10 +309,10 @@
                                     Focused="ZipCodeBox_Focused"
                                     Unfocused="ZipCodeBox_Unfocused"
                                     TextChanged="ZipCodeBox_TextChanged"
-                                    MaxLength="10"
+                                    MaxLength="5"
                                     Margin="0, 18, 0, 10"/>
                                 <Label
-                                    Text="Postal / Zip Code"
+                                    x:Name="PostalZipCodeLabel"
                                     FontSize="Caption"
                                     TextColor="DimGray"
                                     Padding="10, 0, 0, 0"/>
@@ -325,7 +326,7 @@
                         x:Name="FormRowEight"
                         Margin="0, 20, 0, 0">
                         <Label
-                            Text="Type of Business"
+                            x:Name="TypeOfBusinessLabel"
                             FontSize="Micro"
                             TextColor="#28282B"
                             Padding="30, 30, 113, 0"/>
@@ -359,7 +360,6 @@
                         Margin="0, 20, 0, 0">
                         <Label
                             x:Name="OthersLabel"
-                            Text="Others"
                             FontSize="Micro"
                             TextColor="#28282B"
                             Padding="30, 23, 185, 0"/>
@@ -400,15 +400,22 @@
 
             <Label
                 x:Name="SuccessfulRegistrationCOMPANY"
-                Text="Company registered successfully!"
                 FontSize="Micro"
                 TextColor="#18bd5b"
                 HorizontalOptions="Center"
                 IsVisible="False"
                 Margin="0, -290, 0, 280"/>
 
+            <template:LanguageSelection
+                LanguageChanged="OnLanguageChanged"
+                Margin="0, -1640, 20, 1600"/>
+
             <!-- Display footer -->
-            <template:Footer />
+            <template:Footer
+                x:Name="FooterENG"/>
+            <template:Footer_BG
+                x:Name="FooterBG"
+                IsVisible="False"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

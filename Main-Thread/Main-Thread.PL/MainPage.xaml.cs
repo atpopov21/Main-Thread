@@ -3,27 +3,24 @@ using System.Reflection;
 using System.Windows.Input;
 using Main_Thread.PL.Pages;
 using Main_Thread.PL.Pages.Templates;
-using System.Diagnostics;
+using Main_Thread.PL.Pages.Resources;
 
 namespace Main_Thread.PL
 {
     public partial class MainPage : ContentPage
     {
-        // Default value for language: "English"
-        private string selectedLanguage = "English";
-
         public MainPage()
         {
             InitializeComponent();
+            OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
 
             MainThreadLogo.BackgroundColor = Color.Parse("Transparent");
-
-            // Debug.WriteLine(selectedLanguage);  // SHOULD be removed in production
         }
 
         private void OnLanguageChanged(string language)
         {
-            selectedLanguage = language;
+            ClientSettingsVisuals.Instance.SelectedLanguage = language;
+            string selectedLanguage = language;
             if (selectedLanguage == "English")
             {
                 RegisterACompanyButton.Text = "Register a Company";
@@ -48,7 +45,6 @@ namespace Main_Thread.PL
                 FooterENG.IsVisible = true;
                 FooterBG.IsVisible = false;
             }
-            // Debug.WriteLine("Selected Language: " + selectedLanguage);  // SHOULD be removed in production
         }
 
         protected override void OnAppearing()
@@ -58,14 +54,16 @@ namespace Main_Thread.PL
             this.Window.MinimumWidth = 1000;
         }
 
-        private void Register_Company_Clicked(object sender, EventArgs e)
+        private async void Register_Company_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new RegisterCompany());
+            //await Shell.Current.GoToAsync("//RegisterCompany");   // With no "Back" option
+            await Navigation.PushAsync(new RegisterCompany());    // With a "Back" option
         }
 
-        private void Login_Company_Clicked(object sender, EventArgs e)
+        private async void Login_Company_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new LoginToCompany());
+            //await Shell.Current.GoToAsync("//LoginToCompany");    // With no "Back" option
+            await Navigation.PushAsync(new LoginToCompany());     // With a "Back" option
         }
     }
 }
