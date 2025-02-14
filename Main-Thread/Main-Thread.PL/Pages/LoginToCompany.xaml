@@ -62,6 +62,7 @@
                                     PlaceholderColor="LightGray"
                                     WidthRequest="300"
                                     HeightRequest="35"
+                                    ClearButtonVisibility="WhileEditing"
                                     TextChanged="EmailBox_TextChanged"/>
                             </Border>
                             <!-- END OF: Email Section -->
@@ -83,6 +84,7 @@
                                     WidthRequest="300"
                                     HeightRequest="35"
                                     IsPassword="True"
+                                    ClearButtonVisibility="WhileEditing"
                                     TextChanged="PasswordBox_TextChanged"/>
                             </Border>
                             <!-- END OF: Password Section -->
@@ -94,6 +96,7 @@
                                 Margin="0, 40, 0, 20"/>
                             <Button
                                 x:Name="LoginButton"
+                                BackgroundColor="RoyalBlue"
                                 FontSize="Small"
                                 WidthRequest="200"
                                 Clicked="LoginButton_Clicked"/>

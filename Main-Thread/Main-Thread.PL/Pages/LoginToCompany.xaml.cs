@@ -1,4 +1,6 @@
 using Main_Thread.PL.Pages.Resources;
+using Microsoft.Maui.ApplicationModel.Communication;
+using System;
 using System.Diagnostics;
 
 namespace Main_Thread.PL.Pages;
@@ -73,8 +75,11 @@ public partial class LoginToCompany : ContentPage
             return false;
         }
 
+        // Find index of the entered email
+        int emailIndex = Array.IndexOf(realEmails, userCredentials[0]);
+
         // Check if password matches the user's email
-        if (!realMatchingPasswords.Any(password => password == userCredentials[1]))
+        if (realMatchingPasswords[emailIndex] != userCredentials[1])
         {
             DisplayAlert("Failed Login", "Wrong password.", "Try Again");
             return false;
