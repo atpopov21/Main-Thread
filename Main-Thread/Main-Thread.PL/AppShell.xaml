@@ -15,13 +15,18 @@
         Route="MainPage" />
     
     <ShellContent
-    Title="Main Thread | Register a company"
-    ContentTemplate="{DataTemplate pages:RegisterCompany}"
-    Route="RegisterCompany" />
+        Title="Main Thread | Register a company"
+        ContentTemplate="{DataTemplate pages:RegisterCompany}"
+        Route="RegisterCompany" />
     
     <ShellContent
-    Title="Main Thread | Login to a company"
-    ContentTemplate="{DataTemplate pages:LoginToCompany}"
-    Route="LoginToCompany" />
+        Title="Main Thread | Login to a company"
+        ContentTemplate="{DataTemplate pages:LoginToCompany}"
+        Route="LoginToCompany" />
+
+    <ShellContent
+        Title="Main Thread | Home page"
+        ContentTemplate="{DataTemplate pages:HomePage}"
+        Route="HomePage" />
 
 </Shell>
