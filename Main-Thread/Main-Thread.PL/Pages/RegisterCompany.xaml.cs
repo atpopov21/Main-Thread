@@ -1,13 +1,52 @@
-using Main_Thread.PL.Pages.Resources;
+п»їusing Main_Thread.PL.Pages.Resources;
 using Microsoft.Maui.Controls.Compatibility;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Main_Thread.PL.Pages;
+
+public enum PasswordScore
+{
+    Blank = 0,
+    VeryWeak = 1,
+    Weak = 2,
+    Medium = 3,
+    Strong = 4,
+    VeryStrong = 5
+}
+
+public class PasswordAdvisor
+{
+    public static PasswordScore CheckStrength(string password)
+    {
+        int score = 0;
+
+        if (password.Length < 1)
+            return PasswordScore.Blank;
+        if (password.Length < 4)
+            return PasswordScore.VeryWeak;
+
+        if (password.Length >= 8)
+            score++;
+        if (password.Length >= 12)
+            score++;
+        if (Regex.Match(password, @"\d+", RegexOptions.ECMAScript).Success)
+            score++;
+        if (Regex.Match(password, @"[a-z]", RegexOptions.ECMAScript).Success &&
+          Regex.Match(password, @"[A-Z]", RegexOptions.ECMAScript).Success)
+            score++;
+        if (Regex.Match(password, @".[!,@,#,$,%,^,&,*,?,_,~,-,ВЈ,(,)]", RegexOptions.ECMAScript).Success)
+            score++;
+
+        return (PasswordScore)score;
+    }
+}
 
 public partial class RegisterCompany : ContentPage
 {
     // TEMPORARY declaration and initialization
-    List<string> companyInformation = new List<string>(new string[14]);
+    List<string> companyInformation = new List<string>(new string[15]);
+    public PasswordScore passwordStrengthScore;
 
     public RegisterCompany()
 	{
@@ -37,7 +76,38 @@ public partial class RegisterCompany : ContentPage
             // Body
             FirstNameLabel.Text = "First Name";
             LastNameLabel.Text = "Last Name";
-            
+
+            PasswordLabel.Text = "Password";
+            PasswordLabel.Padding = new Thickness(30, 22, 162, 0);
+            switch (passwordStrengthScore)
+            {
+                case PasswordScore.VeryWeak:
+                    PasswordScoreLabel.Text = "Very Weak";
+                    PasswordScoreLabel.TextColor = Colors.DimGray;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Weak:
+                    PasswordScoreLabel.Text = "Weak";
+                    PasswordScoreLabel.TextColor = Colors.DarkRed;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Medium:
+                    PasswordScoreLabel.Text = "Medium";
+                    PasswordScoreLabel.TextColor = Colors.DarkOrange;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Strong:
+                    PasswordScoreLabel.Text = "Strong";
+                    PasswordScoreLabel.TextColor = Colors.MediumBlue;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.VeryStrong:
+                    PasswordScoreLabel.Text = "Very Strong";
+                    PasswordScoreLabel.TextColor = Colors.ForestGreen;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+            }
+
             BusinessNameLabel.Text = "Business Name";
             BusinessNameLabel.Padding = new Thickness(30, 22, 120, 0);
 
@@ -79,50 +149,81 @@ public partial class RegisterCompany : ContentPage
         else if (selectedLanguage == "Bulgarian")
         {
             // Head BG
-            RegisterBusinessLabel.Text = "Регистрирайте фирмата си";
-            RegisterBusinessSubtitleLabel.Text = "Моля, предоставете всички необходими данни, за да регистрирате фирмата си в Main Thread Inc.";
-            BusinessOwnerLabel.Text = "Собственик на фирмата"; //7
+            RegisterBusinessLabel.Text = "Р РµРіРёСЃС‚СЂРёСЂР°Р№С‚Рµ С„РёСЂРјР°С‚Р° СЃРё";
+            RegisterBusinessSubtitleLabel.Text = "РњРѕР»СЏ, РїСЂРµРґРѕСЃС‚Р°РІРµС‚Рµ РІСЃРёС‡РєРё РЅРµРѕР±С…РѕРґРёРјРё РґР°РЅРЅРё, Р·Р° РґР° СЂРµРіРёСЃС‚СЂРёСЂР°С‚Рµ С„РёСЂРјР°С‚Р° СЃРё РІ Main Thread Inc.";
+            BusinessOwnerLabel.Text = "РЎРѕР±СЃС‚РІРµРЅРёРє РЅР° С„РёСЂРјР°С‚Р°"; //7
             BusinessOwnerLabel.Padding = new Thickness(30, 22, 55, 0);
             
             // Body BG
-            FirstNameLabel.Text = "Име";
-            LastNameLabel.Text = "Фамилия";
-           
-            BusinessNameLabel.Text = "Име на фирмата";
+            FirstNameLabel.Text = "РРјРµ";
+            LastNameLabel.Text = "Р¤Р°РјРёР»РёСЏ";
+
+            PasswordLabel.Text = "РџР°СЂРѕР»Р°";
+            PasswordLabel.Padding = new Thickness(30, 22, 176, 0);
+            switch (passwordStrengthScore)
+            {
+                case PasswordScore.VeryWeak:
+                    PasswordScoreLabel.Text = "РњРЅРѕРіРѕ СЃР»Р°Р±Р°";
+                    PasswordScoreLabel.TextColor = Colors.DimGray;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Weak:
+                    PasswordScoreLabel.Text = "РЎР»Р°Р±Р°";
+                    PasswordScoreLabel.TextColor = Colors.DarkRed;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Medium:
+                    PasswordScoreLabel.Text = "РЎСЂРµРґРЅР°";
+                    PasswordScoreLabel.TextColor = Colors.DarkOrange;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Strong:
+                    PasswordScoreLabel.Text = "РЎРёР»РЅР°";
+                    PasswordScoreLabel.TextColor = Colors.MediumBlue;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.VeryStrong:
+                    PasswordScoreLabel.Text = "РњРЅРѕРіРѕ СЃРёР»РЅР°";
+                    PasswordScoreLabel.TextColor = Colors.ForestGreen;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+            }
+
+            BusinessNameLabel.Text = "РРјРµ РЅР° С„РёСЂРјР°С‚Р°";
             BusinessNameLabel.Padding = new Thickness(30, 22, 106, 0);
 
-            ContactNumberLabel.Text = "Телефон за връзка";
+            ContactNumberLabel.Text = "РўРµР»РµС„РѕРЅ Р·Р° РІСЂСЉР·РєР°";
             ContactNumberLabel.Padding = new Thickness(30, 22, 97, 0);
 
-            EmailLabel.Text = "Електронна поща";
+            EmailLabel.Text = "Р•Р»РµРєС‚СЂРѕРЅРЅР° РїРѕС‰Р°";
             EmailLabel.Padding = new Thickness(30, 22, 29, 0);
 
-            SERLabel.Text = "Регистрация на \nдържавен субект #";
+            SERLabel.Text = "Р РµРіРёСЃС‚СЂР°С†РёСЏ РЅР° \nРґСЉСЂР¶Р°РІРµРЅ СЃСѓР±РµРєС‚ #";
             SERLabel.Padding = new Thickness(30, 22, 92, 0);
 
-            EINLabel.Text = "ЕГН";
+            EINLabel.Text = "Р•Р“Рќ";
             EINLabel.Padding = new Thickness(30, 22, 208, 0);
 
-            AddressLabel.Text = "Адрес на компанията";
+            AddressLabel.Text = "РђРґСЂРµСЃ РЅР° РєРѕРјРїР°РЅРёСЏС‚Р°";
             AddressLabel.Padding = new Thickness(30, 22, 73, 0);
 
-            StreetAddressOneLabel.Text = "Уличен адрес";
-            StreetAddressLineTwoLabel.Text = "Уличен адрес ред 2";
-            CityLabel.Text = "Град";
-            StateProvinceLabel.Text = "Щат / Провинция";
-            PostalZipCodeLabel.Text = "Пощенски код";
+            StreetAddressOneLabel.Text = "РЈР»РёС‡РµРЅ Р°РґСЂРµСЃ";
+            StreetAddressLineTwoLabel.Text = "РЈР»РёС‡РµРЅ Р°РґСЂРµСЃ СЂРµРґ 2";
+            CityLabel.Text = "Р“СЂР°Рґ";
+            StateProvinceLabel.Text = "Р©Р°С‚ / РџСЂРѕРІРёРЅС†РёСЏ";
+            PostalZipCodeLabel.Text = "РџРѕС‰РµРЅСЃРєРё РєРѕРґ";
 
-            TypeOfBusinessLabel.Text = "Вид на бизнеса";
+            TypeOfBusinessLabel.Text = "Р’РёРґ РЅР° Р±РёР·РЅРµСЃР°";
             TypeOfBusinessLabel.Padding = new Thickness(30, 30, 118, 0);
 
-            OthersLabel.Text = "Други";
+            OthersLabel.Text = "Р”СЂСѓРіРё";
             OthersLabel.Padding = new Thickness(30, 22, 192, 0);
             // END OF: Body BG
 
             // Footer
-            SubmitRegistratonButton.Text = "Регистрирайте фирма";
+            SubmitRegistratonButton.Text = "Р РµРіРёСЃС‚СЂРёСЂР°Р№С‚Рµ С„РёСЂРјР°";
             SubmitRegistratonButton.WidthRequest = 235;
-            SuccessfulRegistrationCOMPANY.Text = "Заявката за регистрация на компания беше изпратена успешно!";
+            SuccessfulRegistrationCOMPANY.Text = "Р—Р°СЏРІРєР°С‚Р° Р·Р° СЂРµРіРёСЃС‚СЂР°С†РёСЏ РЅР° РєРѕРјРїР°РЅРёСЏ Р±РµС€Рµ РёР·РїСЂР°С‚РµРЅР° СѓСЃРїРµС€РЅРѕ!";
 
             FooterBG.IsVisible = true;
             FooterENG.IsVisible = false;
@@ -138,6 +239,37 @@ public partial class RegisterCompany : ContentPage
             // Body
             FirstNameLabel.Text = "First Name";
             LastNameLabel.Text = "Last Name";
+
+            PasswordLabel.Text = "Password";
+            PasswordLabel.Padding = new Thickness(30, 22, 162, 0);
+            switch (passwordStrengthScore)
+            {
+                case PasswordScore.VeryWeak:
+                    PasswordScoreLabel.Text = "Very Weak";
+                    PasswordScoreLabel.TextColor = Colors.DimGray;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Weak:
+                    PasswordScoreLabel.Text = "Weak";
+                    PasswordScoreLabel.TextColor = Colors.DarkRed;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Medium:
+                    PasswordScoreLabel.Text = "Medium";
+                    PasswordScoreLabel.TextColor = Colors.DarkOrange;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.Strong:
+                    PasswordScoreLabel.Text = "Strong";
+                    PasswordScoreLabel.TextColor = Colors.MediumBlue;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+                case PasswordScore.VeryStrong:
+                    PasswordScoreLabel.Text = "Very Strong";
+                    PasswordScoreLabel.TextColor = Colors.ForestGreen;
+                    PasswordScoreLabel.IsVisible = true;
+                    break;
+            }
 
             BusinessNameLabel.Text = "Business Name";
             BusinessNameLabel.Padding = new Thickness(30, 22, 120, 0);
@@ -192,64 +324,108 @@ public partial class RegisterCompany : ContentPage
         companyInformation[1] = COMPANYownerLastNameINPUT;
     }
 
+    private void PasswordBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        string COMPANYuserpasswordINPUT = PasswordBox.Text;
+        companyInformation[2] = COMPANYuserpasswordINPUT;
+
+        if (COMPANYuserpasswordINPUT == "")
+            PasswordScoreLabel.IsVisible = false;
+
+        passwordStrengthScore = PasswordAdvisor.CheckStrength(companyInformation[2]);
+        switch (passwordStrengthScore)
+        {
+            case PasswordScore.VeryWeak:
+                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Very Weak";
+                else PasswordScoreLabel.Text = "РњРЅРѕРіРѕ СЃР»Р°Р±Р°";
+                PasswordScoreLabel.TextColor = Colors.DimGray;
+                PasswordScoreLabel.IsVisible = true;
+                break;
+            case PasswordScore.Weak:
+                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Weak";
+                else PasswordScoreLabel.Text = "РЎР»Р°Р±Р°";
+                PasswordScoreLabel.TextColor = Colors.DarkRed;
+                PasswordScoreLabel.IsVisible = true;
+                break;
+            case PasswordScore.Medium:
+                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Medium";
+                else PasswordScoreLabel.Text = "РЎСЂРµРґРЅР°";
+                PasswordScoreLabel.TextColor = Colors.DarkOrange;
+                PasswordScoreLabel.IsVisible = true;
+                break;
+            case PasswordScore.Strong:
+                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Strong";
+                else PasswordScoreLabel.Text = "РЎРёР»РЅР°";
+                PasswordScoreLabel.TextColor = Colors.MediumBlue;
+                PasswordScoreLabel.IsVisible = true;
+                break;
+            case PasswordScore.VeryStrong:
+                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Very Strong";
+                else PasswordScoreLabel.Text = "РњРЅРѕРіРѕ СЃРёР»РЅР°";
+                PasswordScoreLabel.TextColor = Colors.ForestGreen;
+                PasswordScoreLabel.IsVisible = true;
+                break;
+        }
+    }
+
     private void BusinessNameBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYnameINPUT = BusinessNameBox.Text;
-        companyInformation[2] = COMPANYnameINPUT;
+        companyInformation[3] = COMPANYnameINPUT;
     }
 
     private void ContactNumberBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYownerContactNumberINPUT = ContactNumberBox.Text;
-        companyInformation[3] = COMPANYownerContactNumberINPUT;
+        companyInformation[4] = COMPANYownerContactNumberINPUT;
     }
 
     private void EmailBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYownerEmailINPUT = EmailBox.Text;
-        companyInformation[4] = COMPANYownerEmailINPUT;
+        companyInformation[5] = COMPANYownerEmailINPUT;
     }
 
     private void SERBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYSERNumberINPUT = SERBox.Text;
-        companyInformation[5] = COMPANYSERNumberINPUT;
+        companyInformation[6] = COMPANYSERNumberINPUT;
     }
 
     private void PINBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYemployerPININPUT = PINBox.Text;
-        companyInformation[6] = COMPANYemployerPININPUT;
+        companyInformation[7] = COMPANYemployerPININPUT;
     }
 
     private void StreetAddressBox1_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYstreetAddressOneINPUT = StreetAddressBox1.Text;
-        companyInformation[7] = COMPANYstreetAddressOneINPUT;
+        companyInformation[8] = COMPANYstreetAddressOneINPUT;
     }
 
     private void StreetAddressBox2_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYstreetAddressTwoINPUT = StreetAddressBox2.Text;   // Can be null
-        companyInformation[8] = COMPANYstreetAddressTwoINPUT;
+        companyInformation[9] = COMPANYstreetAddressTwoINPUT;
     }
 
     private void CityBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYcityINPUT = CityBox.Text;
-        companyInformation[9] = COMPANYcityINPUT;
+        companyInformation[10] = COMPANYcityINPUT;
     }
 
     private void StateProvinceBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYstateProvinceINPUT = StateProvinceBox.Text;
-        companyInformation[10] = COMPANYstateProvinceINPUT;
+        companyInformation[11] = COMPANYstateProvinceINPUT;
     }
 
     private void ZipCodeBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYzipCodeINPUT = ZipCodeBox.Text;
-        companyInformation[11] = COMPANYzipCodeINPUT;
+        companyInformation[12] = COMPANYzipCodeINPUT;
     }
 
     private void CategoryPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -267,20 +443,20 @@ public partial class RegisterCompany : ContentPage
             {
                 OthersLabel.IsVisible = false;
                 OthersBox.IsVisible = false;
-                if (companyInformation[12] != null)
+                if (companyInformation[13] != null)
                 {
-                    companyInformation[12] = "";
+                    companyInformation[13] = "";
                 }
             }
 
-            companyInformation[12] = selectedCategory;
+            companyInformation[13] = selectedCategory;
         }
     }
 
     private void OthersBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYcategoryINPUT = OthersBox.Text;   // Can be null
-        companyInformation[13] = COMPANYcategoryINPUT;
+        companyInformation[14] = COMPANYcategoryINPUT;
     }
 
     private bool CheckCredentials()
@@ -298,16 +474,16 @@ public partial class RegisterCompany : ContentPage
                 return false;
             }
             // Check if the type of business is specified
-            else if (information == "Others, please specify below" && companyInformation[12] == null)
+            else if (information == "Others, please specify below" && companyInformation[14] == null)
             {
                 DisplayAlert("Alert", "Please specify the type of business.", "OK");
                 return false;
             }
 
             // Check if any field is empty
-            if (string.IsNullOrEmpty(information) && count != 13)
+            if (string.IsNullOrEmpty(information) && count != 14)
             {
-                if (count != 8) // Skip check if Street Address Line 2 is empty
+                if (count != 9) // Skip check if Street Address Line 2 is empty
                 {
                     DisplayAlert("Alert", "There are one or multiple empty fields.\nPlease fill them in.", "OK");
                     return false;
@@ -328,6 +504,7 @@ public partial class RegisterCompany : ContentPage
             return false;
         }
 
+
         // Check for valid input for last name
         if (!companyInformation[1].All(char.IsLetter))
         {
@@ -340,98 +517,135 @@ public partial class RegisterCompany : ContentPage
             return false;
         }
 
+
+        // Check for a valid password
+        if (companyInformation[2].Length < 8)
+        {
+            DisplayAlert("Alert", "Password can not be under 8 symbols.\nPlease enter a valid password.", "OK");
+            return false;
+        }
+        else if (!Regex.IsMatch(companyInformation[2], @"[a-z]"))
+        {
+            DisplayAlert("Alert", "Password must include at least one lowercase letter.\nPlease enter a valid password.", "OK");
+            return false;
+        }
+        else if (!Regex.IsMatch(companyInformation[2], @"[A-Z]"))
+        {
+            DisplayAlert("Alert", "Password must include at least one uppercase letter.\nPlease enter a valid password.", "OK");
+            return false;
+        }
+        else if (!Regex.IsMatch(companyInformation[2], @"\d"))
+        {
+            DisplayAlert("Alert", "Password must include at least one number.\nPlease enter a valid password.", "OK");
+            return false;
+        }
+        else if (!Regex.IsMatch(companyInformation[2], @"[^\w]"))
+        {
+            DisplayAlert("Alert", "Password must include at least one special character.\nPlease enter a valid password.", "OK");
+            return false;
+        }
+
         // Check for a valid business name
-        if (companyInformation[2].Length < 3)
+        if (companyInformation[3].Length < 3)
         {
             DisplayAlert("Alert", "Business name is too short.\nPlease enter a valid business name.", "OK");
             return false;
         }
 
+
         // Check for a valid number of characters in the contact number
-        if (!companyInformation[3].All(char.IsDigit))
+        if (!companyInformation[4].All(char.IsDigit))
         {
             DisplayAlert("Alert", "Contact number contains invalid characters.\nPlease enter a valid contact number.", "OK");
             return false;
         }
-        else if (companyInformation[3].Length < 10)
+        else if (companyInformation[4].Length < 10)
         {
             DisplayAlert("Alert", "Contact number is too short.\nPlease enter a valid contact number.", "OK");
             return false;
         }
 
+
         // Check for a valid email address
-        if(!companyInformation[4].Contains("@") || !companyInformation[4].Contains("."))
+        if(!companyInformation[5].Contains("@") || !companyInformation[5].Contains("."))
         {
             DisplayAlert("Alert", "Invalid email address.\nPlease enter a valid email address.", "OK");
             return false;
         }
 
+
         // Check for a valid State Entity Registration number
-        if (!companyInformation[5].All(char.IsLetterOrDigit))
+        if (!companyInformation[6].All(char.IsLetterOrDigit))
         {
             DisplayAlert("Alert", "State Entity Registration number contains invalid characters.\nPlease enter a valid number.", "OK");
             return false;
         }
-        else if (companyInformation[5].Length < 10)
+        else if (companyInformation[6].Length < 10)
         {
             DisplayAlert("Alert", "State Entity Registration number is too short.\nPlease enter a valid number.", "OK");
             return false;
         }
 
+
         // Check for a valid Employer Identification Number
-        if (!companyInformation[6].All(char.IsDigit))
+        if (!companyInformation[7].All(char.IsDigit))
         {
             DisplayAlert("Alert", "Employer Identification Number contains invalid characters.\nPlease enter a valid number.", "OK");
             return false;
         }
-        else if (companyInformation[6].Length < 10)
+        else if (companyInformation[7].Length < 10)
         {
             DisplayAlert("Alert", "Employer Identification Number is too short.\nPlease enter a valid number.", "OK");
             return false;
         }
 
+
         // Check for a valid company address
-        if (companyInformation[7].Length < 10)
+        if (companyInformation[8].Length < 10)
         {
             DisplayAlert("Alert", "Street Address is too short.\nPlease enter a valid street address", "OK");
             return false;
         }
 
+
         // Check for a valid city value
-        if (!companyInformation[9].All(char.IsLetter))
+        if (!companyInformation[10].All(char.IsLetter))
         {
             DisplayAlert("Alert", "City name contains invalid characters.\nPlease enter a valid city name", "OK");
             return false;
         }
-        else if (companyInformation[9].Length < 3)
+        else if (companyInformation[10].Length < 3)
         {
             DisplayAlert("Alert", "City name is too short.\nPlease enter a valid city name", "OK");
             return false;
         }
 
+
         // Check for a valid State/Province value
-        if (!companyInformation[10].All(char.IsLetter))
+        if (!companyInformation[11].All(char.IsLetter))
         {
             DisplayAlert("Alert", "State / Province name contains invalid characters.\nPlease enter a valid state / province name", "OK");
             return false;
         }
-        else if (companyInformation[10].Length < 3)
+        else if (companyInformation[11].Length < 3)
         {
             DisplayAlert("Alert", "State / Province name is too short.\nPlease enter a valid state / province name", "OK");
             return false;
         }
 
+
         // Check for a valid ZIP code
-        if (!companyInformation[11].All(char.IsDigit))
+        if (!companyInformation[12].All(char.IsDigit))
         {
             DisplayAlert("Alert", "ZIP Code number contains invalid characters.\nPlease enter a valid ZIP code.", "OK");
             return false;
         }
-        else if (companyInformation[11].Length < 5)
+        else if (companyInformation[12].Length < 4)
         {
             DisplayAlert("Alert", "ZIP Code number is too short.\nPlease enter a valid ZIP code.", "OK");
             return false;
         }
+
 
         return true;
     }
@@ -475,124 +689,134 @@ public partial class RegisterCompany : ContentPage
         FormRowOne.BackgroundColor = Colors.White;
     }
 
-    private void BusinessNameBox_Focused(object sender, FocusEventArgs e)
+    private void PasswordBox_Focused(object sender, FocusEventArgs e)
     {
         FormRowTwo.BackgroundColor = Color.FromArgb("#f1f5ff");
     }
 
-    private void BusinessNameBox_Unfocused(object sender, FocusEventArgs e)
+    private void PasswordBox_Unfocused(object sender, FocusEventArgs e)
     {
         FormRowTwo.BackgroundColor = Colors.White;
     }
 
-    private void ContactNumberBox_Focused(object sender, FocusEventArgs e)
+    private void BusinessNameBox_Focused(object sender, FocusEventArgs e)
     {
         FormRowThree.BackgroundColor = Color.FromArgb("#f1f5ff");
     }
 
-    private void ContactNumberBox_Unfocused(object sender, FocusEventArgs e)
+    private void BusinessNameBox_Unfocused(object sender, FocusEventArgs e)
     {
         FormRowThree.BackgroundColor = Colors.White;
     }
 
-    private void EmailBox_Focused(object sender, FocusEventArgs e)
+    private void ContactNumberBox_Focused(object sender, FocusEventArgs e)
     {
         FormRowFour.BackgroundColor = Color.FromArgb("#f1f5ff");
     }
 
-    private void EmailBox_Unfocused(object sender, FocusEventArgs e)
+    private void ContactNumberBox_Unfocused(object sender, FocusEventArgs e)
     {
         FormRowFour.BackgroundColor = Colors.White;
     }
 
-    private void SERBox_Focused(object sender, FocusEventArgs e)
+    private void EmailBox_Focused(object sender, FocusEventArgs e)
     {
         FormRowFive.BackgroundColor = Color.FromArgb("#f1f5ff");
     }
 
-    private void SERBox_Unfocused(object sender, FocusEventArgs e)
+    private void EmailBox_Unfocused(object sender, FocusEventArgs e)
     {
         FormRowFive.BackgroundColor = Colors.White;
     }
 
-    private void PINBox_Focused(object sender, FocusEventArgs e)
+    private void SERBox_Focused(object sender, FocusEventArgs e)
     {
         FormRowSix.BackgroundColor = Color.FromArgb("#f1f5ff");
     }
 
-    private void PINBox_Unfocused(object sender, FocusEventArgs e)
+    private void SERBox_Unfocused(object sender, FocusEventArgs e)
     {
         FormRowSix.BackgroundColor = Colors.White;
     }
 
+    private void PINBox_Focused(object sender, FocusEventArgs e)
+    {
+        FormRowSeven.BackgroundColor = Color.FromArgb("#f1f5ff");
+    }
+
+    private void PINBox_Unfocused(object sender, FocusEventArgs e)
+    {
+        FormRowSeven.BackgroundColor = Colors.White;
+    }
+
     private void StreetAddressBox1_Focused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Color.FromArgb("#f1f5ff");
-    }
-
-    private void StreetAddressBox1_Unfocused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Colors.White;
-    }
-
-    private void StreetAddressBox2_Focused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Color.FromArgb("#f1f5ff");
-    }
-
-    private void StreetAddressBox2_Unfocused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Colors.White;
-    }
-
-    private void CityBox_Focused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Color.FromArgb("#f1f5ff");
-    }
-
-    private void CityBox_Unfocused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Colors.White;
-    }
-
-    private void StateProvinceBox_Focused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Color.FromArgb("#f1f5ff");
-    }
-
-    private void StateProvinceBox_Unfocused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Colors.White;
-    }
-
-    private void ZipCodeBox_Focused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Color.FromArgb("#f1f5ff");
-    }
-
-    private void ZipCodeBox_Unfocused(object sender, FocusEventArgs e)
-    {
-        FormRowSeven.BackgroundColor = Colors.White;
-    }
-
-    private void CategoryPicker_Focused(object sender, FocusEventArgs e)
     {
         FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
     }
 
-    private void CategoryPicker_Unfocused(object sender, FocusEventArgs e)
+    private void StreetAddressBox1_Unfocused(object sender, FocusEventArgs e)
     {
         FormRowEight.BackgroundColor = Colors.White;
     }
 
-    private void OthersBox_Focused(object sender, FocusEventArgs e)
+    private void StreetAddressBox2_Focused(object sender, FocusEventArgs e)
+    {
+        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+    }
+
+    private void StreetAddressBox2_Unfocused(object sender, FocusEventArgs e)
+    {
+        FormRowEight.BackgroundColor = Colors.White;
+    }
+
+    private void CityBox_Focused(object sender, FocusEventArgs e)
+    {
+        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+    }
+
+    private void CityBox_Unfocused(object sender, FocusEventArgs e)
+    {
+        FormRowEight.BackgroundColor = Colors.White;
+    }
+
+    private void StateProvinceBox_Focused(object sender, FocusEventArgs e)
+    {
+        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+    }
+
+    private void StateProvinceBox_Unfocused(object sender, FocusEventArgs e)
+    {
+        FormRowEight.BackgroundColor = Colors.White;
+    }
+
+    private void ZipCodeBox_Focused(object sender, FocusEventArgs e)
+    {
+        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+    }
+
+    private void ZipCodeBox_Unfocused(object sender, FocusEventArgs e)
+    {
+        FormRowEight.BackgroundColor = Colors.White;
+    }
+
+    private void CategoryPicker_Focused(object sender, FocusEventArgs e)
     {
         FormRowNine.BackgroundColor = Color.FromArgb("#f1f5ff");
     }
 
-    private void OthersBox_Unfocused(object sender, FocusEventArgs e)
+    private void CategoryPicker_Unfocused(object sender, FocusEventArgs e)
     {
         FormRowNine.BackgroundColor = Colors.White;
+    }
+
+    private void OthersBox_Focused(object sender, FocusEventArgs e)
+    {
+        FormRowTen.BackgroundColor = Color.FromArgb("#f1f5ff");
+    }
+
+    private void OthersBox_Unfocused(object sender, FocusEventArgs e)
+    {
+        FormRowTen.BackgroundColor = Colors.White;
     }
 
 }
