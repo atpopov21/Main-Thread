@@ -100,10 +100,39 @@
                             </VerticalStackLayout>
                         </HorizontalStackLayout>
                         <!-- END OF: Business Owner Section -->
+                        
+                        <!-- Password Section -->
+                        <HorizontalStackLayout
+                            x:Name="FormRowTwo"
+                            Margin="0, 20, 0, 0">
+                            <Label
+                                x:Name="PasswordLabel"
+                                FontSize="Micro"
+                                TextColor="#28282B"
+                                Padding="30, 22, 162, 0"/>
+                            <VerticalStackLayout>
+                            <resource:BorderlessEntry
+                                x:Name="PasswordBox"
+                                WidthRequest="410"
+                                Keyboard="Default"
+                                Focused="PasswordBox_Focused"
+                                Unfocused="PasswordBox_Unfocused"
+                                TextChanged="PasswordBox_TextChanged"
+                                Placeholder="examplePassword#423"
+                                PlaceholderColor="LightGray"
+                                MaxLength="60"
+                                Margin="5, 18, 0, 10"/>
+                            <Label
+                                x:Name="PasswordScoreLabel"
+                                FontSize="Caption"
+                                Margin="10, -5, 0, 0"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                        <!-- END OF: Business Name Section -->
 
                         <!-- Business Name Section -->
                         <HorizontalStackLayout
-                            x:Name="FormRowTwo"
+                            x:Name="FormRowThree"
                             Margin="0, 20, 0, 0">
                             <Label
                                 x:Name="BusinessNameLabel"
@@ -124,7 +153,7 @@
 
                         <!-- Contact Number Section -->
                         <HorizontalStackLayout
-                            x:Name="FormRowThree"
+                            x:Name="FormRowFour"
                             Margin="0, 20, 0, 0">
                             <Label
                                 x:Name="ContactNumberLabel"
@@ -147,7 +176,7 @@
 
                         <!-- E-mail Section -->
                         <HorizontalStackLayout
-                            x:Name="FormRowFour"
+                            x:Name="FormRowFive"
                             Margin="0, 20, 0, 0">
                             <Label
                                 x:Name="EmailLabel"
@@ -177,7 +206,7 @@
 
                         <!-- State Entity Registration # Section-->
                         <HorizontalStackLayout
-                            x:Name="FormRowFive"
+                            x:Name="FormRowSix"
                             Margin="0, 20, 0, 0">
                             <Label
                                 x:Name="SERLabel"
@@ -207,7 +236,7 @@
 
                         <!-- Employer Identification Number Section -->
                         <HorizontalStackLayout
-                            x:Name="FormRowSix"
+                            x:Name="FormRowSeven"
                             Margin="0, 20, 0, 0">
                             <Label
                                 x:Name="EINLabel"
@@ -235,7 +264,7 @@
 
                         <!-- Address Section -->
                         <HorizontalStackLayout
-                            x:Name="FormRowSeven"
+                            x:Name="FormRowEight"
                             Margin="0, 20, 0, 0">
                             <Label
                                 x:Name="AddressLabel"
@@ -333,7 +362,7 @@
 
                         <!-- Type of Business Section -->
                         <HorizontalStackLayout
-                            x:Name="FormRowEight"
+                            x:Name="FormRowNine"
                             Margin="0, 20, 0, 0">
                             <Label
                                 x:Name="TypeOfBusinessLabel"
@@ -366,7 +395,7 @@
                     
                         <!-- Others Section -->
                         <HorizontalStackLayout
-                            x:Name="FormRowNine"
+                            x:Name="FormRowTen"
                             Margin="0, 20, 0, 0">
                             <Label
                                 x:Name="OthersLabel"
