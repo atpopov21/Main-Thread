@@ -3,12 +3,307 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:template="clr-namespace:Main_Thread.PL.Pages.Templates"
              xmlns:resource="clr-namespace:Main_Thread.PL.Pages.Resources"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="Main_Thread.PL.Pages.HomePage"
-             Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to the Home Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Main Thread | Home">
+    <ScrollView
+        BackgroundColor="AliceBlue">
+        <StackLayout Spacing="8">
+            <!-- Display background of page (stripes) -->
+            <template:Background />
+            <template:Background />
+            
+            <!-- User interactive space -->
+            <!-- Page header -->
+            <Border
+                Stroke="Black"
+                StrokeShape="RoundRectangle 0, 0, 20, 20"
+                Margin="0, -1580, 0, 0">
+                <FlexLayout
+                    BackgroundColor="Black">
+                    <Label
+                        FlexLayout.Grow="1"
+                        x:Name="UserGreeting"
+                        TextColor="White"
+                        FontSize="Small"
+                        FontFamily="OpenSansSemibold"
+                        Padding="30, 14, 0, 12"/>
+
+                    <VerticalStackLayout
+                        FlexLayout.Grow="1">
+                    <Label
+                        
+                        x:Name="TimeStamp"
+                        TextColor="White"
+                        FontSize="Small"
+                        FontFamily="OpenSansSemibold"
+                        Padding="50, 7, 0, 0"/>
+
+                    <Label
+                        x:Name="TimeLabel"
+                        TextColor="White"
+                        Margin="57, -5, 0, 0"/>
+                    </VerticalStackLayout>
+
+                    <Button
+                        x:Name="LogoutButton"
+                        FontSize="Small"
+                        CornerRadius="10"
+                        BackgroundColor="IndianRed"
+                        Clicked="LogoutButton_Clicked"
+                        Margin="0, 0, 20, 0"/>
+                </FlexLayout>
+            </Border>
+            <!-- END OF: Page header -->
+
+            <Grid
+                ColumnDefinitions="Auto, Auto"
+                RowDefinitions="Auto, Auto"
+                ColumnSpacing="20"
+                RowSpacing="20"
+                HorizontalOptions="Center"
+                Margin="0, 150, 0, 0">
+                
+                <!-- Revenues and Expenses -->
+                <Border
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Stroke="Transparent"
+                    WidthRequest="300">
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Offset="20, 20"
+                            Radius="20"
+                            Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Frame>
+                        <VerticalStackLayout>
+                            <Label
+                                x:Name="RevenuesAndExpensesLabel"
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"/>
+
+                            <!-- Horizontal line-->
+                            <BoxView
+                                BackgroundColor="LightGray"
+                                HeightRequest="2"
+                                WidthRequest="200"
+                                Margin="0, 20, 0, 20"/>
+
+                            <!-- Title of Chart -->
+                            <Label
+                                Text="Undefined Chart"
+                                FontSize="Micro"
+                                TextColor="Gray"
+                                HorizontalTextAlignment="Center"
+                                Margin="0, -10, 0, 0"/>
+
+                            <!-- Revenues and Expenses Chart -->
+                            <micro:ChartView
+                                x:Name="RevenuesAndExpensesMiniChart"
+                                IsVisible="True"
+                                HeightRequest="300"/>
+
+                            <!-- Horizontal line-->
+                            <BoxView
+                                BackgroundColor="LightGray"
+                                HeightRequest="2"
+                                WidthRequest="200"
+                                Margin="0, 20, 0, 20"/>
+
+                            <!-- Title of Chart -->
+                            <Label
+                                Text="Profit / Month (Latest 4)"
+                                FontSize="Micro"
+                                TextColor="Gray"
+                                HorizontalTextAlignment="Center"
+                                Margin="0, -10, 0, 0"/>
+
+                            <!-- Profit Chart -->
+                            <micro:ChartView
+                                x:Name="RevenuesAndExpensesMiniChartTwo"
+                                IsVisible="True"
+                                HeightRequest="310"/>
+
+                            <!-- Horizontal dashed line-->
+                            <Border
+                                Stroke="Black"
+                                StrokeDashArray="24"
+                                Margin="0, 10, 0, 20"/>
+
+                            <!-- View Button -->
+                            <Button
+                                x:Name="RAIButtonLabel"
+                                FontSize="Small"
+                                BackgroundColor="RoyalBlue"
+                                Clicked="RAIButtonLabel_Clicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </Border>
+                <!-- END OF: Revenues and Expenses -->
+
+                <!-- Employees Management -->
+                <Border
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Stroke="Transparent"
+                    HeightRequest="420"
+                    WidthRequest="500">
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Offset="20, 20"
+                            Radius="20"
+                            Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Frame>
+                        <VerticalStackLayout>
+                            <Label
+                                x:Name="EmployessManagementLabel"
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"/>
+
+                            <!-- Horizontal line-->
+                            <BoxView
+                                BackgroundColor="LightGray"
+                                HeightRequest="2"
+                                WidthRequest="200"
+                                Margin="0, 20, 0, 20"/>
+
+                            <!-- Title of Chart -->
+                            <Label
+                                Text="TOP 5 Best Employees"
+                                FontSize="Micro"
+                                TextColor="Gray"
+                                HorizontalTextAlignment="Center"
+                                Margin="0, -10, 0, 0"/>
+
+                            <!-- Employees Chart -->
+                            <micro:ChartView
+                                x:Name="EmployeesManagementChart"
+                                IsVisible="True"
+                                HeightRequest="212"/>
+
+                            <FlexLayout
+                                Margin="0, -20, 0, 0">
+                                <Label
+                                    x:Name="EmployeeOneLabel"
+                                    TextColor="Gray"
+                                    HorizontalTextAlignment="Center"
+                                    Margin="12, -10, 0, 0"/>
+                                <Label
+                                    x:Name="EmployeeTwoLabel"
+                                    TextColor="Gray"
+                                    HorizontalTextAlignment="Center"
+                                    Margin="16, -10, 0, 0"/>
+                                <Label
+                                    x:Name="EmployeeThreeLabel"
+                                    TextColor="Gray"
+                                    HorizontalTextAlignment="Center"
+                                    Margin="17, -10, 0, 0"/>
+                                <Label
+                                    x:Name="EmployeeFourLabel"
+                                    TextColor="Gray"
+                                    HorizontalTextAlignment="Center"
+                                    Margin="19, -10, 0, 0"/>
+                                <Label
+                                    x:Name="EmployeeFiveLabel"
+                                    TextColor="Gray"
+                                    HorizontalTextAlignment="Center"
+                                    Margin="16, -10, 0, 0"/>
+                            </FlexLayout>
+
+                            <!-- Horizontal dashed line-->
+                            <Border
+                                Stroke="Black"
+                                StrokeDashArray="36"
+                                Margin="0, 10, 0, 20"/>
+
+                            <!-- View Button -->
+                            <Button
+                                x:Name="EMButtonLabel"
+                                FontSize="Small"
+                                BackgroundColor="RoyalBlue"
+                                Clicked="EMButtonLabel_Clicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </Border>
+                <!-- END OF: Employees Management -->
+
+                <!-- Stock Management -->
+                <Border
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Stroke="Transparent"
+                    HeightRequest="420"
+                    WidthRequest="500">
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Offset="20, 20"
+                            Radius="20"
+                            Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Frame>
+                        <VerticalStackLayout>
+                            <Label
+                                x:Name="StockManagementLabel"
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"/>
+
+                            <!-- Horizontal line-->
+                            <BoxView
+                                BackgroundColor="LightGray"
+                                HeightRequest="2"
+                                WidthRequest="200"
+                                Margin="0, 20, 0, 20"/>
+
+                            <!-- Title of Chart -->
+                            <Label
+                                Text="Best Selling Products"
+                                FontSize="Micro"
+                                TextColor="Gray"
+                                HorizontalTextAlignment="Center"
+                                Margin="0, -10, 0, 0"/>
+
+                            <!-- Stock Chart -->
+                            <micro:ChartView
+                                x:Name="StockManagementChart"
+                                IsVisible="True"
+                                HeightRequest="212"/>
+
+                            <!-- Horizontal dashed line-->
+                            <Border
+                                Stroke="Black"
+                                StrokeDashArray="36"
+                                Margin="0, 10, 0, 20"/>
+
+                            <!-- View Button -->
+                            <Button
+                                x:Name="SMButtonLabel"
+                                FontSize="Small"
+                                BackgroundColor="RoyalBlue"
+                                Clicked="SMButtonLabel_Clicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </Border>
+                <!-- END OF: Stock Management -->
+            </Grid>
+            <!-- END OF: User interactive space -->
+
+            <!-- Display language selection -->
+            <template:LanguageSelection
+                LanguageChanged="OnLanguageChanged"
+                Margin="0, -1015, 20, 1120"/>
+
+            <!-- Display footer -->
+            <template:Footer
+                x:Name="FooterENG"/>
+            <template:Footer_BG
+                x:Name="FooterBG"
+                IsVisible="False"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

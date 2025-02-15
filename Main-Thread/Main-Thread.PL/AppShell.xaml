@@ -6,6 +6,8 @@
     xmlns:local="clr-namespace:Main_Thread.PL"
     xmlns:pages="clr-namespace:Main_Thread.PL.Pages"
     Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarForegroundColor="RoyalBlue"
+    Shell.TabBarTitleColor="RoyalBlue"
     Title="Main Thread"
     FlyoutBackgroundColor="AliceBlue">
 
@@ -24,9 +26,26 @@
         ContentTemplate="{DataTemplate pages:LoginToCompany}"
         Route="LoginToCompany" />
 
-    <ShellContent
-        Title="Main Thread | Home page"
-        ContentTemplate="{DataTemplate pages:HomePage}"
-        Route="HomePage" />
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="HomePage" />
+
+        <ShellContent
+            Title="Revenues and Expenses"
+            ContentTemplate="{DataTemplate pages:RevenuesAndExpenses}"
+            Route="RevenuesAndExpenses" />
+
+        <ShellContent
+            Title="Employees Management"
+            ContentTemplate="{DataTemplate pages:EmployeesManagement}"
+            Route="EmployeesManagement" />
+
+        <ShellContent
+            Title="Stock Management"
+            ContentTemplate="{DataTemplate pages:StockManagement}"
+            Route="StockManagement" />
+    </TabBar>
 
 </Shell>
