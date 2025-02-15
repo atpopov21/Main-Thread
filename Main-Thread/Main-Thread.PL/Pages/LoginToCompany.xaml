@@ -63,7 +63,8 @@
                                     WidthRequest="300"
                                     HeightRequest="35"
                                     ClearButtonVisibility="WhileEditing"
-                                    TextChanged="EmailBox_TextChanged"/>
+                                    TextChanged="EmailBox_TextChanged"
+                                    Completed="LoginButton_Clicked"/>
                             </Border>
                             <!-- END OF: Email Section -->
                             
@@ -85,7 +86,8 @@
                                     HeightRequest="35"
                                     IsPassword="True"
                                     ClearButtonVisibility="WhileEditing"
-                                    TextChanged="PasswordBox_TextChanged"/>
+                                    TextChanged="PasswordBox_TextChanged"
+                                    Completed="LoginButton_Clicked"/>
                             </Border>
                             <!-- END OF: Password Section -->
 
@@ -108,6 +110,7 @@
             </VerticalStackLayout>
             <!-- END OF: User interactive space -->
 
+            <!-- Display language selection -->
             <template:LanguageSelection
                 LanguageChanged="OnLanguageChanged"
                 Margin="0, -560, 20, 740"/>

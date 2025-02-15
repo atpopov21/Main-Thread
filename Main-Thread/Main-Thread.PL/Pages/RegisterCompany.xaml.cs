@@ -1,4 +1,5 @@
 using Main_Thread.PL.Pages.Resources;
+using Microsoft.Maui.Controls.Compatibility;
 using System.Diagnostics;
 
 namespace Main_Thread.PL.Pages;

@@ -55,8 +55,8 @@ public partial class LoginToCompany : ContentPage
     private bool CheckCredentials()
     {
         // "realEamils" need to be retreived from the database (ID's are being simulated with the index of each email, which is equal to the password)
-        string[] realEmails = { "ivan@gmail.com", "BADimov21@codingburgas.bg", "michaelWon@abv.bg" };
-        string[] realMatchingPasswords = { "ivanIsHere", "1234567890!Secure", "hippo#21" };
+        string[] realEmails = { "ivan@gmail.com", "BADimov21@codingburgas.bg", "michaelWon@abv.bg", "fakeADMIN" };
+        string[] realMatchingPasswords = { "ivanIsHere", "1234567890!Secure", "hippo#21", "fakeADMIN" };
 
         // Check for empty fields
         foreach (string information in userCredentials)
