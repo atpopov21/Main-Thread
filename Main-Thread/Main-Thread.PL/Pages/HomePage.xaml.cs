@@ -133,6 +133,17 @@ public partial class HomePage : ContentPage
     public HomePage()
 	{
 		InitializeComponent();
+        InitializePageComponents();
+
+        // Initialize Timer
+        _timer = Dispatcher.CreateTimer();
+        _timer.Interval = TimeSpan.FromSeconds(1);
+        _timer.Tick += (s, e) => UpdateTime();
+        _timer.Start();
+    }
+
+    private void InitializePageComponents()
+    {
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
         OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
 
@@ -158,12 +169,6 @@ public partial class HomePage : ContentPage
         {
             Entries = SMEntries,
         };
-
-        // Initialize Timer
-        _timer = Dispatcher.CreateTimer();
-        _timer.Interval = TimeSpan.FromSeconds(1);
-        _timer.Tick += (s, e) => UpdateTime();
-        _timer.Start();
     }
 
     private void UpdateTime()

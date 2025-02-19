@@ -6,13 +6,23 @@ namespace Main_Thread.PL.Pages;
 
 public partial class LoginToCompany : ContentPage
 {
+    // TEMPORARY declaration and initialization
     List<string> userCredentials = new List<string>(new string[2]);
+    private bool PasswordHidden = true, firstLaunch = true;
 
     public LoginToCompany()
     {
         InitializeComponent();
+        InitializePageComponents();
+    }
+
+    private void InitializePageComponents()
+    {
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
         OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
+
+        ShowEyeImage.IsVisible = false;
+        HideEyeImage.IsVisible = false;
     }
 
     private void OnLanguageChanged(string language)
@@ -113,6 +123,59 @@ public partial class LoginToCompany : ContentPage
     private void PasswordBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         userCredentials[1] = PasswordBox.Text;
+
+        if (userCredentials[1] == "")
+        {
+            ShowEyeImage.IsVisible = false;
+            HideEyeImage.IsVisible = false;
+
+            languageSelection.Margin = new Thickness(0, -565, 20, 0);
+            ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
+            HideEyeImage.Margin = new Thickness(-81, -71, 0, -70);
+        }
+        else
+        {
+            ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
+            HideEyeImage.Margin = new Thickness(-81, -71, 0, -70);
+
+            if (!PasswordHidden || firstLaunch)
+            {
+                ShowEyeImage.IsVisible = true;
+                HideEyeImage.IsVisible = false;
+
+                languageSelection.Margin = new Thickness(0, -566, 20, 0);
+            }
+            else
+            {
+                ShowEyeImage.IsVisible = false;
+                HideEyeImage.IsVisible = true;
+
+                languageSelection.Margin = new Thickness(0, -565, 20, 0);
+            }
+        }
+    }
+
+    private void PasswordShowStateClicked(object sender, EventArgs e)
+    {
+        firstLaunch = false;
+        if (PasswordHidden)
+        {
+            ShowEyeImage.IsVisible = true;
+            HideEyeImage.IsVisible = false;
+            PasswordBox.IsPassword = true;
+            PasswordHidden = false;
+
+            languageSelection.Margin = new Thickness(0, -566, 20, 0);
+        }
+        else
+        {
+            ShowEyeImage.IsVisible = false;
+            HideEyeImage.IsVisible = true;
+            PasswordBox.IsPassword = false;
+            PasswordHidden = true;
+
+            languageSelection.Margin = new Thickness(0, -565, 20, 0);
+        }
     }
 
     private void OnThemeChanged(string theme)

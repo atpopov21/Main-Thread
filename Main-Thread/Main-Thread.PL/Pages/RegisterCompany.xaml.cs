@@ -1,6 +1,5 @@
 ﻿using Main_Thread.PL.Pages.Resources;
-using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.Maui.Layouts;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -47,13 +46,22 @@ public partial class RegisterCompany : ContentPage
 {
     // TEMPORARY declaration and initialization
     List<string> companyInformation = new List<string>(new string[15]);
-    public PasswordScore passwordStrengthScore;
+    private PasswordScore passwordStrengthScore;
+    private bool PasswordHidden = true, firstLaunch = true;
 
     public RegisterCompany()
 	{
         InitializeComponent();
+        InitializePageComponents();
+    }
+
+    private void InitializePageComponents()
+    {
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
         OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
+
+        ShowEyeImage.IsVisible = false;
+        HideEyeImage.IsVisible = false;
 
         // Ensure Picker has a default selection
         if (CategoryPicker.SelectedIndex == -1)
@@ -356,7 +364,32 @@ public partial class RegisterCompany : ContentPage
         companyInformation[2] = COMPANYuserpasswordINPUT;
 
         if (COMPANYuserpasswordINPUT == "")
+        {
             PasswordScoreLabel.IsVisible = false;
+            ShowEyeImage.IsVisible = false;
+            HideEyeImage.IsVisible = false;
+            languageSelection.Margin = new Thickness(0, -1719, 20, 1600);
+            ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
+            HideEyeImage.Margin = new Thickness(-80, -41, 0, -40);
+        }
+        else
+        {
+            languageSelection.Margin = new Thickness(0, -1731, 20, 1600);
+            ShowEyeImage.Margin = new Thickness(-80, -42, 0, -40);
+            HideEyeImage.Margin = new Thickness(-81, -42, 0, -40);
+            PasswordScoreLabel.IsVisible = true;
+
+            if (!PasswordHidden || firstLaunch)
+            {
+                ShowEyeImage.IsVisible = true;
+                HideEyeImage.IsVisible = false;
+            }
+            else
+            {
+                ShowEyeImage.IsVisible = false;
+                HideEyeImage.IsVisible = true;
+            }
+        }
 
         passwordStrengthScore = PasswordAdvisor.CheckStrength(companyInformation[2]);
         switch (passwordStrengthScore)
@@ -365,32 +398,50 @@ public partial class RegisterCompany : ContentPage
                 if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Very Weak";
                 else PasswordScoreLabel.Text = "Много слаба";
                 PasswordScoreLabel.TextColor = Colors.DimGray;
-                PasswordScoreLabel.IsVisible = true;
                 break;
+
             case PasswordScore.Weak:
                 if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Weak";
                 else PasswordScoreLabel.Text = "Слаба";
                 PasswordScoreLabel.TextColor = Colors.DarkRed;
-                PasswordScoreLabel.IsVisible = true;
                 break;
+
             case PasswordScore.Medium:
                 if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Medium";
                 else PasswordScoreLabel.Text = "Средна";
                 PasswordScoreLabel.TextColor = Colors.DarkOrange;
-                PasswordScoreLabel.IsVisible = true;
                 break;
+
             case PasswordScore.Strong:
                 if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Strong";
                 else PasswordScoreLabel.Text = "Силна";
                 PasswordScoreLabel.TextColor = Colors.MediumBlue;
-                PasswordScoreLabel.IsVisible = true;
                 break;
+
             case PasswordScore.VeryStrong:
                 if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Very Strong";
                 else PasswordScoreLabel.Text = "Много силна";
                 PasswordScoreLabel.TextColor = Colors.ForestGreen;
-                PasswordScoreLabel.IsVisible = true;
                 break;
+        }
+    }
+
+    private void PasswordShowStateClicked(object sender, EventArgs e)
+    {
+        firstLaunch = false;
+        if (PasswordHidden)
+        {
+            ShowEyeImage.IsVisible = true;
+            HideEyeImage.IsVisible = false;
+            PasswordBox.IsPassword = true;
+            PasswordHidden = false;
+        }
+        else
+        {
+            ShowEyeImage.IsVisible = false;
+            HideEyeImage.IsVisible = true;
+            PasswordBox.IsPassword = false;
+            PasswordHidden = true;
         }
     }
 
