@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Main_Thread.PL.Pages.Templates.ThemeSelection">
+    <Border
+        x:Name="Background"
+        Stroke="Transparent"
+        BackgroundColor="White"
+        StrokeShape="RoundRectangle 20, 20, 20, 20"
+        WidthRequest="100"
+        HorizontalOptions="Start">
+        <Border.Shadow>
+            <Shadow
+                Brush="Black"
+                Offset="5, 5"
+                Radius="10"
+                Opacity="0.3" />
+        </Border.Shadow>
+        <HorizontalStackLayout>
+            <Border
+                Stroke="White"
+                StrokeShape="RoundRectangle 20, 20, 20, 20"
+                StrokeThickness="2"
+                HeightRequest="20"
+                WidthRequest="40"
+                Margin="10, -1, -40, 0" />
+            <Switch
+                x:Name="ThemeSwitch"
+                Toggled="ThemeSwitched" />
+            <BoxView
+                x:Name="HiddenText"
+                BackgroundColor="White"
+                HeightRequest="20"
+                WidthRequest="25"
+                Margin="-105, 0, 0, 0" />
+            <Label
+                x:Name="ThemeLabel"
+                Text="Light"
+                VerticalTextAlignment="Center"
+                Margin="-28, -3, 0, 0" />
+        </HorizontalStackLayout>
+    </Border>
+</ContentView>

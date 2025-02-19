@@ -16,4 +16,20 @@ public partial class Footer_BG : ContentView
 		InitializeComponent();
         BindingContext = this;
     }
+
+    public void UpdateTheme(string theme)
+    {
+        if (theme == "Light")
+        {
+            PageBackground.BackgroundColor = Colors.AliceBlue;
+        }
+        else if (theme == "Dark")
+        {
+            PageBackground.BackgroundColor = Color.FromArgb("#28282B");
+        }
+        else
+        {
+            PageBackground.BackgroundColor = Colors.AliceBlue;
+        }
+    }
 }

@@ -13,8 +13,15 @@ namespace Main_Thread.PL
         {
             InitializeComponent();
             OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
+            OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
 
             MainThreadLogo.BackgroundColor = Color.Parse("Transparent");
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            this.Window.MinimumHeight = 600;
+            this.Window.MinimumWidth = 1000;
         }
 
         private void OnLanguageChanged(string language)
@@ -47,12 +54,57 @@ namespace Main_Thread.PL
             }
         }
 
-        protected override void OnAppearing()
+        private void OnThemeChanged(string theme)
         {
-            base.OnAppearing();
-            this.Window.MinimumHeight = 600;
-            this.Window.MinimumWidth = 1000;
+            ClientSettingsVisuals.Instance.SelectedTheme = theme;
+
+            if (theme == "Light")
+            {
+                Background.BackgroundColor = Colors.AliceBlue;
+                RegisterACompanyButton.BackgroundColor = Colors.White;
+                RegisterACompanyButton.TextColor = Colors.Black;
+
+                MainThreadLogo.IsVisible = true;
+                MainThreadLogo.BackgroundColor = Colors.Transparent;
+                MainThreadLogoDarkTheme.IsVisible = false;
+
+                LoginToACompanyButton.BackgroundColor = Colors.White;
+                LoginToACompanyButton.TextColor = Colors.Black;
+            }
+            else if (theme == "Dark")
+            {
+                Background.BackgroundColor = Color.FromArgb("#28282B");
+                RegisterACompanyButton.BackgroundColor = Colors.Black;
+                RegisterACompanyButton.TextColor = Colors.White;
+
+                MainThreadLogo.IsVisible = false;
+                MainThreadLogoDarkTheme.IsVisible = true;
+                MainThreadLogoDarkTheme.BackgroundColor = Colors.Transparent;
+
+                LoginToACompanyButton.BackgroundColor = Colors.Black;
+                LoginToACompanyButton.TextColor = Colors.White;
+            }
+            else
+            {
+                Background.BackgroundColor = Colors.AliceBlue;
+                RegisterACompanyButton.BackgroundColor = Colors.White;
+                RegisterACompanyButton.TextColor = Colors.Black;
+
+                MainThreadLogo.IsVisible = true;
+                MainThreadLogo.BackgroundColor = Colors.Transparent;
+                MainThreadLogoDarkTheme.IsVisible = false;
+
+                LoginToACompanyButton.BackgroundColor = Colors.White;
+                LoginToACompanyButton.TextColor = Colors.Black;
+            }
+
+            // Call Footer method to update its UI
+            FooterENG.UpdateTheme(theme);
+            FooterBG.UpdateTheme(theme);
+            languageSelection.UpdateTheme(theme);
+            themeSelection.UpdateTheme(theme);
         }
+
 
         private async void Register_Company_Clicked(object sender, EventArgs e)
         {
@@ -65,5 +117,6 @@ namespace Main_Thread.PL
             //await Shell.Current.GoToAsync("//LoginToCompany");    // With no "Back" option
             await Navigation.PushAsync(new LoginToCompany());     // With a "Back" option
         }
+        
     }
 }

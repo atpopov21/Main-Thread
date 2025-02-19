@@ -14,5 +14,6 @@ namespace Main_Thread.PL.Pages.Resources
 
         // Default value for language: "English"
         public string SelectedLanguage { get; set; } = "English";
+        public string SelectedTheme { get; set; }  = "Light";
     }
 }

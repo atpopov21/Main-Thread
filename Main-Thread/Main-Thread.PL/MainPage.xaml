@@ -5,6 +5,7 @@
              x:Class="Main_Thread.PL.MainPage">
 
     <ScrollView
+        x:Name="Background"
         BackgroundColor="AliceBlue">
         <StackLayout Spacing="8">
             <!-- Display background of page (stripes) -->
@@ -13,7 +14,8 @@
             <!-- User interactive space -->
             <VerticalStackLayout
                 Spacing="10"
-                Margin="0, -830, 0, 260">
+                Margin="0, -830, 0, 260"
+                Padding="0, 0, 0, 20">
                 <Button
                     x:Name="MainThreadLogo"
                     WidthRequest="800"
@@ -25,38 +27,80 @@
                         <FileImageSource File="app_logo_vertical.png" />
                     </Button.ImageSource>
                 </Button>
+
                 <Button
-                    x:Name="RegisterACompanyButton"
-                    Text="Register a company"
-                    TextColor="AliceBlue"
-                    FontSize="Small"
-                    BackgroundColor="Black"
+                    x:Name="MainThreadLogoDarkTheme"
+                    WidthRequest="800"
+                    HeightRequest="450"
                     HorizontalOptions="Center"
-                    WidthRequest="220"
-                    Clicked="Register_Company_Clicked"/>
-                <Button
+                    VerticalOptions="Start"
+                    IsEnabled="False"
+                    IsVisible="False">
+                    <Button.ImageSource>
+                        <FileImageSource File="app_logo_vertical_dark_theme.png" />
+                    </Button.ImageSource>
+                </Button>
+                <Border
+                    Stroke="Transparent">
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Offset="20, 20"
+                            Radius="20"
+                            Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Button
+                        x:Name="RegisterACompanyButton"
+                        Text="Register a company"
+                        TextColor="Black"
+                        FontSize="Small"
+                        BackgroundColor="White"
+                        HorizontalOptions="Center"
+                        WidthRequest="220"
+                        Clicked="Register_Company_Clicked"/>
+                </Border>
+                <Border
+                    Stroke="Transparent">
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Offset="20, 20"
+                            Radius="20"
+                            Opacity="0.3"/>
+                    </Border.Shadow>
+                    <Button
                     x:Name="LoginToACompanyButton"
                     Text="Login into a company"
-                    TextColor="AliceBlue"
+                    TextColor="Black"
                     FontSize="Small"
-                    BackgroundColor="Black"
+                    BackgroundColor="White"
                     HorizontalOptions="Center"
                     WidthRequest="220"
                     Clicked="Login_Company_Clicked"/>
+                </Border>
             </VerticalStackLayout>
             <!-- END OF: User interactive space -->
 
             <!-- Display language selection -->
             <template:LanguageSelection
+                x:Name="languageSelection"
                 LanguageChanged="OnLanguageChanged"
-                Margin="0, -770, 20, 760"/>
-            
+                Margin="-5, -790, 20, 0"/>
+
+            <!-- Display theme selection -->
+            <template:ThemeSelection
+                x:Name="themeSelection"
+                ThemeChanged="OnThemeChanged"
+                Margin="210, -54, 0, 707"/>
+
             <!-- Display footer -->
             <template:Footer
-                x:Name="FooterENG"/>
+                x:Name="FooterENG"
+                Padding="0, 32, 0, 0"/>
             <template:Footer_BG
                 x:Name="FooterBG"
-                IsVisible="False"/>
+                IsVisible="False"
+                Padding="0, 32, 0, 0"/>
         </StackLayout>
     </ScrollView>
 

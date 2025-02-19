@@ -6,6 +6,7 @@
              x:Class="Main_Thread.PL.Pages.LoginToCompany"
              Title="Main Thread | Login to a Company">
     <ScrollView
+        x:Name="Background"
         BackgroundColor="AliceBlue">
         <StackLayout Spacing="8">
             <!-- Display background of page (stripes) -->
@@ -112,15 +113,24 @@
 
             <!-- Display language selection -->
             <template:LanguageSelection
+                x:Name="languageSelection"
                 LanguageChanged="OnLanguageChanged"
-                Margin="0, -560, 20, 740"/>
-            
+                Margin="0, -560, 20, 0"/>
+
+            <!-- Display theme selection -->
+            <template:ThemeSelection
+                x:Name="themeSelection"
+                ThemeChanged="OnThemeChanged"
+                Margin="210, -54, 0, 707"/>
+
             <!-- Display footer -->
             <template:Footer
-                x:Name="FooterENG"/>
+                x:Name="FooterENG"
+                Padding="0, 32, 0, 0"/>
             <template:Footer_BG
                 x:Name="FooterBG"
-                IsVisible="False"/>
+                IsVisible="False"
+                Padding="0, 32, 0, 0"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
