@@ -112,7 +112,7 @@
                                 TextColor="#28282B"
                                 Padding="30, 22, 162, 0"/>
                             <VerticalStackLayout>
-                            <resource:BorderlessEntry
+                                <resource:BorderlessEntry
                                 x:Name="PasswordBox"
                                 WidthRequest="410"
                                 Keyboard="Default"
@@ -124,11 +124,29 @@
                                 IsPassword="True"
                                 MaxLength="60"
                                 Margin="5, 18, 0, 10"/>
-                            <Label
+                                <Label
                                 x:Name="PasswordScoreLabel"
                                 FontSize="Caption"
                                 Margin="10, -5, 0, 0"/>
                             </VerticalStackLayout>
+                            <Image
+                                x:Name="ShowEyeImage"
+                                Source="password_eye_open.png"
+                                Scale="0.14"
+                                Margin="-80, -41, 0, -40"/>
+                            <Image
+                                x:Name="HideEyeImage"
+                                Source="password_eye_closed.png"
+                                Scale="0.14"
+                                IsVisible="False"
+                                Margin="-80, -41, 0, -40"/>
+                            <Button
+                                BackgroundColor="Transparent"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                Clicked="PasswordShowStateClicked"
+                                Margin="-130, -4, 0, 0"/>
+                            
                         </HorizontalStackLayout>
                         <!-- END OF: Business Name Section -->
 

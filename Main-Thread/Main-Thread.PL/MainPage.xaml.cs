@@ -12,16 +12,21 @@ namespace Main_Thread.PL
         public MainPage()
         {
             InitializeComponent();
-            OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
-            OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
-
-            MainThreadLogo.BackgroundColor = Color.Parse("Transparent");
+            InitializePageComponents();
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
             this.Window.MinimumHeight = 600;
             this.Window.MinimumWidth = 1000;
+        }
+
+        private void InitializePageComponents()
+        {
+            OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
+            OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
+
+            MainThreadLogo.BackgroundColor = Color.Parse("Transparent");
         }
 
         private void OnLanguageChanged(string language)
