@@ -1,5 +1,6 @@
 ﻿using Main_Thread.PL.Pages.Resources;
 using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -52,6 +53,7 @@ public partial class RegisterCompany : ContentPage
 	{
         InitializeComponent();
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
+        OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
 
         // Ensure Picker has a default selection
         if (CategoryPicker.SelectedIndex == -1)
@@ -309,6 +311,30 @@ public partial class RegisterCompany : ContentPage
             FooterENG.IsVisible = true;
             FooterBG.IsVisible = false;
         }
+    }
+
+    private void OnThemeChanged(string theme)
+    {
+        ClientSettingsVisuals.Instance.SelectedTheme = theme;
+
+        if (theme == "Light")
+        {
+            Background.BackgroundColor = Colors.AliceBlue;
+        }
+        else if (theme == "Dark")
+        {
+            Background.BackgroundColor = Color.FromArgb("#28282B");
+        }
+        else
+        {
+            Background.BackgroundColor = Colors.AliceBlue;
+        }
+
+        // Call Footer method to update its UI
+        FooterENG.UpdateTheme(theme);
+        FooterBG.UpdateTheme(theme);
+        languageSelection.UpdateTheme(theme);
+        themeSelection.UpdateTheme(theme);
     }
 
     // Functional methods - retrieve information from user input

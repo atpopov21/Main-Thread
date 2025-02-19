@@ -6,6 +6,7 @@
              x:Class="Main_Thread.PL.Pages.RegisterCompany"
              Title="Main Thread | Register a company">
     <ScrollView
+        x:Name="Background"
         BackgroundColor="AliceBlue">
 
         <StackLayout Spacing="8">
@@ -120,6 +121,7 @@
                                 TextChanged="PasswordBox_TextChanged"
                                 Placeholder="examplePassword#423"
                                 PlaceholderColor="LightGray"
+                                IsPassword="True"
                                 MaxLength="60"
                                 Margin="5, 18, 0, 10"/>
                             <Label
@@ -446,9 +448,17 @@
                 IsVisible="False"
                 Margin="0, -290, 0, 280"/>
 
+            <!-- Display language selection -->
             <template:LanguageSelection
+                x:Name="languageSelection"
                 LanguageChanged="OnLanguageChanged"
-                Margin="0, -1640, 20, 1600"/>
+                Margin="0, -1730, 20, 1600"/>
+
+            <!-- Display theme selection -->
+            <template:ThemeSelection
+                x:Name="themeSelection"
+                ThemeChanged="OnThemeChanged"
+                Margin="210, -1654, 20, 1600"/>
 
             <!-- Display footer -->
             <template:Footer

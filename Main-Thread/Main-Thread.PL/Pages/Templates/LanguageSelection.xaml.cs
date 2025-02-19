@@ -14,6 +14,7 @@ namespace Main_Thread.PL.Pages.Templates
         {
             InitializeComponent();
             LanguageHanlder();
+            UpdateTheme(ClientSettingsVisuals.Instance.SelectedTheme);
         }
 
         private void LanguageHanlder()
@@ -47,6 +48,31 @@ namespace Main_Thread.PL.Pages.Templates
             {
                 languageSelection = "Bulgarian";
                 LanguageChanged?.Invoke(languageSelection);
+            }
+        }
+
+        public void UpdateTheme(string theme)
+        {
+            if (theme == "Light")
+            {
+                BorderBox.BackgroundColor = Colors.White;
+                EnglishCheckbox.TextColor = Colors.Black;
+                Splitter.BackgroundColor = Colors.Black;
+                BulgarianCheckbox.TextColor = Colors.Black;
+            }
+            else if (theme == "Dark")
+            {
+                BorderBox.BackgroundColor = Color.FromArgb("#28282B");
+                EnglishCheckbox.TextColor = Colors.White;
+                Splitter.BackgroundColor = Colors.White;
+                BulgarianCheckbox.TextColor = Colors.White;
+            }
+            else
+            {
+                BorderBox.BackgroundColor = Colors.White;
+                EnglishCheckbox.TextColor = Colors.Black;
+                Splitter.BackgroundColor = Colors.Black;
+                BulgarianCheckbox.TextColor = Colors.Black;
             }
         }
     }

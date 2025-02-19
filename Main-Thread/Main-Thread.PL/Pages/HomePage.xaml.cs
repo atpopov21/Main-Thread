@@ -134,6 +134,7 @@ public partial class HomePage : ContentPage
 	{
 		InitializeComponent();
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
+        OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
 
 
         RevenuesAndExpensesMiniChart.Chart = new LineChart
@@ -167,7 +168,7 @@ public partial class HomePage : ContentPage
 
     private void UpdateTime()
     {
-        TimeStamp.Text = DateTime.Now.ToString("HH:mm"); // Format as HH:MM:SS
+        TimeStamp.Text = DateTime.Now.ToString("HH:mm"); // Format as HH:MM
     }
 
     private static float CalculateAverageProfitPerMonth(float[] profitsPerMonth)
@@ -309,6 +310,30 @@ public partial class HomePage : ContentPage
         EmployeeThreeLabel.Text = topFiveEmployeesNames[2];
         EmployeeFourLabel.Text = topFiveEmployeesNames[3];
         EmployeeFiveLabel.Text = topFiveEmployeesNames[4];
+    }
+
+    private void OnThemeChanged(string theme)
+    {
+        ClientSettingsVisuals.Instance.SelectedTheme = theme;
+
+        if (theme == "Light")
+        {
+            Background.BackgroundColor = Colors.AliceBlue;
+        }
+        else if (theme == "Dark")
+        {
+            Background.BackgroundColor = Color.FromArgb("#28282B");
+        }
+        else
+        {
+            Background.BackgroundColor = Colors.AliceBlue;
+        }
+
+        // Call Footer method to update its UI
+        FooterENG.UpdateTheme(theme);
+        FooterBG.UpdateTheme(theme);
+        languageSelection.UpdateTheme(theme);
+        themeSelection.UpdateTheme(theme);
     }
 
     private async void LogoutButton_Clicked(object sender, EventArgs e)

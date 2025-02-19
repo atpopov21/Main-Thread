@@ -1,5 +1,4 @@
 using Main_Thread.PL.Pages.Resources;
-using Microsoft.Maui.ApplicationModel.Communication;
 using System;
 using System.Diagnostics;
 
@@ -13,6 +12,7 @@ public partial class LoginToCompany : ContentPage
     {
         InitializeComponent();
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
+        OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
     }
 
     private void OnLanguageChanged(string language)
@@ -113,5 +113,29 @@ public partial class LoginToCompany : ContentPage
     private void PasswordBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         userCredentials[1] = PasswordBox.Text;
+    }
+
+    private void OnThemeChanged(string theme)
+    {
+        ClientSettingsVisuals.Instance.SelectedTheme = theme;
+
+        if (theme == "Light")
+        {
+            Background.BackgroundColor = Colors.AliceBlue;
+        }
+        else if (theme == "Dark")
+        {
+            Background.BackgroundColor = Color.FromArgb("#28282B");
+        }
+        else
+        {
+            Background.BackgroundColor = Colors.AliceBlue;
+        }
+
+        // Call Footer method to update its UI
+        FooterENG.UpdateTheme(theme);
+        FooterBG.UpdateTheme(theme);
+        languageSelection.UpdateTheme(theme);
+        themeSelection.UpdateTheme(theme);
     }
 }
