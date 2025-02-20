@@ -26,8 +26,9 @@
                     </Border.Shadow>
 
                     <Frame
+                        x:Name="FormBackground"
                         WidthRequest="600"
-                        BackgroundColor="White"
+                        BackgroundColor="{Binding BackgroundGradient}"
                         BorderColor="Transparent"
                         CornerRadius="10">
 
@@ -99,8 +100,20 @@
                                     Scale="0.14"
                                     Margin="-80, -44, 0, -44"/>
                                 <Image
+                                    x:Name="ShowEyeLightImage"
+                                    Source="password_eye_open_light.png"
+                                    Scale="0.14"
+                                    IsVisible="False"
+                                    Margin="-80, -44, 0, -44"/>
+                                <Image
                                     x:Name="HideEyeImage"
                                     Source="password_eye_closed.png"
+                                    Scale="0.14"
+                                    IsVisible="False"
+                                    Margin="-81, -71, 0, -70" />
+                                <Image
+                                    x:Name="HideEyeLightImage"
+                                    Source="password_eye_closed_light.png"
                                     Scale="0.14"
                                     IsVisible="False"
                                     Margin="-81, -71, 0, -70"/>

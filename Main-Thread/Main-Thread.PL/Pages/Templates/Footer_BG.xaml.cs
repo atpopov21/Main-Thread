@@ -5,8 +5,7 @@ namespace Main_Thread.PL.Pages.Templates;
 public partial class Footer_BG : ContentView
 {
     // Links to the developers' social media profiles and application repository
-    public ICommand ClickedDevOne => new Command<string>(async (url) => await Launcher.OpenAsync(url));
-    public ICommand ClickedDevTwo => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+    public ICommand ClickedDeveloper => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     public ICommand ClickedGitHubRepository => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     public ICommand ClickedDiscussAndSupport => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     public ICommand ClickedSecurityPolicy => new Command<string>(async (url) => await Launcher.OpenAsync(url));

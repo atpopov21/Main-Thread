@@ -79,14 +79,14 @@ namespace Main_Thread.PL
             else if (theme == "Dark")
             {
                 Background.BackgroundColor = Color.FromArgb("#28282B");
-                RegisterACompanyButton.BackgroundColor = Colors.Black;
+                RegisterACompanyButton.BackgroundColor = Color.FromArgb("#212121");
                 RegisterACompanyButton.TextColor = Colors.White;
 
                 MainThreadLogo.IsVisible = false;
                 MainThreadLogoDarkTheme.IsVisible = true;
                 MainThreadLogoDarkTheme.BackgroundColor = Colors.Transparent;
 
-                LoginToACompanyButton.BackgroundColor = Colors.Black;
+                LoginToACompanyButton.BackgroundColor = Color.FromArgb("#212121");
                 LoginToACompanyButton.TextColor = Colors.White;
             }
             else
