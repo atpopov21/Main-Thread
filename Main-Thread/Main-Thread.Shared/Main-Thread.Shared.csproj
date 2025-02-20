@@ -9,9 +9,8 @@
 
   <ItemGroup>
     <Folder Include="DTOs\" />
-    <Folder Include="InputModels\" />
     <Folder Include="DTOs\" />
-    <Folder Include="InputModels\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

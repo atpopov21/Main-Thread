@@ -1,6 +1,8 @@
-﻿using Main_Thread.PL.Pages.Resources;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Main_Thread.BLL.Contracts.IValidation;
+using Main_Thread.PL.Pages.Resources;
+using Main_Thread.Shared.InputModels;
 
 namespace Main_Thread.PL.Pages;
 
@@ -43,16 +45,20 @@ public class PasswordAdvisor
 
 public partial class RegisterCompany : ContentPage
 {
+    private readonly IRegisterCompanyValidationService _registerCompanyValidationService;
+
     // TEMPORARY declaration and initialization
     List<string> companyInformation = new List<string>(new string[15]);
     private PasswordScore passwordStrengthScore;
     private bool PasswordHidden = true, firstLaunch = true, colourInverted = false;
     private HorizontalStackLayout[] formRows;
 
-    public RegisterCompany()
+    public RegisterCompany(IRegisterCompanyValidationService registerCompanyValidationService)
 	{
         InitializeComponent();
         InitializePageComponents();
+
+        _registerCompanyValidationService = registerCompanyValidationService;
     }
 
     private void InitializePageComponents()
@@ -385,16 +391,16 @@ public partial class RegisterCompany : ContentPage
             // Row eight
             AddressLabel.TextColor = Colors.Black;
             StreetAddressBox1.ClearValue(Entry.BackgroundColorProperty);
-            PINBox.TextColor = Colors.Black;
+            StreetAddressBox1.TextColor = Colors.Black;
             StreetAddressBox2.PlaceholderColor = Colors.LightGray;
             StreetAddressBox2.ClearValue(Entry.BackgroundColorProperty);
-            PINBox.TextColor = Colors.Black;
+            StreetAddressBox2.TextColor = Colors.Black;
             CityBox.ClearValue(Entry.BackgroundColorProperty);
-            PINBox.TextColor = Colors.Black;
+            CityBox.TextColor = Colors.Black;
             ZipCodeBox.ClearValue(Entry.BackgroundColorProperty);
-            PINBox.TextColor = Colors.Black;
+            ZipCodeBox.TextColor = Colors.Black;
             StateProvinceBox.ClearValue(Entry.BackgroundColorProperty);
-            PINBox.TextColor = Colors.Black;
+            StateProvinceBox.TextColor = Colors.Black;
 
             // Row nine
             TypeOfBusinessLabel.TextColor = Colors.Black;
@@ -546,11 +552,11 @@ public partial class RegisterCompany : ContentPage
             StreetAddressBox2.ClearValue(Entry.BackgroundColorProperty);
             PINBox.TextColor = Colors.Black;
             CityBox.ClearValue(Entry.BackgroundColorProperty);
-            PINBox.TextColor = Colors.Black;
+            CityBox.TextColor = Colors.Black;
             ZipCodeBox.ClearValue(Entry.BackgroundColorProperty);
-            PINBox.TextColor = Colors.Black;
+            ZipCodeBox.TextColor = Colors.Black;
             StateProvinceBox.ClearValue(Entry.BackgroundColorProperty);
-            PINBox.TextColor = Colors.Black;
+            StateProvinceBox.TextColor = Colors.Black;
 
             // Row nine
             TypeOfBusinessLabel.TextColor = Colors.Black;
@@ -1055,20 +1061,46 @@ public partial class RegisterCompany : ContentPage
 
     private void SubmitRegistratonButton_Clicked(object sender, EventArgs e)
     {
-        bool registrationSuccessful = CheckCredentials();
+        //bool registrationSuccessful = CheckCredentials();
+
+        var inputModel = new RegisterCompanyIM
+        {
+            FirstName = FirstNameBox.Text,
+            LastName = LastNameBox.Text,
+            Password = PasswordBox.Text,
+            BusinessName = BusinessNameBox.Text,
+            ContactNumber = ContactNumberBox.Text,
+            Email = EmailBox.Text,
+            StateEntityRegistration = SERBox.Text,
+            EmployerIdentificationNumber = PINBox.Text,
+            StreetAddressOne = StreetAddressBox1.Text,
+            StreetAddressTwo = StreetAddressBox2.Text,
+            City = CityBox.Text,
+            StateProvince = StateProvinceBox.Text,
+            ZipCode = ZipCodeBox.Text,
+            BusinessType = CategoryPicker.SelectedItem.ToString(),
+            Others = OthersBox.Text
+        };
+
+        // Call the BLL validation method
+        string validationMessage = _registerCompanyValidationService.ValidateCompanyInput(inputModel);
+
+        if (validationMessage == "passed")
+        {
+            SuccessfulRegistrationCOMPANY.IsVisible = true;
+            DisplayAlert("Pending Approval", "Your company registration is currently under review by our team.\nWe appreciate your request and will notify you once the approval process is complete.", "OK");
+        }
+        else
+        {
+            SuccessfulRegistrationCOMPANY.IsVisible = false;
+            DisplayAlert("Alert", validationMessage, "OK");
+        }
 
         // Write company register information to Debug window
         foreach (string information in companyInformation)
         {
             Debug.WriteLine(information);
         }
-
-        if (registrationSuccessful)
-        {
-            SuccessfulRegistrationCOMPANY.IsVisible = true;
-            DisplayAlert("Pending Approval", "Your company registration is currently under review by our team.\nWe appreciate your request and will notify you once the approval process is complete.", "OK");
-        }
-        else SuccessfulRegistrationCOMPANY.IsVisible = false;
     }
 
     // Design methods - enhance user experience
