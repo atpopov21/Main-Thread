@@ -1,4 +1,7 @@
-﻿using Microcharts.Maui;
+﻿using Main_Thread.BLL.Contracts.IValidation;
+using Main_Thread.BLL.Services.Validation;
+using Main_Thread.PL.Pages;
+using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
@@ -22,7 +25,16 @@ namespace Main_Thread.PL
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            
+
+            var services = builder.Services;
+
+            // Services
+            services.AddSingleton<IRegisterCompanyValidationService, RegisterCompanyValidationService>();
+
+            // Pages
+            services.AddSingleton<MainPage>();
+            services.AddSingleton<RegisterCompany>();
+
             return builder.Build();
         }
     }

@@ -9,11 +9,16 @@ namespace Main_Thread.PL
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        private readonly IServiceProvider _serviceProvider;
+
+        public MainPage(IServiceProvider serviceProvider)
         {
             InitializeComponent();
             InitializePageComponents();
+
+            _serviceProvider = serviceProvider;
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -113,8 +118,20 @@ namespace Main_Thread.PL
 
         private async void Register_Company_Clicked(object sender, EventArgs e)
         {
-            //await Shell.Current.GoToAsync("//RegisterCompany");   // With no "Back" option
-            await Navigation.PushAsync(new RegisterCompany());    // With a "Back" option
+            try
+            {
+                // Resolve RegisterCompanyPage from the DI container
+                var registerCompanyPage = _serviceProvider.GetRequiredService<RegisterCompany>();
+
+                // Navigate to RegisterCompanyPage
+                await Navigation.PushAsync(registerCompanyPage);   // With a "Back" option
+            }
+            catch (Exception ex)
+            {
+                // Log or display the error
+                Console.WriteLine($"Error navigating to RegisterCompanyPage: {ex.Message}");
+                await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
+            }
         }
 
         private async void Login_Company_Clicked(object sender, EventArgs e)
