@@ -1,5 +1,4 @@
 ﻿using Main_Thread.PL.Pages.Resources;
-using Microsoft.Maui.Layouts;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -47,7 +46,8 @@ public partial class RegisterCompany : ContentPage
     // TEMPORARY declaration and initialization
     List<string> companyInformation = new List<string>(new string[15]);
     private PasswordScore passwordStrengthScore;
-    private bool PasswordHidden = true, firstLaunch = true;
+    private bool PasswordHidden = true, firstLaunch = true, colourInverted = false;
+    private HorizontalStackLayout[] formRows;
 
     public RegisterCompany()
 	{
@@ -57,17 +57,28 @@ public partial class RegisterCompany : ContentPage
 
     private void InitializePageComponents()
     {
-        OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
-        OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
-
         ShowEyeImage.IsVisible = false;
         HideEyeImage.IsVisible = false;
+        ShowEyeLightImage.IsVisible = false;
+        HideEyeLightImage.IsVisible = false;
+
+        languageSelection.Margin = new Thickness(-5, -1730, 20, 1600);
 
         // Ensure Picker has a default selection
         if (CategoryPicker.SelectedIndex == -1)
         {
             CategoryPicker.SelectedIndex = 0;
         }
+
+        formRows = new HorizontalStackLayout[]
+        {
+            FormRowOne, FormRowTwo, FormRowThree, FormRowFour,
+            FormRowFive, FormRowSix, FormRowSeven, FormRowEight,
+            FormRowNine, FormRowTen
+        };
+
+        OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
+        OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
     }
 
     private void OnLanguageChanged(string language)
@@ -327,22 +338,257 @@ public partial class RegisterCompany : ContentPage
 
         if (theme == "Light")
         {
+            // Form header
+            RegisterBusinessLabel.TextColor = Colors.Black;
+
+            // Row one
+            BusinessOwnerLabel.TextColor = Colors.Black;
+            FirstNameBox.ClearValue(Entry.BackgroundColorProperty);
+            FirstNameBox.TextColor = Colors.Black;
+            LastNameBox.ClearValue(Entry.BackgroundColorProperty);
+            LastNameBox.TextColor = Colors.Black;
+
+            // Row two
+            PasswordLabel.TextColor = Colors.Black;
+            PasswordBox.PlaceholderColor = Colors.LightGray;
+            PasswordBox.ClearValue(Entry.BackgroundColorProperty);
+            PasswordBox.TextColor = Colors.Black;
+
+            // Row three
+            BusinessNameLabel.TextColor = Colors.Black;
+            BusinessNameBox.ClearValue(Entry.BackgroundColorProperty);
+            BusinessNameBox.TextColor = Colors.Black;
+
+            // Row four
+            ContactNumberLabel.TextColor = Colors.Black;
+            ContactNumberBox.PlaceholderColor = Colors.LightGray;
+            ContactNumberBox.ClearValue(Entry.BackgroundColorProperty);
+            ContactNumberBox.TextColor = Colors.Black;
+
+            // Row five
+            EmailLabel.TextColor = Colors.Black;
+            EmailBox.PlaceholderColor = Colors.LightGray;
+            EmailBox.ClearValue(Entry.BackgroundColorProperty);
+            EmailBox.TextColor = Colors.Black;
+
+            // Row six
+            SERLabel.TextColor = Colors.Black;
+            SERBox.PlaceholderColor = Colors.LightGray;
+            SERBox.ClearValue(Entry.BackgroundColorProperty);
+            SERBox.TextColor = Colors.Black;
+
+            // Row seven
+            EINLabel.TextColor = Colors.Black;
+            PINBox.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+
+            // Row eight
+            AddressLabel.TextColor = Colors.Black;
+            StreetAddressBox1.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+            StreetAddressBox2.PlaceholderColor = Colors.LightGray;
+            StreetAddressBox2.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+            CityBox.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+            ZipCodeBox.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+            StateProvinceBox.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+
+            // Row nine
+            TypeOfBusinessLabel.TextColor = Colors.Black;
+            CategoryPicker.ClearValue(Picker.BackgroundColorProperty);
+            CategoryPicker.TextColor = Colors.Black;
+
+            // Row ten
+            OthersLabel.TextColor = Colors.Black;
+            OthersBox.ClearValue(Entry.BackgroundColorProperty);
+            OthersBox.TextColor = Colors.Black;
+
+            // Form footer
+            SubmitRegistratonButton.BackgroundColor = Color.FromArgb("#18bd5b");
+
+            // Whole form
             Background.BackgroundColor = Colors.AliceBlue;
+            FormBackground.BackgroundColor = Colors.White;
+            colourInverted = false;
         }
         else if (theme == "Dark")
         {
+            // Form header
+            RegisterBusinessLabel.TextColor = Colors.White;
+            
+            // Row one
+            BusinessOwnerLabel.TextColor = Colors.White;
+            FirstNameBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            FirstNameBox.TextColor = Colors.WhiteSmoke;
+            LastNameBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            LastNameBox.TextColor = Colors.WhiteSmoke;
+
+            // Row two
+            PasswordLabel.TextColor = Colors.White;
+            PasswordBox.PlaceholderColor = Colors.Gray;
+            PasswordBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            PasswordBox.TextColor = Colors.WhiteSmoke;
+
+            // Row three
+            BusinessNameLabel.TextColor = Colors.White;
+            BusinessNameBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            BusinessNameBox.TextColor = Colors.WhiteSmoke;
+
+            // Row four
+            ContactNumberLabel.TextColor = Colors.White;
+            ContactNumberBox.PlaceholderColor = Colors.Gray;
+            ContactNumberBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            ContactNumberBox.TextColor = Colors.WhiteSmoke;
+
+            // Row five
+            EmailLabel.TextColor = Colors.White;
+            EmailBox.PlaceholderColor = Colors.Gray;
+            EmailBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            EmailBox.TextColor = Colors.WhiteSmoke;
+
+            // Row six
+            SERLabel.TextColor = Colors.White;
+            SERBox.PlaceholderColor = Colors.Gray;
+            SERBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            SERBox.TextColor = Colors.WhiteSmoke;
+
+            // Row seven
+            EINLabel.TextColor = Colors.White;
+            PINBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            PINBox.TextColor = Colors.WhiteSmoke;
+
+            // Row eight
+            AddressLabel.TextColor = Colors.White;
+            StreetAddressBox1.BackgroundColor = Color.FromArgb("#3b3b3b");
+            StreetAddressBox1.TextColor = Colors.WhiteSmoke;
+            StreetAddressBox2.PlaceholderColor = Colors.Gray;
+            StreetAddressBox2.BackgroundColor = Color.FromArgb("#3b3b3b");
+            StreetAddressBox2.TextColor = Colors.WhiteSmoke;
+            CityBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            CityBox.TextColor = Colors.WhiteSmoke;
+            ZipCodeBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            ZipCodeBox.TextColor = Colors.WhiteSmoke;
+            StateProvinceBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            StateProvinceBox.TextColor = Colors.WhiteSmoke;
+
+            // Row nine
+            TypeOfBusinessLabel.TextColor = Colors.White;
+            CategoryPicker.BackgroundColor = Color.FromArgb("#3b3b3b");
+            CategoryPicker.TextColor = Colors.WhiteSmoke;
+
+            // Row ten
+            OthersLabel.TextColor = Colors.White;
+            OthersBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            OthersBox.TextColor = Colors.WhiteSmoke;
+
+            // From footer
+            SubmitRegistratonButton.BackgroundColor = Colors.BlueViolet;
+
+            // Whole form
             Background.BackgroundColor = Color.FromArgb("#28282B");
+            FormBackground.BackgroundColor = Color.FromArgb("#202124");
+            colourInverted = true;
         }
         else
         {
+            // Form header
+            RegisterBusinessLabel.TextColor = Colors.Black;
+
+            // Row one
+            BusinessOwnerLabel.TextColor = Colors.Black;
+            FirstNameBox.ClearValue(Entry.BackgroundColorProperty);
+            FirstNameBox.TextColor = Colors.Black;
+            LastNameBox.ClearValue(Entry.BackgroundColorProperty);
+            LastNameBox.TextColor = Colors.Black;
+
+            // Row two
+            PasswordLabel.TextColor = Colors.Black;
+            PasswordBox.PlaceholderColor = Colors.LightGray;
+            PasswordBox.ClearValue(Entry.BackgroundColorProperty);
+            PasswordBox.TextColor = Colors.Black;
+
+            // Row three
+            BusinessNameLabel.TextColor = Colors.Black;
+            BusinessNameBox.ClearValue(Entry.BackgroundColorProperty);
+            BusinessNameBox.TextColor = Colors.Black;
+
+            // Row four
+            ContactNumberLabel.TextColor = Colors.Black;
+            ContactNumberBox.PlaceholderColor = Colors.LightGray;
+            ContactNumberBox.ClearValue(Entry.BackgroundColorProperty);
+            ContactNumberBox.TextColor = Colors.Black;
+
+            // Row five
+            EmailLabel.TextColor = Colors.Black;
+            EmailBox.PlaceholderColor = Colors.LightGray;
+            EmailBox.ClearValue(Entry.BackgroundColorProperty);
+            EmailBox.TextColor = Colors.Black;
+
+            // Row six
+            SERLabel.TextColor = Colors.Black;
+            SERBox.PlaceholderColor = Colors.LightGray;
+            SERBox.ClearValue(Entry.BackgroundColorProperty);
+            SERBox.TextColor = Colors.Black;
+
+            // Row seven
+            EINLabel.TextColor = Colors.Black;
+            PINBox.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+
+            // Row eight
+            AddressLabel.TextColor = Colors.Black;
+            StreetAddressBox1.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+            StreetAddressBox2.PlaceholderColor = Colors.LightGray;
+            StreetAddressBox2.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+            CityBox.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+            ZipCodeBox.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+            StateProvinceBox.ClearValue(Entry.BackgroundColorProperty);
+            PINBox.TextColor = Colors.Black;
+
+            // Row nine
+            TypeOfBusinessLabel.TextColor = Colors.Black;
+            CategoryPicker.ClearValue(Picker.BackgroundColorProperty);
+            CategoryPicker.TextColor = Colors.Black;
+
+            // Row ten
+            OthersLabel.TextColor = Colors.Black;
+            OthersBox.ClearValue(Entry.BackgroundColorProperty);
+            OthersBox.TextColor = Colors.Black;
+
+            // Form footer
+            SubmitRegistratonButton.BackgroundColor = Color.FromArgb("#18bd5b");
+
+            // Whole form
             Background.BackgroundColor = Colors.AliceBlue;
+            FormBackground.BackgroundColor = Colors.White;
+            colourInverted = false;
         }
 
-        // Call Footer method to update its UI
+        // Call page elements' methods to update their UI
         FooterENG.UpdateTheme(theme);
         FooterBG.UpdateTheme(theme);
         languageSelection.UpdateTheme(theme);
         themeSelection.UpdateTheme(theme);
+        PasswordBox_TextChanged(null, null);
+
+        foreach (var row in formRows)
+        {
+            if (!colourInverted)
+            {
+                row.BackgroundColor = Colors.White;
+            }
+            else
+            {
+                row.BackgroundColor = Color.FromArgb("#202124");
+            }
+        }
     }
 
     // Functional methods - retrieve information from user input
@@ -363,66 +609,104 @@ public partial class RegisterCompany : ContentPage
         string COMPANYuserpasswordINPUT = PasswordBox.Text;
         companyInformation[2] = COMPANYuserpasswordINPUT;
 
-        if (COMPANYuserpasswordINPUT == "")
+        if (companyInformation[2] == "" || companyInformation[2] == null)
         {
             PasswordScoreLabel.IsVisible = false;
             ShowEyeImage.IsVisible = false;
             HideEyeImage.IsVisible = false;
-            languageSelection.Margin = new Thickness(0, -1719, 20, 1600);
+            ShowEyeLightImage.IsVisible = false;
+            HideEyeLightImage.IsVisible = false;
+            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1719, 20, 1600);
+            else languageSelection.Margin = new Thickness(-5, -1780, 20, 1600);
             ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
             HideEyeImage.Margin = new Thickness(-80, -41, 0, -40);
         }
         else
         {
-            languageSelection.Margin = new Thickness(0, -1731, 20, 1600);
+            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(0, -1731, 20, 1600);
+            else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
             ShowEyeImage.Margin = new Thickness(-80, -42, 0, -40);
             HideEyeImage.Margin = new Thickness(-81, -42, 0, -40);
             PasswordScoreLabel.IsVisible = true;
 
             if (!PasswordHidden || firstLaunch)
             {
-                ShowEyeImage.IsVisible = true;
-                HideEyeImage.IsVisible = false;
+                if (!colourInverted)
+                {
+                    ShowEyeImage.IsVisible = true;
+                    HideEyeImage.IsVisible = false;
+
+                    ShowEyeLightImage.IsVisible = false;
+                    HideEyeLightImage.IsVisible = false;
+                }
+                else
+                {
+                    ShowEyeLightImage.IsVisible = true;
+                    HideEyeLightImage.IsVisible = false;
+
+                    ShowEyeImage.IsVisible = false;
+                    HideEyeImage.IsVisible = false;
+                }
+
+                if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
+                else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
             }
             else
             {
-                ShowEyeImage.IsVisible = false;
-                HideEyeImage.IsVisible = true;
+                if (!colourInverted)
+                {
+                    ShowEyeImage.IsVisible = false;
+                    HideEyeImage.IsVisible = true;
+
+                    ShowEyeLightImage.IsVisible = false;
+                    HideEyeLightImage.IsVisible = false;
+                }
+                else
+                {
+                    ShowEyeLightImage.IsVisible = false;
+                    HideEyeLightImage.IsVisible = true;
+
+                    ShowEyeImage.IsVisible = false;
+                    HideEyeImage.IsVisible = false;
+                }
+
+                if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
+                else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
             }
-        }
 
-        passwordStrengthScore = PasswordAdvisor.CheckStrength(companyInformation[2]);
-        switch (passwordStrengthScore)
-        {
-            case PasswordScore.VeryWeak:
-                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Very Weak";
-                else PasswordScoreLabel.Text = "Много слаба";
-                PasswordScoreLabel.TextColor = Colors.DimGray;
-                break;
+            passwordStrengthScore = PasswordAdvisor.CheckStrength(companyInformation[2]);
+            switch (passwordStrengthScore)
+            {
+                case PasswordScore.VeryWeak:
+                    if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Very Weak";
+                    else PasswordScoreLabel.Text = "Много слаба";
+                    PasswordScoreLabel.TextColor = Colors.DimGray;
+                    break;
 
-            case PasswordScore.Weak:
-                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Weak";
-                else PasswordScoreLabel.Text = "Слаба";
-                PasswordScoreLabel.TextColor = Colors.DarkRed;
-                break;
+                case PasswordScore.Weak:
+                    if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Weak";
+                    else PasswordScoreLabel.Text = "Слаба";
+                    PasswordScoreLabel.TextColor = Colors.DarkRed;
+                    break;
 
-            case PasswordScore.Medium:
-                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Medium";
-                else PasswordScoreLabel.Text = "Средна";
-                PasswordScoreLabel.TextColor = Colors.DarkOrange;
-                break;
+                case PasswordScore.Medium:
+                    if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Medium";
+                    else PasswordScoreLabel.Text = "Средна";
+                    PasswordScoreLabel.TextColor = Colors.DarkOrange;
+                    break;
 
-            case PasswordScore.Strong:
-                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Strong";
-                else PasswordScoreLabel.Text = "Силна";
-                PasswordScoreLabel.TextColor = Colors.MediumBlue;
-                break;
+                case PasswordScore.Strong:
+                    if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Strong";
+                    else PasswordScoreLabel.Text = "Силна";
+                    PasswordScoreLabel.TextColor = Colors.MediumBlue;
+                    break;
 
-            case PasswordScore.VeryStrong:
-                if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Very Strong";
-                else PasswordScoreLabel.Text = "Много силна";
-                PasswordScoreLabel.TextColor = Colors.ForestGreen;
-                break;
+                case PasswordScore.VeryStrong:
+                    if (ClientSettingsVisuals.Instance.SelectedLanguage == "English") PasswordScoreLabel.Text = "Very Strong";
+                    else PasswordScoreLabel.Text = "Много силна";
+                    PasswordScoreLabel.TextColor = Colors.ForestGreen;
+                    break;
+            }
         }
     }
 
@@ -431,17 +715,53 @@ public partial class RegisterCompany : ContentPage
         firstLaunch = false;
         if (PasswordHidden)
         {
-            ShowEyeImage.IsVisible = true;
-            HideEyeImage.IsVisible = false;
             PasswordBox.IsPassword = true;
             PasswordHidden = false;
+
+            if (!colourInverted)
+            {
+                ShowEyeImage.IsVisible = true;
+                HideEyeImage.IsVisible = false;
+
+                ShowEyeLightImage.IsVisible = false;
+                HideEyeLightImage.IsVisible = false;
+            }
+            else
+            {
+                ShowEyeLightImage.IsVisible = true;
+                HideEyeLightImage.IsVisible = false;
+
+                ShowEyeImage.IsVisible = false;
+                HideEyeImage.IsVisible = false;
+            }
+
+            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
+            else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
         }
         else
         {
-            ShowEyeImage.IsVisible = false;
-            HideEyeImage.IsVisible = true;
             PasswordBox.IsPassword = false;
             PasswordHidden = true;
+
+            if (!colourInverted)
+            {
+                ShowEyeImage.IsVisible = false;
+                HideEyeImage.IsVisible = true;
+
+                ShowEyeLightImage.IsVisible = false;
+                HideEyeLightImage.IsVisible = false;
+            }
+            else
+            {
+                ShowEyeLightImage.IsVisible = false;
+                HideEyeLightImage.IsVisible = true;
+
+                ShowEyeImage.IsVisible = false;
+                HideEyeImage.IsVisible = false;
+            }
+
+            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
+            else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
         }
     }
 
@@ -515,6 +835,9 @@ public partial class RegisterCompany : ContentPage
             {
                 OthersLabel.IsVisible = true;
                 OthersBox.IsVisible = true;
+
+                if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
+                else languageSelection.Margin = new Thickness(-5, -1781, 20, 1600);
             }
             else
             {
@@ -524,6 +847,9 @@ public partial class RegisterCompany : ContentPage
                 {
                     companyInformation[13] = "";
                 }
+
+                if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
+                else languageSelection.Margin = new Thickness(-5, -1719, 20, 1600);
             }
 
             companyInformation[13] = selectedCategory;
@@ -748,152 +1074,362 @@ public partial class RegisterCompany : ContentPage
     // Design methods - enhance user experience
     private void FirstNameBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowOne.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowOne.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowOne.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void LastNameBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowOne.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowOne.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowOne.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void FirstNameBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowOne.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowOne.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowOne.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void LastNameBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowOne.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowOne.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowOne.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void PasswordBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowTwo.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowTwo.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowTwo.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void PasswordBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowTwo.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowTwo.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowTwo.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void BusinessNameBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowThree.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowThree.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowThree.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void BusinessNameBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowThree.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowThree.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowThree.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void ContactNumberBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowFour.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowFour.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowFour.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void ContactNumberBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowFour.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowFour.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowFour.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void EmailBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowFive.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowFive.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowFive.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void EmailBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowFive.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowFive.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowFive.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void SERBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowSix.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowSix.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowSix.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void SERBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowSix.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowSix.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowSix.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void PINBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowSeven.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowSeven.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowSeven.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void PINBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowSeven.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowSeven.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowSeven.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void StreetAddressBox1_Focused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void StreetAddressBox1_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void StreetAddressBox2_Focused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void StreetAddressBox2_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void CityBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void CityBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void StateProvinceBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void StateProvinceBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void ZipCodeBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void ZipCodeBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowEight.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowEight.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowEight.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void CategoryPicker_Focused(object sender, FocusEventArgs e)
     {
-        FormRowNine.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowNine.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowNine.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void CategoryPicker_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowNine.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowNine.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowNine.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
     private void OthersBox_Focused(object sender, FocusEventArgs e)
     {
-        FormRowTen.BackgroundColor = Color.FromArgb("#f1f5ff");
+        if (!colourInverted)
+        {
+            FormRowTen.BackgroundColor = Color.FromArgb("#f1f5ff");
+        }
+        else
+        {
+            FormRowTen.BackgroundColor = Color.FromArgb("#343434");
+        }
     }
 
     private void OthersBox_Unfocused(object sender, FocusEventArgs e)
     {
-        FormRowTen.BackgroundColor = Colors.White;
+        if (!colourInverted)
+        {
+            FormRowTen.BackgroundColor = Colors.White;
+        }
+        else
+        {
+            FormRowTen.BackgroundColor = Color.FromArgb("#202124");
+        }
     }
 
 }

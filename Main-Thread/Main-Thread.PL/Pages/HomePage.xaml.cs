@@ -247,15 +247,15 @@ public partial class HomePage : ContentPage
 
             // Revenues and Expenses Section
             RevenuesAndExpensesLabel.Text = "Revenues and Expenses";
-            RAIButtonLabel.Text = "View";
+            RAIButton.Text = "View";
 
             // Employess Management Section
             EmployessManagementLabel.Text = "Employees Management";
-            EMButtonLabel.Text = "View";
+            EMButton.Text = "View";
 
             // Stock Management Section
             StockManagementLabel.Text = "Stock Management";
-            SMButtonLabel.Text = "View";
+            SMButton.Text = "View";
 
             // Page Footer
             FooterENG.IsVisible = true;
@@ -271,15 +271,15 @@ public partial class HomePage : ContentPage
 
             // Revenues and Incomes Section
             RevenuesAndExpensesLabel.Text = "Доходи и разходи";
-            RAIButtonLabel.Text = "Погледнете";
+            RAIButton.Text = "Погледнете";
 
             // Employess Management Section
             EmployessManagementLabel.Text = "Управление на служители";
-            EMButtonLabel.Text = "Погледнете";
+            EMButton.Text = "Погледнете";
 
             // Stock Management Section
             StockManagementLabel.Text = "Управление на стока";
-            SMButtonLabel.Text = "Погледнете";
+            SMButton.Text = "Погледнете";
 
             // Page Footer
             FooterENG.IsVisible = false;
@@ -295,15 +295,15 @@ public partial class HomePage : ContentPage
 
             // Revenues and Expenses Section
             RevenuesAndExpensesLabel.Text = "Revenues and Expenses";
-            RAIButtonLabel.Text = "View";
+            RAIButton.Text = "View";
 
             // Employess Management Section
             EmployessManagementLabel.Text = "Employees Management";
-            EMButtonLabel.Text = "View";
+            EMButton.Text = "View";
 
             // Stock Management Section
             StockManagementLabel.Text = "Stock Management";
-            SMButtonLabel.Text = "View";
+            SMButton.Text = "View";
 
             // Page Footer
             FooterENG.IsVisible = true;
@@ -323,18 +323,63 @@ public partial class HomePage : ContentPage
 
         if (theme == "Light")
         {
+            // Revenues and Expenses section
+            RevenuesAndExpensesFrame.BackgroundColor = Colors.White;
+            RevenuesAndExpensesLabel.TextColor = Colors.Black;
+            RAIButton.BackgroundColor = Colors.RoyalBlue;
+
+            // Employees Management section
+            EmployessManagementFrame.BackgroundColor = Colors.White;
+            EmployessManagementLabel.TextColor = Colors.Black;
+            EMButton.BackgroundColor = Colors.RoyalBlue;
+
+            // Stock Management section
+            StockManagementFrame.BackgroundColor = Colors.White;
+            StockManagementLabel.TextColor = Colors.Black;
+            SMButton.BackgroundColor = Colors.RoyalBlue;
+
             Background.BackgroundColor = Colors.AliceBlue;
         }
         else if (theme == "Dark")
         {
+            // Revenues and Expenses section
+            RevenuesAndExpensesFrame.BackgroundColor = Color.FromArgb("#202124");
+            RevenuesAndExpensesLabel.TextColor = Colors.White;
+            RAIButton.BackgroundColor = Colors.BlueViolet;
+
+            // Employees Management section
+            EmployessManagementFrame.BackgroundColor = Color.FromArgb("#202124");
+            EmployessManagementLabel.TextColor = Colors.White;
+            EMButton.BackgroundColor = Colors.BlueViolet;
+
+            // Stock Management section
+            StockManagementFrame.BackgroundColor = Color.FromArgb("#202124");
+            StockManagementLabel.TextColor = Colors.White;
+            SMButton.BackgroundColor = Colors.BlueViolet;
+
             Background.BackgroundColor = Color.FromArgb("#28282B");
         }
         else
         {
+            // Revenues and Expenses section
+            RevenuesAndExpensesFrame.BackgroundColor = Colors.White;
+            RevenuesAndExpensesLabel.TextColor = Colors.Black;
+            RAIButton.BackgroundColor = Colors.RoyalBlue;
+
+            // Employees Management section
+            EmployessManagementFrame.BackgroundColor = Colors.White;
+            EmployessManagementLabel.TextColor = Colors.Black;
+            EMButton.BackgroundColor = Colors.RoyalBlue;
+
+            // Stock Management section
+            StockManagementFrame.BackgroundColor = Colors.White;
+            StockManagementLabel.TextColor = Colors.Black;
+            SMButton.BackgroundColor = Colors.RoyalBlue;
+
             Background.BackgroundColor = Colors.AliceBlue;
         }
 
-        // Call Footer method to update its UI
+        // Call page elements' methods to update their UI
         FooterENG.UpdateTheme(theme);
         FooterBG.UpdateTheme(theme);
         languageSelection.UpdateTheme(theme);
@@ -358,17 +403,17 @@ public partial class HomePage : ContentPage
         }
     }
 
-    private async void RAIButtonLabel_Clicked(object sender, EventArgs e)
+    private async void RAIButton_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//RevenuesAndExpenses");
     }
 
-    private async void EMButtonLabel_Clicked(object sender, EventArgs e)
+    private async void EMButton_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//EmployeesManagement");
     }
 
-    private async void SMButtonLabel_Clicked(object sender, EventArgs e)
+    private async void SMButton_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//StockManagement");
     }

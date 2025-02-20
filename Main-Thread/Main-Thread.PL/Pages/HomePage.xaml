@@ -79,7 +79,9 @@
                             Radius="20"
                             Opacity="0.3"/>
                     </Border.Shadow>
-                    <Frame>
+                    <Frame
+                        x:Name="RevenuesAndExpensesFrame"
+                        BorderColor="Transparent">
                         <VerticalStackLayout>
                             <Label
                                 x:Name="RevenuesAndExpensesLabel"
@@ -102,10 +104,14 @@
                                 Margin="0, -10, 0, 0"/>
 
                             <!-- Revenues and Expenses Chart -->
-                            <micro:ChartView
-                                x:Name="RevenuesAndExpensesMiniChart"
-                                IsVisible="True"
-                                HeightRequest="300"/>
+                            <Border
+                                Stroke="Transparent"
+                                StrokeShape="RoundRectangle 30">
+                                <micro:ChartView
+                                    x:Name="RevenuesAndExpensesMiniChart"
+                                    IsVisible="True"
+                                    HeightRequest="300"/>
+                            </Border>
 
                             <!-- Horizontal line-->
                             <BoxView
@@ -123,10 +129,14 @@
                                 Margin="0, -10, 0, 0"/>
 
                             <!-- Profit Chart -->
-                            <micro:ChartView
-                                x:Name="RevenuesAndExpensesMiniChartTwo"
-                                IsVisible="True"
-                                HeightRequest="310"/>
+                            <Border
+                                Stroke="Transparent"
+                                StrokeShape="RoundRectangle 30">
+                                <micro:ChartView
+                                    x:Name="RevenuesAndExpensesMiniChartTwo"
+                                    IsVisible="True"
+                                    HeightRequest="310"/>
+                            </Border>
 
                             <!-- Horizontal dashed line-->
                             <Border
@@ -136,10 +146,10 @@
 
                             <!-- View Button -->
                             <Button
-                                x:Name="RAIButtonLabel"
+                                x:Name="RAIButton"
                                 FontSize="Small"
                                 BackgroundColor="RoyalBlue"
-                                Clicked="RAIButtonLabel_Clicked"/>
+                                Clicked="RAIButton_Clicked"/>
                         </VerticalStackLayout>
                     </Frame>
                 </Border>
@@ -159,7 +169,9 @@
                             Radius="20"
                             Opacity="0.3"/>
                     </Border.Shadow>
-                    <Frame>
+                    <Frame
+                        x:Name="EmployessManagementFrame"
+                        BorderColor="Transparent">
                         <VerticalStackLayout>
                             <Label
                                 x:Name="EmployessManagementLabel"
@@ -182,10 +194,14 @@
                                 Margin="0, -10, 0, 0"/>
 
                             <!-- Employees Chart -->
-                            <micro:ChartView
-                                x:Name="EmployeesManagementChart"
-                                IsVisible="True"
-                                HeightRequest="212"/>
+                            <Border
+                                Stroke="Transparent"
+                                StrokeShape="RoundRectangle 30">
+                                <micro:ChartView
+                                    x:Name="EmployeesManagementChart"
+                                    IsVisible="True"
+                                    HeightRequest="212"/>
+                            </Border>
 
                             <FlexLayout
                                 Margin="0, -20, 0, 0">
@@ -224,10 +240,10 @@
 
                             <!-- View Button -->
                             <Button
-                                x:Name="EMButtonLabel"
+                                x:Name="EMButton"
                                 FontSize="Small"
                                 BackgroundColor="RoyalBlue"
-                                Clicked="EMButtonLabel_Clicked"/>
+                                Clicked="EMButton_Clicked"/>
                         </VerticalStackLayout>
                     </Frame>
                 </Border>
@@ -247,7 +263,9 @@
                             Radius="20"
                             Opacity="0.3"/>
                     </Border.Shadow>
-                    <Frame>
+                    <Frame
+                        x:Name="StockManagementFrame"
+                        BorderColor="Transparent">
                         <VerticalStackLayout>
                             <Label
                                 x:Name="StockManagementLabel"
@@ -270,10 +288,14 @@
                                 Margin="0, -10, 0, 0"/>
 
                             <!-- Stock Chart -->
-                            <micro:ChartView
-                                x:Name="StockManagementChart"
-                                IsVisible="True"
-                                HeightRequest="212"/>
+                            <Border
+                                Stroke="Transparent"
+                                StrokeShape="RoundRectangle 30">
+                                <micro:ChartView
+                                    x:Name="StockManagementChart"
+                                    IsVisible="True"
+                                    HeightRequest="212"/>
+                            </Border>
 
                             <!-- Horizontal dashed line-->
                             <Border
@@ -283,10 +305,10 @@
 
                             <!-- View Button -->
                             <Button
-                                x:Name="SMButtonLabel"
+                                x:Name="SMButton"
                                 FontSize="Small"
                                 BackgroundColor="RoyalBlue"
-                                Clicked="SMButtonLabel_Clicked"/>
+                                Clicked="SMButton_Clicked"/>
                         </VerticalStackLayout>
                     </Frame>
                 </Border>

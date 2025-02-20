@@ -99,28 +99,8 @@
                                         FontSize="Small">
                                         <Span.GestureRecognizers>
                                             <TapGestureRecognizer
-                                                Command="{Binding ClickedDevOne}"
+                                                Command="{Binding ClickedDeveloper}"
                                                 CommandParameter="mailto:ATPopov21@codingburgas.bg" />
-                                        </Span.GestureRecognizers>
-                                    </Span>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-
-                        <Label
-                            HorizontalTextAlignment="Center"
-                            Margin="0, 0, 0, 5">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span
-                                        Text="GGDimitrov21@codingburgas.bg"
-                                        TextColor="MediumSlateBlue"
-                                        TextDecorations="Underline"
-                                        FontSize="Small">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer
-                                                Command="{Binding ClickedDevTwo}"
-                                                CommandParameter="mailto:GGDimitrov21@codingburgas.bg" />
                                         </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>
