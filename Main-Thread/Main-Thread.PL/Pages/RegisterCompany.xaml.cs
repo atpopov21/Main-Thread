@@ -47,8 +47,6 @@ public partial class RegisterCompany : ContentPage
 {
     private readonly IRegisterCompanyValidationService _registerCompanyValidationService;
 
-    // TEMPORARY declaration and initialization
-    List<string> companyInformation = new List<string>(new string[15]);
     private PasswordScore passwordStrengthScore;
     private bool PasswordHidden = true, firstLaunch = true, colourInverted = false;
     private HorizontalStackLayout[] formRows;
@@ -598,30 +596,19 @@ public partial class RegisterCompany : ContentPage
     }
 
     // Functional methods - retrieve information from user input
-    private void FirstNameBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYownerFirstNameINPUT = FirstNameBox.Text;
-        companyInformation[0] = COMPANYownerFirstNameINPUT;
-    }
-
-    private void LastNameBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYownerLastNameINPUT = LastNameBox.Text;
-        companyInformation[1] = COMPANYownerLastNameINPUT;
-    }
-
     private void PasswordBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string COMPANYuserpasswordINPUT = PasswordBox.Text;
-        companyInformation[2] = COMPANYuserpasswordINPUT;
 
-        if (companyInformation[2] == "" || companyInformation[2] == null)
+        if (COMPANYuserpasswordINPUT == "" || COMPANYuserpasswordINPUT == null)
         {
             PasswordScoreLabel.IsVisible = false;
             ShowEyeImage.IsVisible = false;
             HideEyeImage.IsVisible = false;
             ShowEyeLightImage.IsVisible = false;
             HideEyeLightImage.IsVisible = false;
+            EyeButton.IsVisible = false;
+
             if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1719, 20, 1600);
             else languageSelection.Margin = new Thickness(-5, -1780, 20, 1600);
             ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
@@ -633,7 +620,9 @@ public partial class RegisterCompany : ContentPage
             else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
             ShowEyeImage.Margin = new Thickness(-80, -42, 0, -40);
             HideEyeImage.Margin = new Thickness(-81, -42, 0, -40);
+            
             PasswordScoreLabel.IsVisible = true;
+            EyeButton.IsVisible = true;
 
             if (!PasswordHidden || firstLaunch)
             {
@@ -680,7 +669,7 @@ public partial class RegisterCompany : ContentPage
                 else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
             }
 
-            passwordStrengthScore = PasswordAdvisor.CheckStrength(companyInformation[2]);
+            passwordStrengthScore = PasswordAdvisor.CheckStrength(COMPANYuserpasswordINPUT);
             switch (passwordStrengthScore)
             {
                 case PasswordScore.VeryWeak:
@@ -771,66 +760,6 @@ public partial class RegisterCompany : ContentPage
         }
     }
 
-    private void BusinessNameBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYnameINPUT = BusinessNameBox.Text;
-        companyInformation[3] = COMPANYnameINPUT;
-    }
-
-    private void ContactNumberBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYownerContactNumberINPUT = ContactNumberBox.Text;
-        companyInformation[4] = COMPANYownerContactNumberINPUT;
-    }
-
-    private void EmailBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYownerEmailINPUT = EmailBox.Text;
-        companyInformation[5] = COMPANYownerEmailINPUT;
-    }
-
-    private void SERBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYSERNumberINPUT = SERBox.Text;
-        companyInformation[6] = COMPANYSERNumberINPUT;
-    }
-
-    private void PINBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYemployerPININPUT = PINBox.Text;
-        companyInformation[7] = COMPANYemployerPININPUT;
-    }
-
-    private void StreetAddressBox1_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYstreetAddressOneINPUT = StreetAddressBox1.Text;
-        companyInformation[8] = COMPANYstreetAddressOneINPUT;
-    }
-
-    private void StreetAddressBox2_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYstreetAddressTwoINPUT = StreetAddressBox2.Text;   // Can be null
-        companyInformation[9] = COMPANYstreetAddressTwoINPUT;
-    }
-
-    private void CityBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYcityINPUT = CityBox.Text;
-        companyInformation[10] = COMPANYcityINPUT;
-    }
-
-    private void StateProvinceBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYstateProvinceINPUT = StateProvinceBox.Text;
-        companyInformation[11] = COMPANYstateProvinceINPUT;
-    }
-
-    private void ZipCodeBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYzipCodeINPUT = ZipCodeBox.Text;
-        companyInformation[12] = COMPANYzipCodeINPUT;
-    }
-
     private void CategoryPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (CategoryPicker.SelectedItem != null)
@@ -849,214 +778,11 @@ public partial class RegisterCompany : ContentPage
             {
                 OthersLabel.IsVisible = false;
                 OthersBox.IsVisible = false;
-                if (companyInformation[13] != null)
-                {
-                    companyInformation[13] = "";
-                }
 
                 if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
                 else languageSelection.Margin = new Thickness(-5, -1719, 20, 1600);
             }
-
-            companyInformation[13] = selectedCategory;
         }
-    }
-
-    private void OthersBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        string COMPANYcategoryINPUT = OthersBox.Text;   // Can be null
-        companyInformation[14] = COMPANYcategoryINPUT;
-    }
-
-    private bool CheckCredentials()
-    {
-        // Run checks for each element HERE --[successful]--> register a company [write to database]
-        // If needed move checks to BLL
-
-        int count = 0;
-        foreach (string information in companyInformation)
-        {
-            // Check for a valid type of business
-            if (information == "Please Select")
-            {
-                DisplayAlert("Alert", "Please select a type of business.", "OK");
-                return false;
-            }
-            // Check if the type of business is specified
-            else if (information == "Others, please specify below" && companyInformation[14] == null)
-            {
-                DisplayAlert("Alert", "Please specify the type of business.", "OK");
-                return false;
-            }
-
-            // Check if any field is empty
-            if (string.IsNullOrEmpty(information) && count != 14)
-            {
-                if (count != 9) // Skip check if Street Address Line 2 is empty
-                {
-                    DisplayAlert("Alert", "There are one or multiple empty fields.\nPlease fill them in.", "OK");
-                    return false;
-                }
-            }
-            count++;
-        }
-
-        // Check for valid input for first name
-        if (!companyInformation[0].All(char.IsLetter))
-        {
-            DisplayAlert("Alert", "First name contains invalid characters.\nPlease enter a valid first name.", "OK");
-            return false;
-        }
-        else if (companyInformation[0].Length < 3)
-        {
-            DisplayAlert("Alert", "First name is too short.\nPlease enter a valid first name.", "OK");
-            return false;
-        }
-
-
-        // Check for valid input for last name
-        if (!companyInformation[1].All(char.IsLetter))
-        {
-            DisplayAlert("Alert", "Last name contains invalid characters.\nPlease enter a valid last name.", "OK");
-            return false;
-        }
-        else if (companyInformation[1].Length < 3)
-        {
-            DisplayAlert("Alert", "Last name is too short.\nPlease enter a valid last name.", "OK");
-            return false;
-        }
-
-
-        // Check for a valid password
-        if (companyInformation[2].Length < 8)
-        {
-            DisplayAlert("Alert", "Password can not be under 8 symbols.\nPlease enter a valid password.", "OK");
-            return false;
-        }
-        else if (!Regex.IsMatch(companyInformation[2], @"[a-z]"))
-        {
-            DisplayAlert("Alert", "Password must include at least one lowercase letter.\nPlease enter a valid password.", "OK");
-            return false;
-        }
-        else if (!Regex.IsMatch(companyInformation[2], @"[A-Z]"))
-        {
-            DisplayAlert("Alert", "Password must include at least one uppercase letter.\nPlease enter a valid password.", "OK");
-            return false;
-        }
-        else if (!Regex.IsMatch(companyInformation[2], @"\d"))
-        {
-            DisplayAlert("Alert", "Password must include at least one number.\nPlease enter a valid password.", "OK");
-            return false;
-        }
-        else if (!Regex.IsMatch(companyInformation[2], @"[^\w]"))
-        {
-            DisplayAlert("Alert", "Password must include at least one special character.\nPlease enter a valid password.", "OK");
-            return false;
-        }
-
-        // Check for a valid business name
-        if (companyInformation[3].Length < 3)
-        {
-            DisplayAlert("Alert", "Business name is too short.\nPlease enter a valid business name.", "OK");
-            return false;
-        }
-
-
-        // Check for a valid number of characters in the contact number
-        if (!companyInformation[4].All(char.IsDigit))
-        {
-            DisplayAlert("Alert", "Contact number contains invalid characters.\nPlease enter a valid contact number.", "OK");
-            return false;
-        }
-        else if (companyInformation[4].Length < 10)
-        {
-            DisplayAlert("Alert", "Contact number is too short.\nPlease enter a valid contact number.", "OK");
-            return false;
-        }
-
-
-        // Check for a valid email address
-        if(!companyInformation[5].Contains("@") || !companyInformation[5].Contains("."))
-        {
-            DisplayAlert("Alert", "Invalid email address.\nPlease enter a valid email address.", "OK");
-            return false;
-        }
-
-
-        // Check for a valid State Entity Registration number
-        if (!companyInformation[6].All(char.IsLetterOrDigit))
-        {
-            DisplayAlert("Alert", "State Entity Registration number contains invalid characters.\nPlease enter a valid number.", "OK");
-            return false;
-        }
-        else if (companyInformation[6].Length < 10)
-        {
-            DisplayAlert("Alert", "State Entity Registration number is too short.\nPlease enter a valid number.", "OK");
-            return false;
-        }
-
-
-        // Check for a valid Employer Identification Number
-        if (!companyInformation[7].All(char.IsDigit))
-        {
-            DisplayAlert("Alert", "Employer Identification Number contains invalid characters.\nPlease enter a valid number.", "OK");
-            return false;
-        }
-        else if (companyInformation[7].Length < 10)
-        {
-            DisplayAlert("Alert", "Employer Identification Number is too short.\nPlease enter a valid number.", "OK");
-            return false;
-        }
-
-
-        // Check for a valid company address
-        if (companyInformation[8].Length < 10)
-        {
-            DisplayAlert("Alert", "Street Address is too short.\nPlease enter a valid street address", "OK");
-            return false;
-        }
-
-
-        // Check for a valid city value
-        if (!companyInformation[10].All(char.IsLetter))
-        {
-            DisplayAlert("Alert", "City name contains invalid characters.\nPlease enter a valid city name", "OK");
-            return false;
-        }
-        else if (companyInformation[10].Length < 3)
-        {
-            DisplayAlert("Alert", "City name is too short.\nPlease enter a valid city name", "OK");
-            return false;
-        }
-
-
-        // Check for a valid State/Province value
-        if (!companyInformation[11].All(char.IsLetter))
-        {
-            DisplayAlert("Alert", "State / Province name contains invalid characters.\nPlease enter a valid state / province name", "OK");
-            return false;
-        }
-        else if (companyInformation[11].Length < 3)
-        {
-            DisplayAlert("Alert", "State / Province name is too short.\nPlease enter a valid state / province name", "OK");
-            return false;
-        }
-
-
-        // Check for a valid ZIP code
-        if (!companyInformation[12].All(char.IsDigit))
-        {
-            DisplayAlert("Alert", "ZIP Code number contains invalid characters.\nPlease enter a valid ZIP code.", "OK");
-            return false;
-        }
-        else if (companyInformation[12].Length < 4)
-        {
-            DisplayAlert("Alert", "ZIP Code number is too short.\nPlease enter a valid ZIP code.", "OK");
-            return false;
-        }
-
-
-        return true;
     }
 
     private void SubmitRegistratonButton_Clicked(object sender, EventArgs e)
@@ -1096,11 +822,11 @@ public partial class RegisterCompany : ContentPage
             DisplayAlert("Alert", validationMessage, "OK");
         }
 
-        // Write company register information to Debug window
+        /*// Write company register information to Debug window
         foreach (string information in companyInformation)
         {
             Debug.WriteLine(information);
-        }
+        }*/
     }
 
     // Design methods - enhance user experience

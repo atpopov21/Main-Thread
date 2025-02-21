@@ -76,7 +76,6 @@
                                     Keyboard="Text"
                                     Focused="FirstNameBox_Focused"
                                     Unfocused="FirstNameBox_Unfocused"
-                                    TextChanged="FirstNameBox_TextChanged"
                                     MaxLength="20"
                                     Margin="0, 18, 0, 10"/>
                                 <Label
@@ -92,7 +91,6 @@
                                     Keyboard="Text"
                                     Focused="LastNameBox_Focused"
                                     Unfocused="LastNameBox_Unfocused"
-                                    TextChanged="LastNameBox_TextChanged"
                                     MaxLength="20"
                                     Margin="0, 18, 0, 10"/>
                                 <Label
@@ -155,6 +153,7 @@
                                 IsVisible="False"
                                 Margin="-80, -41, 0, -40"/>
                             <Button
+                                x:Name="EyeButton"
                                 BackgroundColor="Transparent"
                                 WidthRequest="20"
                                 HeightRequest="20"
@@ -179,7 +178,6 @@
                                 Keyboard="Default"
                                 Focused="BusinessNameBox_Focused"
                                 Unfocused="BusinessNameBox_Unfocused"
-                                TextChanged="BusinessNameBox_TextChanged"
                                 MaxLength="60"
                                 Margin="5, 18, 0, 10"/>
                         </HorizontalStackLayout>
@@ -200,7 +198,6 @@
                                 Keyboard="Telephone"
                                 Focused="ContactNumberBox_Focused"
                                 Unfocused="ContactNumberBox_Unfocused"
-                                TextChanged="ContactNumberBox_TextChanged"
                                 MaxLength="10"
                                 Placeholder="(000) 000-0000"
                                 PlaceholderColor="LightGray"
@@ -224,7 +221,6 @@
                                     Keyboard="Email"
                                     Focused="EmailBox_Focused"
                                     Unfocused="EmailBox_Unfocused"
-                                    TextChanged="EmailBox_TextChanged"
                                     MaxLength="40"
                                     Placeholder="ex: myname@gmail.com"
                                     PlaceholderColor="LightGray"
@@ -254,7 +250,6 @@
                                     Keyboard="Default"
                                     Focused="SERBox_Focused"
                                     Unfocused="SERBox_Unfocused"
-                                    TextChanged="SERBox_TextChanged"
                                     MaxLength="10"
                                     Placeholder="C1234567"
                                     PlaceholderColor="LightGray"
@@ -284,7 +279,6 @@
                                     Keyboard="Default"
                                     Focused="PINBox_Focused"
                                     Unfocused="PINBox_Unfocused"
-                                    TextChanged="PINBox_TextChanged"
                                     MaxLength="10"
                                     Margin="0, 18, 0, 10"/>
                                 <Label
@@ -312,7 +306,6 @@
                                     Keyboard="Default"
                                     Focused="StreetAddressBox1_Focused"
                                     Unfocused="StreetAddressBox1_Unfocused"
-                                    TextChanged="StreetAddressBox1_TextChanged"
                                     MaxLength="60"
                                     Margin="0, 18, 0, 10"/>
                                 <Label
@@ -327,7 +320,6 @@
                                     Keyboard="Default"
                                     Focused="StreetAddressBox2_Focused"
                                     Unfocused="StreetAddressBox2_Unfocused"
-                                    TextChanged="StreetAddressBox2_TextChanged"
                                     Placeholder="Optional"
                                     PlaceholderColor="LightGray"
                                     MaxLength="60"
@@ -347,7 +339,6 @@
                                             Keyboard="Text"
                                             Focused="CityBox_Focused"
                                             Unfocused="CityBox_Unfocused"
-                                            TextChanged="CityBox_TextChanged"
                                             MaxLength="20"
                                             Margin="0, 18, 0, 10"/>
                                         <Label
@@ -363,7 +354,6 @@
                                             Keyboard="Text"
                                             Focused="StateProvinceBox_Focused"
                                             Unfocused="StateProvinceBox_Unfocused"
-                                            TextChanged="StateProvinceBox_TextChanged"
                                             MaxLength="20"
                                             Margin="0, 18, 0, 10"/>
                                         <Label
@@ -381,7 +371,6 @@
                                         Keyboard="Numeric"
                                         Focused="ZipCodeBox_Focused"
                                         Unfocused="ZipCodeBox_Unfocused"
-                                        TextChanged="ZipCodeBox_TextChanged"
                                         MaxLength="5"
                                         Margin="0, 18, 0, 10"/>
                                     <Label
@@ -442,7 +431,6 @@
                                 Keyboard="Numeric"
                                 Focused="OthersBox_Focused"
                                 Unfocused="OthersBox_Unfocused"
-                                TextChanged="OthersBox_TextChanged"
                                 MaxLength="60"
                                 Margin="0, 18, 0, 10"/>
                         </HorizontalStackLayout>

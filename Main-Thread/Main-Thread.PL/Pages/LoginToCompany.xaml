@@ -65,7 +65,6 @@
                                     WidthRequest="300"
                                     HeightRequest="35"
                                     ClearButtonVisibility="WhileEditing"
-                                    TextChanged="EmailBox_TextChanged"
                                     Completed="LoginButton_Clicked"/>
                             </Border>
                             <!-- END OF: Email Section -->
@@ -118,6 +117,7 @@
                                     IsVisible="False"
                                     Margin="-81, -71, 0, -70"/>
                                 <Button
+                                    x:Name="EyeButton"
                                     BackgroundColor="Transparent"
                                     WidthRequest="20"
                                     HeightRequest="20"
