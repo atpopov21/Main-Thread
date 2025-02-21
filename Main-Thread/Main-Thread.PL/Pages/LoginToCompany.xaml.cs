@@ -1,4 +1,8 @@
+using Main_Thread.BLL.Contracts.IAuthentication;
+using Main_Thread.BLL.Contracts.IValidation;
+using Main_Thread.BLL.Services.Validation;
 using Main_Thread.PL.Pages.Resources;
+using Main_Thread.Shared.InputModels;
 using System;
 using System.Diagnostics;
 
@@ -6,14 +10,15 @@ namespace Main_Thread.PL.Pages;
 
 public partial class LoginToCompany : ContentPage
 {
-    // TEMPORARY declaration and initialization
-    List<string> userCredentials = new List<string>(new string[2]);
+    private readonly ILoginService _loginService;
     private bool PasswordHidden = true, firstLaunch = true, colourInverted = false;
 
-    public LoginToCompany()
+    public LoginToCompany(ILoginService loginService)
     {
         InitializeComponent();
         InitializePageComponents();
+
+        _loginService = loginService;
     }
 
     private void InitializePageComponents()
@@ -131,42 +136,6 @@ public partial class LoginToCompany : ContentPage
         themeSelection.UpdateTheme(theme);
         PasswordBox_TextChanged(null, null);
     }
-
-    private bool CheckCredentials()
-    {
-        // "realEamils" need to be retreived from the database (ID's are being simulated with the index of each email, which is equal to the password)
-        string[] realEmails = { "ivan@gmail.com", "BADimov21@codingburgas.bg", "michaelWon@abv.bg", "fakeADMIN" };
-        string[] realMatchingPasswords = { "ivanIsHere", "1234567890!Secure", "hippo#21", "fakeADMIN" };
-
-        // Check for empty fields
-        foreach (string information in userCredentials)
-        {
-            if (string.IsNullOrEmpty(information))
-            {
-                DisplayAlert("Alert", "There are one or multiple empty fields.\nPlease fill them in.", "OK");
-                return false;
-            }
-        }
-
-        // Check if email exists
-        if (!realEmails.Any(email => email == userCredentials[0]))
-        {
-            DisplayAlert("Failed Login", "Email not found.", "Try Again");
-            return false;
-        }
-
-        // Find index of the entered email
-        int emailIndex = Array.IndexOf(realEmails, userCredentials[0]);
-
-        // Check if password matches the user's email
-        if (realMatchingPasswords[emailIndex] != userCredentials[1])
-        {
-            DisplayAlert("Failed Login", "Wrong password.", "Try Again");
-            return false;
-        }
-
-        return true;
-    }
     
     /* Method for creating linear backgrounds
     private LinearGradientBrush CreateGradient(Color myStartColor, Color myEndColor)
@@ -183,36 +152,41 @@ public partial class LoginToCompany : ContentPage
 
     private async void LoginButton_Clicked(object sender, EventArgs e)
     {
-        bool registrationSuccessful = CheckCredentials();
-
-        // Write company register information to Debug window
-        foreach (string information in userCredentials)
+        var inputModel = new LoginToCompanyIM
         {
-            Debug.WriteLine(information);
-        }
+            Email = EmailBox.Text,
+            Password = PasswordBox.Text
+        };
 
-        if (registrationSuccessful)
+        // Call the BLL validation method
+        string validationMessage = _loginService.ValidateUserCredentials(inputModel);
+
+        if (validationMessage == "passed")
         {
             await DisplayAlert("Successful Login", "Login Successful.\nYou will be redirected to the Home page now.", "OK");
             await Shell.Current.GoToAsync("//HomePage");
         }
-    }
+        else
+        {
+            await DisplayAlert("Failed Login", validationMessage, "Try Again");
+        }
 
-    private void EmailBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        userCredentials[0] = EmailBox.Text;
+        /*// Write company register information to Debug window
+        foreach (string information in userCredentials)
+        {
+            Debug.WriteLine(information);
+        }*/
     }
 
     private void PasswordBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-        userCredentials[1] = PasswordBox.Text;
-
-        if (userCredentials[1] == "" || userCredentials[1] == null)
+        if (PasswordBox.Text == "" || PasswordBox.Text == null)
         {
             ShowEyeImage.IsVisible = false;
             HideEyeImage.IsVisible = false;
             ShowEyeLightImage.IsVisible = false;
             HideEyeLightImage.IsVisible = false;
+            EyeButton.IsVisible = false;
 
             languageSelection.Margin = new Thickness(-5, -565, 20, 0);
             ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
@@ -220,6 +194,7 @@ public partial class LoginToCompany : ContentPage
         }
         else
         {
+            EyeButton.IsVisible = true;
             ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
             HideEyeImage.Margin = new Thickness(-81, -71, 0, -70);
 

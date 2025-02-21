@@ -129,15 +129,25 @@ namespace Main_Thread.PL
             catch (Exception ex)
             {
                 // Log or display the error
-                Console.WriteLine($"Error navigating to RegisterCompanyPage: {ex.Message}");
                 await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
             }
         }
 
         private async void Login_Company_Clicked(object sender, EventArgs e)
         {
-            //await Shell.Current.GoToAsync("//LoginToCompany");    // With no "Back" option
-            await Navigation.PushAsync(new LoginToCompany());     // With a "Back" option
+            try
+            {
+                // Resolve LoginToCompanyPage from the DI container
+                var loginToCompanyPage = _serviceProvider.GetRequiredService<LoginToCompany>();
+
+                // Navigate to LoginToCompanyPage
+                await Navigation.PushAsync(loginToCompanyPage);   // With a "Back" option
+            }
+            catch (Exception ex)
+            {
+                // Log or display the error
+                await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
+            }
         }
         
     }

@@ -13,10 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\IAuthentication\" />
     <Folder Include="Contracts\IPageHandlers\" />
     <Folder Include="Contracts\ISecurity\" />
-    <Folder Include="Services\Authentication\" />
     <Folder Include="Services\Security\" />
     <Folder Include="Services\PageHandlers\" />
   </ItemGroup>
