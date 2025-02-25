@@ -805,7 +805,7 @@ public partial class RegisterCompany : ContentPage
             StateProvince = StateProvinceBox.Text,
             ZipCode = ZipCodeBox.Text,
             BusinessType = CategoryPicker.SelectedItem.ToString(),
-            Others = OthersBox.Text
+            OtherBusinessType = OthersBox.Text
         };
 
         // Call the BLL validation method

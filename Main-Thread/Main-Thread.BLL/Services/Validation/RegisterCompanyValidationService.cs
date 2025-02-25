@@ -28,7 +28,7 @@ namespace Main_Thread.BLL.Services.Validation
                     return "Please select a type of business.";
                 }
                 // Check if the type of business is specified
-                else if (Convert.ToString(value) == "Others, please specify below" && inputModel.Others == null)
+                else if (Convert.ToString(value) == "Others, please specify below" && inputModel.OtherBusinessType == null)
                 {
                     return "Please specify the type of business.";
                 }
