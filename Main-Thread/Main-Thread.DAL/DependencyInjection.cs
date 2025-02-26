@@ -12,7 +12,6 @@ public static class DependencyInjection
         services.AddSingleton<IBusinessRepository, BusinessRepository>();
         services.AddSingleton<IProfitRepository, ProfitRepository>();
         services.AddSingleton<IRevenueRepository, RevenueRepository>();
-        services.AddSingleton<IRevenuesAndExpensesRepository, RevenuesAndExpensesRepository>();
         services.AddSingleton<IStockRepository, StockRepository>();
         services.AddSingleton<IUserRepository, UserRepository>();
     }

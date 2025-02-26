@@ -12,7 +12,6 @@ public class DbContext
     public List<Business> Businesses { get; set; }
     public List<Profit> Profits { get; set; }
     public List<Revenue> Revenues { get; set; }
-    public List<RevenuesAndExpenses> RevenuesAndExpensesList { get; set; }
     public List<Stock> Stocks { get; set; }
     public List<User> Users { get; set; }
 
@@ -25,7 +24,6 @@ public class DbContext
         Businesses = new List<Business>();
         Profits = new List<Profit>();
         Revenues = new List<Revenue>();
-        RevenuesAndExpensesList = new List<RevenuesAndExpenses>();
         Stocks = new List<Stock>();
         Users = new List<User>();
 
@@ -37,7 +35,6 @@ public class DbContext
         await ReadBusinessesAsync();
         await ReadProfitsAsync();
         await ReadRevenuesAsync();
-        await ReadRevenuesAndExpensesListAsync();
         await ReadStocksAsync();
         await ReadUsersAsync();
     }
@@ -194,47 +191,6 @@ public class DbContext
                         Id = Convert.ToInt32(reader["RevenueId"]),
                         DailyRevenue = Convert.ToDecimal(reader["DailyRevenue"]),
                         Date = Convert.ToDateTime(reader["Date"]),
-                    };
-                }
-            }
-        }
-
-        return null;
-    }
-    
-    
-    public async Task ReadRevenuesAndExpensesListAsync()
-    {
-        string query = "SELECT * FROM RevenuesAndExpensesList";
-        SqlCommand command = new SqlCommand(query, Connection);
-        SqlDataReader reader = await command.ExecuteReaderAsync();
-
-        while (await reader.ReadAsync())
-        {
-            RevenuesAndExpensesList.Add(new RevenuesAndExpenses()
-            {
-                Id = reader.GetInt32(0),
-            });
-        }
-        reader.Close();
-    }
-    
-    // Read category by ID
-    public async Task<RevenuesAndExpenses> GetRevenuesAndExpensesByIdAsync(int revenuesAndExpensesId)
-    {
-        string query = "SELECT * FROM RevenuesAndExpensesList WHERE RevenueAndExpensesId = @Id";
-
-        using (SqlCommand command = new SqlCommand(query, Connection))
-        {
-            command.Parameters.AddWithValue("@Id", revenueId);
-
-            using (SqlDataReader reader = await command.ExecuteReaderAsync())
-            {
-                if (await reader.ReadAsync())
-                {
-                    return new RevenuesAndExpenses()
-                    {
-                        Id = Convert.ToInt32(reader["RevenuesAndExpensesId"]),
                     };
                 }
             }

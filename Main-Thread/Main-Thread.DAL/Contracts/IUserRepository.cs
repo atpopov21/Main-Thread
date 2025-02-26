@@ -6,5 +6,5 @@ public interface IUserRepository
 {
     public Task CreateUserAsync(User newUser);
     public Task UpdateUserAsync(User newUser);
-    public Task DeleteUserAsync(User newUser);
+    public Task DeleteUserAsync(User deletedUser);
 }

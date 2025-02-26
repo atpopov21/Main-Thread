@@ -6,5 +6,5 @@ public interface IProfitRepository
 {
     public Task CreateProfitAsync(Profit newProfit);
     public Task UpdateProfitAsync(Profit newProfit);
-    public Task DeleteProfitAsync(Profit newProfit);
+    public Task DeleteProfitAsync(Profit deletedProfit);
 }
