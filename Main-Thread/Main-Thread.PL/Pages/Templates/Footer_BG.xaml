@@ -44,7 +44,7 @@
                     <!-- Section "Main Thread" of Footer details -->
                     <VerticalStackLayout Margin="20, 0, 0, 0">
                         <Label
-                            Text="Main Thread"
+                            Text="Главна нишка"
                             TextColor="AliceBlue"
                             FontSize="Medium"
                             HorizontalTextAlignment="Center" />
@@ -61,7 +61,7 @@
                             BackgroundColor="AliceBlue"
                             Margin="-5, -10, 0, 10" />
                         <Label
-                            Text="Main Thread е мощен софтуер за управление на бизнеси&#10; като ресторанти, аптеки и хранителни магазини.&#10; Той оптимизира управлението на служители и наличности,&#10; следи приходите и разходите и предоставя инструменти &#10;за планиране и мониторинг на производителността.&#10; С помощта на отчети и диаграми помага за &#10;анализ на печалбите и оптимизиране на операциите, &#10;давайки на бизнеса пълен контрол върху управленските им нужди."
+                            Text="'Главна нишка' е мощен софтуер за управление на бизнеси&#10; като ресторанти, аптеки и хранителни магазини.&#10; Той оптимизира управлението на служители и наличности,&#10; следи приходите и разходите и предоставя инструменти &#10;за планиране и мониторинг на производителността.&#10; С помощта на отчети и диаграми помага за &#10;анализ на печалбите и оптимизиране на операциите, &#10;давайки на бизнеса пълен контрол върху управленските им нужди."
                             TextColor="LightGray"
                             FontSize="Micro"
                             HorizontalTextAlignment="Center" />
@@ -100,6 +100,25 @@
                                             <TapGestureRecognizer
                                                 Command="{Binding ClickedDeveloper}"
                                                 CommandParameter="mailto:ATPopov21@codingburgas.bg" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Margin="0, 0, 0, 5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        Text="GGDimitrov21@codingburgas.bg"
+                                        TextColor="MediumSlateBlue"
+                                        TextDecorations="Underline"
+                                        FontSize="Small">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding ClickedSubDeveloper}"
+                                                CommandParameter="mailto:GGDimitrov21@codingburgas.bg" />
                                         </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>

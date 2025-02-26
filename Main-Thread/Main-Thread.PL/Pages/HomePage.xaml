@@ -97,7 +97,7 @@
 
                             <!-- Title of Chart -->
                             <Label
-                                Text="Change in revenue by month"
+                                x:Name="RevenueChangeChartTitle"
                                 FontSize="Micro"
                                 TextColor="Gray"
                                 HorizontalTextAlignment="Center"
@@ -122,7 +122,7 @@
 
                             <!-- Title of Chart -->
                             <Label
-                                Text="Profit / Month (Latest 4)"
+                                x:Name="ProfitChartTitle"
                                 FontSize="Micro"
                                 TextColor="Gray"
                                 HorizontalTextAlignment="Center"
@@ -187,7 +187,7 @@
 
                             <!-- Title of Chart -->
                             <Label
-                                Text="TOP 5 Best Employees"
+                                x:Name="TopEmployeesChartTitle"
                                 FontSize="Micro"
                                 TextColor="Gray"
                                 HorizontalTextAlignment="Center"
@@ -281,7 +281,7 @@
 
                             <!-- Title of Chart -->
                             <Label
-                                Text="Best Selling Products"
+                                x:Name="BestProductsChartTitle"
                                 FontSize="Micro"
                                 TextColor="Gray"
                                 HorizontalTextAlignment="Center"

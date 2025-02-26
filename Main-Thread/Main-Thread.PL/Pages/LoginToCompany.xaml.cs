@@ -3,6 +3,7 @@ using Main_Thread.BLL.Contracts.IValidation;
 using Main_Thread.BLL.Services.Validation;
 using Main_Thread.PL.Pages.Resources;
 using Main_Thread.Shared.InputModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics;
 
@@ -34,7 +35,7 @@ public partial class LoginToCompany : ContentPage
         languageSelection.Margin = new Thickness(-5, -565, 20, 0);
     }
 
-    private void OnLanguageChanged(string language)
+    public void OnLanguageChanged(string language)
     {
         ClientSettingsVisuals.Instance.SelectedLanguage = language;
         string selectedLanguage = language;
@@ -163,8 +164,24 @@ public partial class LoginToCompany : ContentPage
 
         if (validationMessage == "passed")
         {
+            // Call LoginToCompanyDTO object here and initialize it
+
             await DisplayAlert("Successful Login", "Login Successful.\nYou will be redirected to the Home page now.", "OK");
             await Shell.Current.GoToAsync("//HomePage");
+
+            /*try
+            {
+                // Resolve RegisterCompanyPage from the DI container
+                var registerCompanyPage = _serviceProvider.GetRequiredService<RegisterCompany>();
+
+                // Navigate to RegisterCompanyPage
+                await Shell.Current.GoToAsync(registerCompanyPage);
+            }
+            catch (Exception ex)
+            {
+                // Log or display the error
+                await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
+            }*/
         }
         else
         {

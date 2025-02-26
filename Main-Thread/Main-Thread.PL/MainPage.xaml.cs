@@ -38,6 +38,13 @@ namespace Main_Thread.PL
         {
             ClientSettingsVisuals.Instance.SelectedLanguage = language;
             string selectedLanguage = language;
+
+            // Access AppShell through Application.Current.MainPage
+            if (Application.Current.MainPage is AppShell appShell)
+            {
+                appShell.OnLanguageChanged(language);
+            }
+
             if (selectedLanguage == "English")
             {
                 RegisterACompanyButton.Text = "Register a Company";
@@ -114,7 +121,6 @@ namespace Main_Thread.PL
             languageSelection.UpdateTheme(theme);
             themeSelection.UpdateTheme(theme);
         }
-
 
         private async void Register_Company_Clicked(object sender, EventArgs e)
         {

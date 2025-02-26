@@ -1,4 +1,6 @@
-﻿namespace Main_Thread.PL
+﻿using Main_Thread.PL.Pages;
+
+namespace Main_Thread.PL
 {
     public partial class App : Application
     {

@@ -1,3 +1,4 @@
+using Main_Thread.BLL.Contracts.IPageHandlers;
 using Main_Thread.PL.Pages.Resources;
 using Microcharts;
 using Microcharts.Maui;
@@ -11,128 +12,18 @@ public partial class HomePage : ContentPage
     // TEMPORARY declaration & initializaton; Info about the user must be retrieved from the database
     string[] userCredentials = { "Aleksandar Popov", "21", "ADMIN" };
 
-    // Revenues and Incomes chart parameters
-    static float[] RIAChartValues = { 212f, 248f, 128f, 514f };
-    static string[] RIALabelValues = { "First Month", "Second Month", "Third Month", "Fourth Month" };
-    ChartEntry[] RIAEntries = new[]
-    {
-        new ChartEntry(RIAChartValues[0])
-        {
-            Label = RIALabelValues[0],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(RIAChartValues), RIAChartValues, 0))
-        },
-        new ChartEntry(RIAChartValues[1])
-        {
-            Label = RIALabelValues[1],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(RIAChartValues), RIAChartValues, 1))
-        },
-        new ChartEntry(RIAChartValues[2])
-        {
-            Label = RIALabelValues[2],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(RIAChartValues), RIAChartValues, 2))
-        },
-        new ChartEntry(RIAChartValues[3])
-        {
-            Label = RIALabelValues[3],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(RIAChartValues), RIAChartValues, 3))
-        },
-    };
+    // Chart parameters
+    static float[] RIAChartValues, pointValues, EMChartValues, SMChartValues;
+    static string[] RIALabelValues, RIALabelValuesChartTwo, topFiveEmployeesNames, topFiveStockNames;
+    ChartEntry[] RIAEntries, RIAEntriesChartTwo, EMEntries, SMEntries;    
 
-    // Profit / Month Chart (Latest 4) [4 months]
-    static float[] pointValues = { 0, 200, 150, 350 };
-    ChartEntry[] RIAEntriesChartTwo = new[]
-    {
-        new ChartEntry(pointValues[0])
-        {
-            Label = RIALabelValues[0],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(pointValues), pointValues, 0))
-        },
-        new ChartEntry(pointValues[1])
-        {
-            Label = RIALabelValues[1],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(pointValues), pointValues, 1))
-        },
-        new ChartEntry(pointValues[2])
-        {
-            Label = RIALabelValues[2],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(pointValues), pointValues, 2))
-        },
-        new ChartEntry(pointValues[3])
-        {
-            Label = RIALabelValues[3],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(pointValues), pointValues, 3))
-        },
-    };
-
-    // Employees chart parameters
-    static float[] EMChartValues = { 514f, 392f, 368f, 271f, 201f };
-    string[] topFiveEmployeesNames = { "Ivan\nGeorgiev", "Ivan\nAngelov", "Ioanna\nZheleva", "Patrisia\nPetrova", "Lubomir\nDimitrov" };
-    ChartEntry[] EMEntries = new[]
-    {
-        new ChartEntry(EMChartValues[0])
-        {
-            Label = " ",
-            Color = SKColor.Parse("#87cefa")
-        },
-        new ChartEntry(EMChartValues[1])
-        {
-            Label = " ",
-            Color = SKColor.Parse("#9de24f")
-        },
-        new ChartEntry(EMChartValues[2])
-        {
-            Label = " ",
-            Color = SKColor.Parse("#eea990")
-        },
-        new ChartEntry(EMChartValues[3])
-        {
-            Label = " ",
-            Color = SKColor.Parse("#ffbd55")
-        },
-        new ChartEntry(EMChartValues[4])
-        {
-            Label = " ",
-            Color = SKColor.Parse("#ff6666")
-        },
-    };
-
-    // Stock chart parameters
-    static float[] SMChartValues = { 231f, 204f, 182f, 162f, 82f };
-    static string[] topFiveStockNames = { "Dark chocolate", "Larry's Chips", "Popcorn", "Beef meat", "Orange Juice" };
-    ChartEntry[] SMEntries = new[]
-    {
-        new ChartEntry(SMChartValues[0])
-        {
-            Label = topFiveStockNames[0],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
-        },
-        new ChartEntry(SMChartValues[1])
-        {
-            Label = topFiveStockNames[1],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
-        },
-        new ChartEntry(SMChartValues[2])
-        {
-            Label = topFiveStockNames[2],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
-        },
-        new ChartEntry(SMChartValues[3])
-        {
-            Label = topFiveStockNames[3],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
-        },
-        new ChartEntry(SMChartValues[4])
-        {
-            Label = topFiveStockNames[4],
-            Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
-        },
-    };
-
+    private readonly IHomePageService _homePageService;
     private readonly IDispatcherTimer _timer;
 
-    public HomePage()
-	{
-		InitializeComponent();
+    public HomePage(IHomePageService homePageService)
+    {
+        _homePageService = homePageService;
+        InitializeComponent();
         InitializePageComponents();
 
         // Initialize Timer
@@ -146,34 +37,143 @@ public partial class HomePage : ContentPage
     {
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
         OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
-
-
-        RevenuesAndExpensesMiniChart.Chart = new LineChart
-        {
-            Entries = RIAEntries
-        };
-
-        RevenuesAndExpensesMiniChartTwo.Chart = new LineChart
-        {
-            Entries = RIAEntriesChartTwo,
-            LineMode = LineMode.Straight,
-        };
-
-        EmployeesManagementChart.Chart = new PointChart
-        {
-            Entries = EMEntries,
-            LabelOrientation = Orientation.Horizontal
-        };
-
-        StockManagementChart.Chart = new PieChart
-        {
-            Entries = SMEntries,
-        };
+        InitializeCharts();
     }
 
     private void UpdateTime()
     {
         TimeStamp.Text = DateTime.Now.ToString("HH:mm"); // Format as HH:MM
+    }
+
+    private async void InitializeCharts()
+    {
+        // Initialize Charts
+        (RIAChartValues, RIALabelValues) = _homePageService.GetRevenuesAndExpensesChartData(ClientSettingsVisuals.Instance.SelectedLanguage);  // Revenues and Incomes chart parameters initialization
+        RIAEntries = new[]
+        {
+            new ChartEntry(RIAChartValues[0])
+            {
+                Label = RIALabelValues[0],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(RIAChartValues), RIAChartValues, 0))
+            },
+            new ChartEntry(RIAChartValues[1])
+            {
+                Label = RIALabelValues[1],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(RIAChartValues), RIAChartValues, 1))
+            },
+            new ChartEntry(RIAChartValues[2])
+            {
+                Label = RIALabelValues[2],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(RIAChartValues), RIAChartValues, 2))
+            },
+            new ChartEntry(RIAChartValues[3])
+            {
+                Label = RIALabelValues[3],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(RIAChartValues), RIAChartValues, 3))
+            },
+        };
+        (pointValues, RIALabelValuesChartTwo) = _homePageService.GetProfitChartData(ClientSettingsVisuals.Instance.SelectedLanguage);  // Profit / Month Chart (Latest 4) [4 months] initialization
+        RIAEntriesChartTwo = new[]
+        {
+            new ChartEntry(pointValues[0])
+            {
+                Label = RIALabelValuesChartTwo[0],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(pointValues), pointValues, 0))
+            },
+            new ChartEntry(pointValues[1])
+            {
+                Label = RIALabelValuesChartTwo[1],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(pointValues), pointValues, 1))
+            },
+            new ChartEntry(pointValues[2])
+            {
+                Label = RIALabelValuesChartTwo[2],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(pointValues), pointValues, 2))
+            },
+            new ChartEntry(pointValues[3])
+            {
+                Label = RIALabelValuesChartTwo[3],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(pointValues), pointValues, 3))
+            },
+        };
+        (EMChartValues, topFiveEmployeesNames) = _homePageService.GetEmployeesChartData();  // Employees chart parameters initialization
+        EMEntries = new[]
+        {
+            new ChartEntry(EMChartValues[0])
+            {
+                Label = " ",
+                Color = SKColor.Parse("#87cefa")
+            },
+            new ChartEntry(EMChartValues[1])
+            {
+                Label = " ",
+                Color = SKColor.Parse("#9de24f")
+            },
+            new ChartEntry(EMChartValues[2])
+            {
+                Label = " ",
+                Color = SKColor.Parse("#eea990")
+            },
+            new ChartEntry(EMChartValues[3])
+            {
+                Label = " ",
+                Color = SKColor.Parse("#ffbd55")
+            },
+            new ChartEntry(EMChartValues[4])
+            {
+                Label = " ",
+                Color = SKColor.Parse("#ff6666")
+            },
+        };
+        (SMChartValues, topFiveStockNames) = await _homePageService.GetStockChartData(ClientSettingsVisuals.Instance.SelectedLanguage);  // Stock chart parameters initialization
+        SMEntries = new[]
+        {
+            new ChartEntry(SMChartValues[0])
+            {
+                Label = topFiveStockNames[0],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
+            },
+            new ChartEntry(SMChartValues[1])
+            {
+                Label = topFiveStockNames[1],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
+            },
+            new ChartEntry(SMChartValues[2])
+            {
+                Label = topFiveStockNames[2],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
+            },
+            new ChartEntry(SMChartValues[3])
+            {
+                Label = topFiveStockNames[3],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
+            },
+            new ChartEntry(SMChartValues[4])
+            {
+                Label = topFiveStockNames[4],
+                Color = SKColor.Parse(GenerateColoursForProfitChart(CalculateAverageProfitPerMonth(SMChartValues), SMChartValues, 100))
+            },
+        };
+
+        // Create Charts
+        RevenuesAndExpensesMiniChart.Chart = new LineChart
+        {
+            Entries = RIAEntries
+        };
+        RevenuesAndExpensesMiniChartTwo.Chart = new LineChart
+        {
+            Entries = RIAEntriesChartTwo,
+            LineMode = LineMode.Straight,
+        };
+        EmployeesManagementChart.Chart = new PointChart
+        {
+            Entries = EMEntries,
+            LabelOrientation = Orientation.Horizontal
+        };
+        StockManagementChart.Chart = new PieChart
+        {
+            Entries = SMEntries,
+        };
     }
 
     private static float CalculateAverageProfitPerMonth(float[] profitsPerMonth)
@@ -247,14 +247,18 @@ public partial class HomePage : ContentPage
 
             // Revenues and Expenses Section
             RevenuesAndExpensesLabel.Text = "Revenues and Expenses";
+            RevenueChangeChartTitle.Text = "Change in revenue by month";
+            ProfitChartTitle.Text = "Profit / Month (Latest 4)";
             RAIButton.Text = "View";
 
             // Employess Management Section
             EmployessManagementLabel.Text = "Employees Management";
+            TopEmployeesChartTitle.Text = "TOP 5 Best Employees";
             EMButton.Text = "View";
 
             // Stock Management Section
             StockManagementLabel.Text = "Stock Management";
+            BestProductsChartTitle.Text = "Best Selling Products (by %)";
             SMButton.Text = "View";
 
             // Page Footer
@@ -271,14 +275,18 @@ public partial class HomePage : ContentPage
 
             // Revenues and Incomes Section
             RevenuesAndExpensesLabel.Text = "Доходи и разходи";
+            RevenueChangeChartTitle.Text = "Промяна на доходите за месец";
+            ProfitChartTitle.Text = "Печалба / месец (Последните 4)";
             RAIButton.Text = "Погледнете";
 
             // Employess Management Section
             EmployessManagementLabel.Text = "Управление на служители";
+            TopEmployeesChartTitle.Text = "ТОП 5 Най-добри служители";
             EMButton.Text = "Погледнете";
 
             // Stock Management Section
             StockManagementLabel.Text = "Управление на стока";
+            BestProductsChartTitle.Text = "Най-продавани продукти (в %)";
             SMButton.Text = "Погледнете";
 
             // Page Footer
@@ -295,14 +303,18 @@ public partial class HomePage : ContentPage
 
             // Revenues and Expenses Section
             RevenuesAndExpensesLabel.Text = "Revenues and Expenses";
+            RevenueChangeChartTitle.Text = "Change in revenue by month";
+            ProfitChartTitle.Text = "Profit / Month (Latest 4)";
             RAIButton.Text = "View";
 
             // Employess Management Section
             EmployessManagementLabel.Text = "Employees Management";
+            TopEmployeesChartTitle.Text = "TOP 5 Best Employees";
             EMButton.Text = "View";
 
             // Stock Management Section
             StockManagementLabel.Text = "Stock Management";
+            BestProductsChartTitle.Text = "Best Selling Products (by %)";
             SMButton.Text = "View";
 
             // Page Footer
@@ -310,6 +322,7 @@ public partial class HomePage : ContentPage
             FooterBG.IsVisible = false;
         }
 
+        InitializeCharts();
         EmployeeOneLabel.Text = topFiveEmployeesNames[0];
         EmployeeTwoLabel.Text = topFiveEmployeesNames[1];
         EmployeeThreeLabel.Text = topFiveEmployeesNames[2];

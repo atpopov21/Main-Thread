@@ -6,11 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Main_Thread.BLL.Contracts.IAuthentication;
 using Main_Thread.Shared.InputModels;
+using Main_Thread.BLL.Services.Security;
+using Main_Thread.BLL.Contracts.ISecurity;
 
 namespace Main_Thread.BLL.Services.Authentication
 {
     public class LoginService : ILoginService
     {
+        private readonly ICryptographyService _cryptographyService = new CryptographyService();
+
         public string ValidateUserCredentials(LoginToCompanyIM inputModel)
         {
             // TEMPORARY INITIALIZATION
@@ -41,7 +45,7 @@ namespace Main_Thread.BLL.Services.Authentication
             int emailIndex = Array.IndexOf(realEmails, inputModel.Email);
 
             // Check if password matches the user's email
-            if (realMatchingPasswords[emailIndex] != inputModel.Password)
+            if (_cryptographyService.ComputeSha256Hash(realMatchingPasswords[emailIndex]) != _cryptographyService.ComputeSha256Hash(inputModel.Password))
             {
                 return "Incorrect email or password.";
             }
