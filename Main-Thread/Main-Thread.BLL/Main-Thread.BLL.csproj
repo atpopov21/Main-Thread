@@ -12,11 +12,4 @@
     <ProjectReference Include="..\Main-Thread.Shared\Main-Thread.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\IPageHandlers\" />
-    <Folder Include="Contracts\ISecurity\" />
-    <Folder Include="Services\Security\" />
-    <Folder Include="Services\PageHandlers\" />
-  </ItemGroup>
-
 </Project>

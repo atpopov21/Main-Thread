@@ -12,38 +12,38 @@
     FlyoutBackgroundColor="AliceBlue">
 
     <ShellContent
-        Title="Main Thread | Home"
+        x:Name="MainThreadHomeTitle"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     
     <ShellContent
-        Title="Main Thread | Register a company"
+        x:Name="MainThreadRegisterACompanyTitle"
         ContentTemplate="{DataTemplate pages:RegisterCompany}"
         Route="RegisterCompany" />
     
     <ShellContent
-        Title="Main Thread | Login to a company"
+        x:Name="MainThreadLoginTitle"
         ContentTemplate="{DataTemplate pages:LoginToCompany}"
         Route="LoginToCompany" />
 
     <TabBar>
         <ShellContent
-            Title="Home"
+            x:Name="InsideHomeTitle"
             ContentTemplate="{DataTemplate pages:HomePage}"
             Route="HomePage" />
 
         <ShellContent
-            Title="Revenues and Expenses"
+            x:Name="InsideRAETitle"
             ContentTemplate="{DataTemplate pages:RevenuesAndExpenses}"
             Route="RevenuesAndExpenses" />
 
         <ShellContent
-            Title="Employees Management"
+            x:Name="InsideEmployeesManagementTitle"
             ContentTemplate="{DataTemplate pages:EmployeesManagement}"
             Route="EmployeesManagement" />
 
         <ShellContent
-            Title="Stock Management"
+            x:Name="InsideStockManagementTitle"
             ContentTemplate="{DataTemplate pages:StockManagement}"
             Route="StockManagement" />
     </TabBar>
