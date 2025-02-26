@@ -17,7 +17,7 @@ public class DbContext
 
     public DbContext()
     {
-        string connectionString = "Server=2425-sd-fork-project-server.database.windows.net;Database=2425-sd-fork-project-database;Persist Security Info=True;User ID=BADimov21;Password=Fork1234!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
+        string connectionString = "Server=tcp:main-thread-server.database.windows.net,1433;Initial Catalog=MainThread;Persist Security Info=False;User ID=ThreadMain;Password={MainThread@1243};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         Connection = new SqlConnection(connectionString);
         Connection.Open();
         
