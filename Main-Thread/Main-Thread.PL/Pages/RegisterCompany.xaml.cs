@@ -813,6 +813,8 @@ public partial class RegisterCompany : ContentPage
 
         if (validationMessage == "passed")
         {
+            // Call RegisterCompanyDTO object here and initialize it
+
             SuccessfulRegistrationCOMPANY.IsVisible = true;
             DisplayAlert("Pending Approval", "Your company registration is currently under review by our team.\nWe appreciate your request and will notify you once the approval process is complete.", "OK");
         }
