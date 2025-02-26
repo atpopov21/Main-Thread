@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;    
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
@@ -71,6 +71,6 @@ namespace Main_Thread.Shared.InputModels
 
         // Optional
         [MaxLength(60)]
-        public string? Others { get; set; }
+        public string? OtherBusinessType { get; set; }
     }
 }
