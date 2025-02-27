@@ -5,4 +5,5 @@ public class Revenue
     public int Id { get; set; }
     public decimal DailyRevenue { get; set; }
     public DateTime Date { get; set; }
+    public int BusinessId { get; set; }
 }

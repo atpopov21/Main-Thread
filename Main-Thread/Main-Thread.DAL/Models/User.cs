@@ -11,4 +11,6 @@ public class User
     public string Email { get; set; }
     public DateTime HireDate { get; set; }
     public int Role { get; set; }
+    public int BusinessId { get; set; }
+
 }

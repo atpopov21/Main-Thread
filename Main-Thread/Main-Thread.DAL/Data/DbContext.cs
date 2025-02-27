@@ -70,7 +70,7 @@ public class DbContext
         reader.Close();
     }
     
-    // Read category by ID
+    // Read business by ID
     public async Task<Business> GetBusinessByIdAsync(int businessId)
     {
         string query = "SELECT * FROM Businesses WHERE BusinessId = @Id";
@@ -123,12 +123,13 @@ public class DbContext
                 Id = reader.GetInt32(0),
                 DailyProfit = reader.GetDecimal(1),
                 Date = reader.GetDateTime(2),
+                BusinessId = reader.GetInt32(0),
             });
         }
         reader.Close();
     }
     
-    // Read category by ID
+    // Read profit by ID
     public async Task<Profit> GetProfitByIdAsync(int profitId)
     {
         string query = "SELECT * FROM Profits WHERE ProfitId = @Id";
@@ -146,6 +147,7 @@ public class DbContext
                         Id = Convert.ToInt32(reader["ProfitId"]),
                         DailyProfit = Convert.ToDecimal(reader["DailyProfit"]),
                         Date = Convert.ToDateTime(reader["Date"]),
+                        BusinessId = Convert.ToInt32(reader["BusinessId"]),
                     };
                 }
             }
@@ -168,12 +170,13 @@ public class DbContext
                 Id = reader.GetInt32(0),
                 DailyRevenue = reader.GetDecimal(1),
                 Date = reader.GetDateTime(2),
+                BusinessId = reader.GetInt32(0),
             });
         }
         reader.Close();
     }
     
-    // Read category by ID
+    // Read revenue by ID
     public async Task<Revenue> GetRevenueByIdAsync(int revenueId)
     {
         string query = "SELECT * FROM Revenues WHERE RevenueId = @Id";
@@ -191,6 +194,7 @@ public class DbContext
                         Id = Convert.ToInt32(reader["RevenueId"]),
                         DailyRevenue = Convert.ToDecimal(reader["DailyRevenue"]),
                         Date = Convert.ToDateTime(reader["Date"]),
+                        BusinessId = Convert.ToInt32(reader["BusinessId"]),
                     };
                 }
             }
@@ -215,12 +219,13 @@ public class DbContext
                 Price = reader.GetDecimal(2),
                 Quantity = reader.GetInt32(3),
                 Rating = reader.GetDecimal(4),
+                BusinessId = reader.GetInt32(0),
             });
         }
         reader.Close();
     }
     
-    // Read category by ID
+    // Read stock by ID
     public async Task<Stock> GetStockByIdAsync(int stockId)
     {
         string query = "SELECT * FROM Stocks WHERE StockId = @Id";
@@ -240,6 +245,7 @@ public class DbContext
                         Price = Convert.ToDecimal(reader["Price"]),
                         Quantity = Convert.ToInt32(reader["Quantity"]),
                         Rating = Convert.ToDecimal(reader["Rating"]),
+                        BusinessId = Convert.ToInt32(reader["BusinessId"]),
                     };
                 }
             }
@@ -268,12 +274,13 @@ public class DbContext
                 Email = reader.GetString(6),
                 HireDate = reader.GetDateTime(7),
                 Role = reader.GetInt32(8),
+                BusinessId = reader.GetInt32(0),
             });
         }
         reader.Close();
     }
     
-    // Read category by ID
+    // Read user by ID
     public async Task<User> GetUserByIdAsync(int userId)
     {
         string query = "SELECT * FROM Users WHERE UserId = @Id";
@@ -297,6 +304,7 @@ public class DbContext
                         Email = Convert.ToString(reader["Email"]),
                         HireDate = Convert.ToDateTime(reader["HireDate"]),
                         Role = Convert.ToInt32(reader["Role"]),
+                        BusinessId = Convert.ToInt32(reader["BusinessId"]),
                     };
                 }
             }

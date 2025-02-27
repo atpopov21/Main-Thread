@@ -18,12 +18,13 @@ namespace Main_Thread.DAL.Implementations
             {
                 _context.Revenues.Add(newRevenue);
 
-                string query = $"INSERT INTO [Revenues] (DailyRevenue, Date) VALUES (@DailyRevenue, @Date)";
+                string query = $"INSERT INTO [Revenues] (DailyRevenue, Date, BusinessId) VALUES (@DailyRevenue, @Date, @BusinessId)";
 
                 using (SqlCommand command = new SqlCommand(query, _context.Connection))
                 {
                     command.Parameters.AddWithValue("@DailyRevenue", newRevenue.DailyRevenue);
                     command.Parameters.AddWithValue("@Date", newRevenue.Date);
+                    command.Parameters.AddWithValue("@BusinessId", newRevenue.BusinessId);
                     
                     await command.ExecuteNonQueryAsync();
                 }
@@ -39,13 +40,15 @@ namespace Main_Thread.DAL.Implementations
             {
                 revenue.DailyRevenue = updatedRevenue.DailyRevenue;
                 revenue.Date = updatedRevenue.Date;
+                revenue.BusinessId = updatedRevenue.BusinessId;
                 
-                string query = $"UPDATE [Revenues] SET [DailyRevenue] = @DailyRevenue, [Date] = @Date WHERE [RevenueId] = @Id";
+                string query = $"UPDATE [Revenues] SET [DailyRevenue] = @DailyRevenue, [Date] = @Date, [BusinessId] = @BusinessId WHERE [RevenueId] = @Id";
 
                 using (SqlCommand command = new SqlCommand(query, _context.Connection))
                 {
                     command.Parameters.AddWithValue("@DailyProfit", updatedRevenue.DailyRevenue);
                     command.Parameters.AddWithValue("@Date", updatedRevenue.Date);
+                    command.Parameters.AddWithValue("@BusinessId", updatedRevenue.BusinessId);
 
                     await command.ExecuteNonQueryAsync();
                 }
