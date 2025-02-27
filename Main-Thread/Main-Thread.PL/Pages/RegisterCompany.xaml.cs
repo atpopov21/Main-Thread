@@ -90,6 +90,11 @@ public partial class RegisterCompany : ContentPage
         ClientSettingsVisuals.Instance.SelectedLanguage = language;
         string selectedLanguage = language;
 
+        if (Shell.Current.Parent is AppShell appShell)
+        {
+            appShell.OnLanguageChanged(language);
+        }
+
         if (selectedLanguage == "English")
         {
             // Header

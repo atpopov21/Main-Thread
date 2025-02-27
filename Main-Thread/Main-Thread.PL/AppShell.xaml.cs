@@ -6,6 +6,9 @@ namespace Main_Thread.PL
 {
     public partial class AppShell : Shell
     {
+        private static readonly Lazy<AppShell> _instance = new Lazy<AppShell>(() => new AppShell());
+        public static AppShell Instance => _instance.Value;
+
         public AppShell()
         {
             InitializeComponent();

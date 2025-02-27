@@ -237,6 +237,12 @@ public partial class HomePage : ContentPage
         ClientSettingsVisuals.Instance.SelectedLanguage = language;
         string selectedLanguage = language;
 
+        // Access AppShell
+        if (Shell.Current is AppShell appShell)
+        {
+            appShell.OnLanguageChanged(language);
+        }
+
         if (selectedLanguage == "English")
         {
             // Page header

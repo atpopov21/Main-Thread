@@ -39,8 +39,8 @@ namespace Main_Thread.PL
             ClientSettingsVisuals.Instance.SelectedLanguage = language;
             string selectedLanguage = language;
 
-            // Access AppShell through Application.Current.MainPage
-            if (Application.Current.MainPage is AppShell appShell)
+            // Access AppShell
+            if (Shell.Current is AppShell appShell)
             {
                 appShell.OnLanguageChanged(language);
             }
@@ -147,7 +147,7 @@ namespace Main_Thread.PL
                 var loginToCompanyPage = _serviceProvider.GetRequiredService<LoginToCompany>();
 
                 // Navigate to LoginToCompanyPage
-                await Navigation.PushAsync(loginToCompanyPage);   // With a "Back" option
+                await Shell.Current.Navigation.PushAsync(loginToCompanyPage);   // With a "Back" option
             }
             catch (Exception ex)
             {

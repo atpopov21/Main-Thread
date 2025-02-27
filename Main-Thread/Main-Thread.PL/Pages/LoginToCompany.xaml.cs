@@ -40,6 +40,12 @@ public partial class LoginToCompany : ContentPage
         ClientSettingsVisuals.Instance.SelectedLanguage = language;
         string selectedLanguage = language;
 
+        // Access app shell
+        if (Shell.Current.CurrentItem is LoginToCompany)
+        {
+            AppShell.Instance.OnLanguageChanged(language);
+        }
+
         if (selectedLanguage == "English")
         {
             LoginToCompanyLabel.Text = "Login to Company";
