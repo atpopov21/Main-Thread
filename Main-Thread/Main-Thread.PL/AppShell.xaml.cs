@@ -23,7 +23,7 @@ namespace Main_Thread.PL
             else if (language == "Bulgarian")
             {
                 InsideHomeTitle.Title = "Главна страница";
-                InsideRAETitle.Title = "Приходи и доходи";
+                InsideRAETitle.Title = "Приходи и разходи";
                 InsideEmployeesManagementTitle.Title = "Управление на служители";
                 InsideStockManagementTitle.Title = "Управление на стока";
             }

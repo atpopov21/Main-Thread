@@ -45,6 +45,7 @@ namespace Main_Thread.PL
             services.AddSingleton<RegisterCompany>();
             services.AddSingleton<LoginToCompany>();
             services.AddSingleton<HomePage>();
+            //services.AddSingleton<EmployeesManagement>();
 
             return builder.Build();
         }
