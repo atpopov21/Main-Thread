@@ -39,14 +39,9 @@ namespace Main_Thread.PL
             ClientSettingsVisuals.Instance.SelectedLanguage = language;
             string selectedLanguage = language;
 
-            // Access AppShell through Application.Current.MainPage
-            if (Application.Current.MainPage is AppShell appShell)
-            {
-                appShell.OnLanguageChanged(language);
-            }
-
             if (selectedLanguage == "English")
             {
+                MainThreadHomeTitle.Title = "Main Thread | Welcome";
                 RegisterACompanyButton.Text = "Register a Company";
                 LoginToACompanyButton.Text = "Login to a Company";
                 RegisterACompanyButton.WidthRequest = 220;
@@ -55,6 +50,7 @@ namespace Main_Thread.PL
             }
             else if (selectedLanguage == "Bulgarian")
             {
+                MainThreadHomeTitle.Title = "Главна нишка | Добре Дошли";
                 RegisterACompanyButton.Text = "Регистрирайте фирма";
                 LoginToACompanyButton.Text = "Влезте във фирма";
                 RegisterACompanyButton.WidthRequest = 235;
@@ -63,6 +59,7 @@ namespace Main_Thread.PL
             }
             else
             {
+                MainThreadHomeTitle.Title = "Main Thread | Welcome";
                 RegisterACompanyButton.Text = "Register a Company";
                 LoginToACompanyButton.Text = "Login to a Company";
                 RegisterACompanyButton.WidthRequest = 220;
@@ -147,7 +144,7 @@ namespace Main_Thread.PL
                 var loginToCompanyPage = _serviceProvider.GetRequiredService<LoginToCompany>();
 
                 // Navigate to LoginToCompanyPage
-                await Navigation.PushAsync(loginToCompanyPage);   // With a "Back" option
+                await Shell.Current.Navigation.PushAsync(loginToCompanyPage);   // With a "Back" option
             }
             catch (Exception ex)
             {

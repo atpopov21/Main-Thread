@@ -1,4 +1,4 @@
-using Main_Thread.BLL.Contracts.IAuthentication;
+п»їusing Main_Thread.BLL.Contracts.IAuthentication;
 using Main_Thread.BLL.Contracts.IValidation;
 using Main_Thread.BLL.Services.Validation;
 using Main_Thread.PL.Pages.Resources;
@@ -42,6 +42,8 @@ public partial class LoginToCompany : ContentPage
 
         if (selectedLanguage == "English")
         {
+            MainThreadLoginTitle.Title = "Main Thread | Login to a company";
+
             LoginToCompanyLabel.Text = "Login to Company";
             EmailLabel.Text = "Email";
             PasswordLabel.Text = "Password";
@@ -52,16 +54,20 @@ public partial class LoginToCompany : ContentPage
         }
         else if (selectedLanguage == "Bulgarian")
         {
-            LoginToCompanyLabel.Text = "Влезте в компания";
-            EmailLabel.Text = "Имейл";
-            PasswordLabel.Text = "Парола";
+            MainThreadLoginTitle.Title = "Р“Р»Р°РІРЅР° РЅРёС€РєР° | Р’Р»РµР·С‚Рµ РІ РєРѕРјРїР°РЅРёСЏ";
 
-            LoginButton.Text = "Вписване";
+            LoginToCompanyLabel.Text = "Р’Р»РµР·С‚Рµ РІ РєРѕРјРїР°РЅРёСЏ";
+            EmailLabel.Text = "РРјРµР№Р»";
+            PasswordLabel.Text = "РџР°СЂРѕР»Р°";
+
+            LoginButton.Text = "Р’Р»РёР·Р°РЅРµ";
             FooterENG.IsVisible = false;
             FooterBG.IsVisible = true;
         }
         else
         {
+            MainThreadLoginTitle.Title = "Main Thread | Login to a company";
+
             LoginToCompanyLabel.Text = "Login to Company";
             EmailLabel.Text = "Email";
             PasswordLabel.Text = "Password";

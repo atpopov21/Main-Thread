@@ -12,17 +12,14 @@
     FlyoutBackgroundColor="AliceBlue">
 
     <ShellContent
-        x:Name="MainThreadHomeTitle"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     
     <ShellContent
-        x:Name="MainThreadRegisterACompanyTitle"
         ContentTemplate="{DataTemplate pages:RegisterCompany}"
         Route="RegisterCompany" />
     
     <ShellContent
-        x:Name="MainThreadLoginTitle"
         ContentTemplate="{DataTemplate pages:LoginToCompany}"
         Route="LoginToCompany" />
 
