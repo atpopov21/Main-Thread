@@ -1,4 +1,4 @@
-using Main_Thread.PL.Pages.Resources;
+﻿using Main_Thread.PL.Pages.Resources;
 
 namespace Main_Thread.PL.Pages.Templates
 {
@@ -53,14 +53,14 @@ namespace Main_Thread.PL.Pages.Templates
 
         public void UpdateTheme(string theme)
         {
-            if (theme == "Light")
+            if (theme == "Light" || theme == "Светло")
             {
                 BorderBox.BackgroundColor = Colors.White;
                 EnglishCheckbox.TextColor = Colors.Black;
                 Splitter.BackgroundColor = Colors.Black;
                 BulgarianCheckbox.TextColor = Colors.Black;
             }
-            else if (theme == "Dark")
+            else if (theme == "Dark" || theme == "Тъмно")
             {
                 BorderBox.BackgroundColor = Color.FromArgb("#28282B");
                 EnglishCheckbox.TextColor = Colors.White;

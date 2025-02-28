@@ -1,4 +1,4 @@
-using Main_Thread.PL.Pages.Resources;
+﻿using Main_Thread.PL.Pages.Resources;
 
 namespace Main_Thread.PL.Pages.Templates
 {
@@ -19,11 +19,11 @@ namespace Main_Thread.PL.Pages.Templates
 
         private void ThemeHanlder()
         {
-            if (selectedTheme == "Light")
+            if (selectedTheme == "Light" || selectedTheme == "Светло")
             {
                 ThemeSwitch.IsToggled = false;
             }
-            else if (selectedTheme == "Dark")
+            else if (selectedTheme == "Dark" || selectedTheme == "Тъмно")
             {
                 ThemeSwitch.IsToggled = true;
             }
@@ -37,29 +37,25 @@ namespace Main_Thread.PL.Pages.Templates
         {
             if (!e.Value)
             {
-                themeSelection = "Light";
-                ThemeLabel.Text = "Light";
-                
+                UpdateLanguage(ClientSettingsVisuals.Instance.SelectedLanguage);
                 ThemeChanged?.Invoke(themeSelection);
             }
             else
             {
-                themeSelection = "Dark";
-                ThemeLabel.Text = "Dark";
-                
+                UpdateLanguage(ClientSettingsVisuals.Instance.SelectedLanguage);
                 ThemeChanged?.Invoke(themeSelection);
             }
         }
 
         public void UpdateTheme(string theme)
         {
-            if (theme == "Light")
+            if (theme == "Light" || theme == "Светло")
             {
                 Background.BackgroundColor = Colors.White;
                 HiddenText.BackgroundColor = Colors.White;
                 ThemeLabel.TextColor = Colors.Black;
             }
-            else if (theme == "Dark")
+            else if (theme == "Dark" || theme == "Тъмно")
             {
                 Background.BackgroundColor = Color.FromArgb("#28282B");
                 HiddenText.BackgroundColor = Color.FromArgb("#28282B");
@@ -70,6 +66,55 @@ namespace Main_Thread.PL.Pages.Templates
                 Background.BackgroundColor = Colors.White;
                 HiddenText.BackgroundColor = Colors.White;
                 ThemeLabel.TextColor = Colors.Black;
+            }
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            if (language == "English")
+            {
+                if (ThemeSwitch.IsToggled)
+                {
+                    themeSelection = "Dark";
+                    ThemeLabel.Text = "Dark";
+                    Background.WidthRequest = 100;
+                }
+                else
+                {
+                    themeSelection = "Light";
+                    ThemeLabel.Text = "Light";
+                    Background.WidthRequest = 100;
+                }
+            }
+            else if (language == "Bulgarian")
+            {
+                if (ThemeSwitch.IsToggled)
+                {
+                    themeSelection = "Тъмно";
+                    ThemeLabel.Text = "Тъмно";
+                    Background.WidthRequest = 115;
+                }
+                else
+                {
+                    themeSelection = "Светло";
+                    ThemeLabel.Text = "Светло";
+                    Background.WidthRequest = 115;
+                }
+            }
+            else
+            {
+                if (ThemeSwitch.IsToggled)
+                {
+                    themeSelection = "Dark";
+                    ThemeLabel.Text = "Dark";
+                    Background.WidthRequest = 100;
+                }
+                else
+                {
+                    themeSelection = "Light";
+                    ThemeLabel.Text = "Light";
+                    Background.WidthRequest = 100;
+                }
             }
         }
     }

@@ -76,13 +76,15 @@ public partial class LoginToCompany : ContentPage
             FooterENG.IsVisible = true;
             FooterBG.IsVisible = false;
         }
+
+        themeSelection.UpdateLanguage(language);
     }
 
     private void OnThemeChanged(string theme)
     {
         ClientSettingsVisuals.Instance.SelectedTheme = theme;
 
-        if (theme == "Light")
+        if (theme == "Light" || theme == "Светло")
         {
             LoginToCompanyLabel.TextColor = Colors.Black;
             
@@ -101,7 +103,7 @@ public partial class LoginToCompany : ContentPage
             FormBackground.BackgroundColor = Colors.White;
             colourInverted = false;
         }
-        else if (theme == "Dark")
+        else if (theme == "Dark" || theme == "Тъмно")
         {
             LoginToCompanyLabel.TextColor = Colors.White;
             

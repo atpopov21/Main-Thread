@@ -7,7 +7,7 @@
              x:Class="Main_Thread.PL.Pages.EmployeesManagement"
              Title="Main Thread | Employees Management">
     <VerticalStackLayout>
-        <Label 
+        <Label
             Text="Welcome to Employees Management page"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
