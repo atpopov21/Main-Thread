@@ -1,4 +1,4 @@
-using Main_Thread.PL.Pages.Resources;
+﻿using Main_Thread.PL.Pages.Resources;
 using System.Windows.Input;
 
 namespace Main_Thread.PL.Pages.Templates;
@@ -20,11 +20,11 @@ public partial class Footer : ContentView
 
     public void UpdateTheme(string theme)
     {
-        if (theme == "Light")
+        if (theme == "Light" || theme == "Светло")
         {
             PageBackground.BackgroundColor = Colors.AliceBlue;
         }
-        else if (theme == "Dark")
+        else if (theme == "Dark" || theme == "Тъмно")
         {
             PageBackground.BackgroundColor = Color.FromArgb("#28282B");
         }

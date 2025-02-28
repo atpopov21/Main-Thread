@@ -338,6 +338,7 @@ public partial class HomePage : ContentPage
         }
 
         InitializeCharts();
+        themeSelection.UpdateLanguage(language);
         EmployeeOneLabel.Text = topFiveEmployeesNames[0];
         EmployeeTwoLabel.Text = topFiveEmployeesNames[1];
         EmployeeThreeLabel.Text = topFiveEmployeesNames[2];
@@ -349,7 +350,7 @@ public partial class HomePage : ContentPage
     {
         ClientSettingsVisuals.Instance.SelectedTheme = theme;
 
-        if (theme == "Light")
+        if (theme == "Light" || theme == "Светло")
         {
             // Revenues and Expenses section
             RevenuesAndExpensesFrame.BackgroundColor = Colors.White;
@@ -368,7 +369,7 @@ public partial class HomePage : ContentPage
 
             Background.BackgroundColor = Colors.AliceBlue;
         }
-        else if (theme == "Dark")
+        else if (theme == "Dark" || theme == "Тъмно")
         {
             // Revenues and Expenses section
             RevenuesAndExpensesFrame.BackgroundColor = Color.FromArgb("#202124");

@@ -62,7 +62,7 @@
                             BackgroundColor="AliceBlue"
                             Margin="-5, -10, 0, 10" />
                         <Label
-                            Text="Main Thread is a powerful management software for&#10; businesses like restaurants, pharmacies, and grocery stores.&#10; It streamlines employee and stock management,&#10; tracks revenues and costs, and provides tools &#10;for scheduling and performance monitoring.&#10; With reports and diagrams, it helps analyze profits &#10;and optimize operations, giving businesses &#10;full control over their management needs."
+                            Text="Main Thread is a powerful business management software for&#10; restaurants, pharmacies, grocery stores and others.&#10; It streamlines employee and stock management,&#10; tracks finances, and offers scheduling, performance monitoring,&#10; and analytics to optimize operations."
                             TextColor="LightGray"
                             FontSize="Micro"
                             HorizontalTextAlignment="Center" />

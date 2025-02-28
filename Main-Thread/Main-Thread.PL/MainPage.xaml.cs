@@ -66,13 +66,15 @@ namespace Main_Thread.PL
                 FooterENG.IsVisible = true;
                 FooterBG.IsVisible = false;
             }
+
+            themeSelection.UpdateLanguage(language);
         }
 
         private void OnThemeChanged(string theme)
         {
             ClientSettingsVisuals.Instance.SelectedTheme = theme;
 
-            if (theme == "Light")
+            if (theme == "Light" || theme == "Светло")
             {
                 Background.BackgroundColor = Colors.AliceBlue;
                 RegisterACompanyButton.BackgroundColor = Colors.White;
@@ -85,7 +87,7 @@ namespace Main_Thread.PL
                 LoginToACompanyButton.BackgroundColor = Colors.White;
                 LoginToACompanyButton.TextColor = Colors.Black;
             }
-            else if (theme == "Dark")
+            else if (theme == "Dark" || theme == "Тъмно")
             {
                 Background.BackgroundColor = Color.FromArgb("#28282B");
                 RegisterACompanyButton.BackgroundColor = Color.FromArgb("#212121");
@@ -112,7 +114,7 @@ namespace Main_Thread.PL
                 LoginToACompanyButton.TextColor = Colors.Black;
             }
 
-            // Call Footer method to update its UI
+            // Call page elements' methods to update their UI
             FooterENG.UpdateTheme(theme);
             FooterBG.UpdateTheme(theme);
             languageSelection.UpdateTheme(theme);

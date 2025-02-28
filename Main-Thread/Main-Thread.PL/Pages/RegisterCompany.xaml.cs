@@ -66,7 +66,7 @@ public partial class RegisterCompany : ContentPage
         ShowEyeLightImage.IsVisible = false;
         HideEyeLightImage.IsVisible = false;
 
-        languageSelection.Margin = new Thickness(-5, -1730, 20, 1600);
+        languageSelection.Margin = new Thickness(-5, -1740, 20, 1600);
 
         // Ensure Picker has a default selection
         if (CategoryPicker.SelectedIndex == -1)
@@ -340,13 +340,15 @@ public partial class RegisterCompany : ContentPage
             FooterENG.IsVisible = true;
             FooterBG.IsVisible = false;
         }
+
+        themeSelection.UpdateLanguage(language);
     }
 
     private void OnThemeChanged(string theme)
     {
         ClientSettingsVisuals.Instance.SelectedTheme = theme;
 
-        if (theme == "Light")
+        if (theme == "Light" || theme == "Светло")
         {
             // Form header
             RegisterBusinessLabel.TextColor = Colors.Black;
@@ -424,7 +426,7 @@ public partial class RegisterCompany : ContentPage
             FormBackground.BackgroundColor = Colors.White;
             colourInverted = false;
         }
-        else if (theme == "Dark")
+        else if (theme == "Dark" || theme == "Тъмно")
         {
             // Form header
             RegisterBusinessLabel.TextColor = Colors.White;
@@ -615,15 +617,15 @@ public partial class RegisterCompany : ContentPage
             HideEyeLightImage.IsVisible = false;
             EyeButton.IsVisible = false;
 
-            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1719, 20, 1600);
-            else languageSelection.Margin = new Thickness(-5, -1780, 20, 1600);
+            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1729, 20, 1600);
+            else languageSelection.Margin = new Thickness(-5, -1790, 20, 1600);
             ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
             HideEyeImage.Margin = new Thickness(-80, -41, 0, -40);
         }
         else
         {
-            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(0, -1731, 20, 1600);
-            else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
+            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(0, -1741, 20, 1600);
+            else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
             ShowEyeImage.Margin = new Thickness(-80, -42, 0, -40);
             HideEyeImage.Margin = new Thickness(-81, -42, 0, -40);
             
@@ -649,8 +651,8 @@ public partial class RegisterCompany : ContentPage
                     HideEyeImage.IsVisible = false;
                 }
 
-                if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
-                else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
+                if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+                else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
             }
             else
             {
@@ -671,8 +673,8 @@ public partial class RegisterCompany : ContentPage
                     HideEyeImage.IsVisible = false;
                 }
 
-                if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
-                else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
+                if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+                else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
             }
 
             passwordStrengthScore = PasswordAdvisor.CheckStrength(COMPANYuserpasswordINPUT);
@@ -736,8 +738,8 @@ public partial class RegisterCompany : ContentPage
                 HideEyeImage.IsVisible = false;
             }
 
-            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
-            else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
+            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+            else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
         }
         else
         {
@@ -761,8 +763,8 @@ public partial class RegisterCompany : ContentPage
                 HideEyeImage.IsVisible = false;
             }
 
-            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
-            else languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
+            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+            else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
         }
     }
 
@@ -777,16 +779,16 @@ public partial class RegisterCompany : ContentPage
                 OthersLabel.IsVisible = true;
                 OthersBox.IsVisible = true;
 
-                if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1791, 20, 1600);
-                else languageSelection.Margin = new Thickness(-5, -1781, 20, 1600);
+                if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
+                else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
             }
             else
             {
                 OthersLabel.IsVisible = false;
                 OthersBox.IsVisible = false;
 
-                if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1731, 20, 1600);
-                else languageSelection.Margin = new Thickness(-5, -1719, 20, 1600);
+                if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+                else languageSelection.Margin = new Thickness(-5, -1739, 20, 1600);
             }
         }
     }
