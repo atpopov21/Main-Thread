@@ -1,4 +1,4 @@
-using Main_Thread.BLL.Contracts.IPageHandlers;
+п»їusing Main_Thread.BLL.Contracts.IPageHandlers;
 using Main_Thread.PL.Pages.Resources;
 using Microcharts;
 using Microcharts.Maui;
@@ -245,6 +245,9 @@ public partial class HomePage : ContentPage
 
         if (selectedLanguage == "English")
         {
+            // Page title
+            HomePageTitle.Title = "Home";
+
             // Page header
             UserGreeting.Text = "Welcome, " + userCredentials[0];
             TimeLabel.Text = "Time";
@@ -273,27 +276,30 @@ public partial class HomePage : ContentPage
         }
         else if (selectedLanguage == "Bulgarian")
         {
+            // Page title
+            HomePageTitle.Title = "Р“Р»Р°РІРЅР° СЃС‚СЂР°РЅРёС†Р°";
+
             // Page header
-            UserGreeting.Text = "Добре дошли, " + userCredentials[0];
-            TimeLabel.Text = "Време";
+            UserGreeting.Text = "Р”РѕР±СЂРµ РґРѕС€Р»Рё, " + userCredentials[0];
+            TimeLabel.Text = "Р’СЂРµРјРµ";
             TimeLabel.Margin = new Thickness(52, -5, 0, 0);
-            LogoutButton.Text = "Излизане";
+            LogoutButton.Text = "РР·Р»РёР·Р°РЅРµ";
 
             // Revenues and Incomes Section
-            RevenuesAndExpensesLabel.Text = "Доходи и разходи";
-            RevenueChangeChartTitle.Text = "Промяна на доходите за месец";
-            ProfitChartTitle.Text = "Печалба / месец (Последните 4)";
-            RAIButton.Text = "Погледнете";
+            RevenuesAndExpensesLabel.Text = "РџСЂРёС…РѕРґРё Рё СЂР°Р·С…РѕРґРё";
+            RevenueChangeChartTitle.Text = "РџСЂРѕРјСЏРЅР° РІ РїСЂРёС…РѕРґРёС‚Рµ РЅР° РјРµСЃРµС†";
+            ProfitChartTitle.Text = "РџСЂРёС…РѕРґ / РјРµСЃРµС† (РџРѕСЃР»РµРґРЅРёС‚Рµ 4)";
+            RAIButton.Text = "РџРѕРіР»РµРґРЅРµС‚Рµ";
 
             // Employess Management Section
-            EmployessManagementLabel.Text = "Управление на служители";
-            TopEmployeesChartTitle.Text = "ТОП 5 Най-добри служители";
-            EMButton.Text = "Погледнете";
+            EmployessManagementLabel.Text = "РЈРїСЂР°РІР»РµРЅРёРµ РЅР° СЃР»СѓР¶РёС‚РµР»Рё";
+            TopEmployeesChartTitle.Text = "РўРћРџ 5 РЅР°Р№-РґРѕР±СЂРё СЃР»СѓР¶РёС‚РµР»Рё";
+            EMButton.Text = "РџРѕРіР»РµРґРЅРµС‚Рµ";
 
             // Stock Management Section
-            StockManagementLabel.Text = "Управление на стока";
-            BestProductsChartTitle.Text = "Най-продавани продукти (в %)";
-            SMButton.Text = "Погледнете";
+            StockManagementLabel.Text = "РЈРїСЂР°РІР»РµРЅРёРµ РЅР° СЃС‚РѕРєР°";
+            BestProductsChartTitle.Text = "РќР°Р№-РїСЂРѕРґР°РІР°РЅРё РїСЂРѕРґСѓРєС‚Рё (РІ %)";
+            SMButton.Text = "РџРѕРіР»РµРґРЅРµС‚Рµ";
 
             // Page Footer
             FooterENG.IsVisible = false;
@@ -301,6 +307,9 @@ public partial class HomePage : ContentPage
         }
         else
         {
+            // Page title
+            HomePageTitle.Title = "Home";
+
             // Page header
             UserGreeting.Text = "Welcome, " + userCredentials[0];
             TimeLabel.Text = "Time";

@@ -90,13 +90,10 @@ public partial class RegisterCompany : ContentPage
         ClientSettingsVisuals.Instance.SelectedLanguage = language;
         string selectedLanguage = language;
 
-        if (Shell.Current.Parent is AppShell appShell)
-        {
-            appShell.OnLanguageChanged(language);
-        }
-
         if (selectedLanguage == "English")
         {
+            MainThreadRegisterACompanyTitle.Title = "Main Thread | Register a company";
+
             // Header
             RegisterBusinessLabel.Text = "Register Your Business";
             RegisterBusinessSubtitleLabel.Text = "Please provide all required details to register your business with Main Thread Inc.";
@@ -178,6 +175,8 @@ public partial class RegisterCompany : ContentPage
         }
         else if (selectedLanguage == "Bulgarian")
         {
+            MainThreadRegisterACompanyTitle.Title = "Главна нишка | Регистрирайте компания";
+
             // Head BG
             RegisterBusinessLabel.Text = "Регистрирайте фирмата си";
             RegisterBusinessSubtitleLabel.Text = "Моля, предоставете всички необходими данни, за да регистрирате фирмата си в Main Thread Inc.";
@@ -260,6 +259,8 @@ public partial class RegisterCompany : ContentPage
         }
         else
         {
+            MainThreadRegisterACompanyTitle.Title = "Main Thread | Register a company";
+
             // Header
             RegisterBusinessLabel.Text = "Register Your Business";
             RegisterBusinessSubtitleLabel.Text = "Please provide all required details to register your business with Main Thread Inc.";

@@ -1,4 +1,4 @@
-using Main_Thread.BLL.Contracts.IAuthentication;
+Ôªøusing Main_Thread.BLL.Contracts.IAuthentication;
 using Main_Thread.BLL.Contracts.IValidation;
 using Main_Thread.BLL.Services.Validation;
 using Main_Thread.PL.Pages.Resources;
@@ -40,14 +40,10 @@ public partial class LoginToCompany : ContentPage
         ClientSettingsVisuals.Instance.SelectedLanguage = language;
         string selectedLanguage = language;
 
-        // Access app shell
-        if (Shell.Current.CurrentItem is LoginToCompany)
-        {
-            AppShell.Instance.OnLanguageChanged(language);
-        }
-
         if (selectedLanguage == "English")
         {
+            MainThreadLoginTitle.Title = "Main Thread | Login to a company";
+
             LoginToCompanyLabel.Text = "Login to Company";
             EmailLabel.Text = "Email";
             PasswordLabel.Text = "Password";
@@ -58,16 +54,20 @@ public partial class LoginToCompany : ContentPage
         }
         else if (selectedLanguage == "Bulgarian")
         {
-            LoginToCompanyLabel.Text = "¬ÎÂÁÚÂ ‚ ÍÓÏÔ‡ÌËˇ";
-            EmailLabel.Text = "»ÏÂÈÎ";
-            PasswordLabel.Text = "œ‡ÓÎ‡";
+            MainThreadLoginTitle.Title = "–ì–ª–∞–≤–Ω–∞ –Ω–∏—à–∫–∞ | –í–ª–µ–∑—Ç–µ –≤ –∫–æ–º–ø–∞–Ω–∏—è";
 
-            LoginButton.Text = "¬ÔËÒ‚‡ÌÂ";
+            LoginToCompanyLabel.Text = "–í–ª–µ–∑—Ç–µ –≤ –∫–æ–º–ø–∞–Ω–∏—è";
+            EmailLabel.Text = "–ò–º–µ–π–ª";
+            PasswordLabel.Text = "–ü–∞—Ä–æ–ª–∞";
+
+            LoginButton.Text = "–í–ª–∏–∑–∞–Ω–µ";
             FooterENG.IsVisible = false;
             FooterBG.IsVisible = true;
         }
         else
         {
+            MainThreadLoginTitle.Title = "Main Thread | Login to a company";
+
             LoginToCompanyLabel.Text = "Login to Company";
             EmailLabel.Text = "Email";
             PasswordLabel.Text = "Password";
