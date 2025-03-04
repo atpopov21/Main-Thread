@@ -9,6 +9,6 @@ namespace Main_Thread.BLL.Contracts.IValidation
 {
     public interface IRegisterCompanyValidationService
     {
-        string ValidateCompanyInput(RegisterCompanyIM inputModel);
+        string ValidateCompanyInput(BusinessIm inputModel);
     }
 }

@@ -4,6 +4,15 @@ using Main_Thread.BLL.Contracts.IValidation;
 using Main_Thread.PL.Pages.Resources;
 using Main_Thread.Shared.InputModels;
 
+using Main_Thread.BLL.Contracts.IPageHandlers;
+using Main_Thread.BLL.Services.Authentication;
+using Main_Thread.BLL.Services.PageHandlers;
+using Main_Thread.Shared.ViewModels;   
+using Main_Thread.BLL.Services.Authentication;
+using Main_Thread.BLL.Contracts.IAuthentication;
+using Main_Thread.Shared.InputModels;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Main_Thread.PL.Pages;
 
 public enum PasswordScore
@@ -45,6 +54,9 @@ public class PasswordAdvisor
 
 public partial class RegisterCompany : ContentPage
 {
+    public IRegisterPageHandler registerPageHandler = new RegisterPageHandler();
+    public IRegisterService? _registerService;
+    
     private readonly IRegisterCompanyValidationService _registerCompanyValidationService;
 
     private PasswordScore passwordStrengthScore;
@@ -415,8 +427,8 @@ public partial class RegisterCompany : ContentPage
 
             // Row ten
             OthersLabel.TextColor = Colors.Black;
-            OthersBox.ClearValue(Entry.BackgroundColorProperty);
-            OthersBox.TextColor = Colors.Black;
+            OtherBusinessTypeBox.ClearValue(Entry.BackgroundColorProperty);
+            OtherBusinessTypeBox.TextColor = Colors.Black;
 
             // Form footer
             SubmitRegistratonButton.BackgroundColor = Color.FromArgb("#18bd5b");
@@ -493,8 +505,8 @@ public partial class RegisterCompany : ContentPage
 
             // Row ten
             OthersLabel.TextColor = Colors.White;
-            OthersBox.BackgroundColor = Color.FromArgb("#3b3b3b");
-            OthersBox.TextColor = Colors.WhiteSmoke;
+            OtherBusinessTypeBox.BackgroundColor = Color.FromArgb("#3b3b3b");
+            OtherBusinessTypeBox.TextColor = Colors.WhiteSmoke;
 
             // From footer
             SubmitRegistratonButton.BackgroundColor = Colors.BlueViolet;
@@ -571,8 +583,8 @@ public partial class RegisterCompany : ContentPage
 
             // Row ten
             OthersLabel.TextColor = Colors.Black;
-            OthersBox.ClearValue(Entry.BackgroundColorProperty);
-            OthersBox.TextColor = Colors.Black;
+            OtherBusinessTypeBox.ClearValue(Entry.BackgroundColorProperty);
+            OtherBusinessTypeBox.TextColor = Colors.Black;
 
             // Form footer
             SubmitRegistratonButton.BackgroundColor = Color.FromArgb("#18bd5b");
@@ -617,14 +629,14 @@ public partial class RegisterCompany : ContentPage
             HideEyeLightImage.IsVisible = false;
             EyeButton.IsVisible = false;
 
-            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1729, 20, 1600);
+            if (!OtherBusinessTypeBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1729, 20, 1600);
             else languageSelection.Margin = new Thickness(-5, -1790, 20, 1600);
             ShowEyeImage.Margin = new Thickness(-80, -41, 0, -40);
             HideEyeImage.Margin = new Thickness(-80, -41, 0, -40);
         }
         else
         {
-            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(0, -1741, 20, 1600);
+            if (!OtherBusinessTypeBox.IsVisible) languageSelection.Margin = new Thickness(0, -1741, 20, 1600);
             else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
             ShowEyeImage.Margin = new Thickness(-80, -42, 0, -40);
             HideEyeImage.Margin = new Thickness(-81, -42, 0, -40);
@@ -651,7 +663,7 @@ public partial class RegisterCompany : ContentPage
                     HideEyeImage.IsVisible = false;
                 }
 
-                if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+                if (!OtherBusinessTypeBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
                 else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
             }
             else
@@ -673,7 +685,7 @@ public partial class RegisterCompany : ContentPage
                     HideEyeImage.IsVisible = false;
                 }
 
-                if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+                if (!OtherBusinessTypeBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
                 else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
             }
 
@@ -738,7 +750,7 @@ public partial class RegisterCompany : ContentPage
                 HideEyeImage.IsVisible = false;
             }
 
-            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+            if (!OtherBusinessTypeBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
             else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
         }
         else
@@ -763,7 +775,7 @@ public partial class RegisterCompany : ContentPage
                 HideEyeImage.IsVisible = false;
             }
 
-            if (!OthersBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
+            if (!OtherBusinessTypeBox.IsVisible) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
             else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
         }
     }
@@ -777,7 +789,7 @@ public partial class RegisterCompany : ContentPage
             if (selectedCategory == "Others, please specify below")
             {
                 OthersLabel.IsVisible = true;
-                OthersBox.IsVisible = true;
+                OtherBusinessTypeBox.IsVisible = true;
 
                 if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
                 else languageSelection.Margin = new Thickness(-5, -1801, 20, 1600);
@@ -785,7 +797,7 @@ public partial class RegisterCompany : ContentPage
             else
             {
                 OthersLabel.IsVisible = false;
-                OthersBox.IsVisible = false;
+                OtherBusinessTypeBox.IsVisible = false;
 
                 if ((HideEyeImage.IsVisible || ShowEyeImage.IsVisible) || (HideEyeLightImage.IsVisible || ShowEyeLightImage.IsVisible)) languageSelection.Margin = new Thickness(-5, -1741, 20, 1600);
                 else languageSelection.Margin = new Thickness(-5, -1739, 20, 1600);
@@ -793,51 +805,111 @@ public partial class RegisterCompany : ContentPage
         }
     }
 
-    private void SubmitRegistratonButton_Clicked(object sender, EventArgs e)
-    {
-        //bool registrationSuccessful = CheckCredentials();
-
-        var inputModel = new RegisterCompanyIM
+    // private void OnRegisterButtonClicked(object sender, EventArgs e)
+    // {
+    //     //bool registrationSuccessful = CheckCredentials();
+    //
+    //     var inputModel = new BusinessIm
+    //     {
+    //         OwnerFirstName = FirstNameBox.Text,
+    //         OwnerLastName = LastNameBox.Text,
+    //         Password = PasswordBox.Text,
+    //         BusinessName = BusinessNameBox.Text,
+    //         ContactNumber = ContactNumberBox.Text,
+    //         Email = EmailBox.Text,
+    //         StateEntityRegistration = SERBox.Text,
+    //         EmployerIdentificationNumber = PINBox.Text,
+    //         StreetAddressOne = StreetAddressBox1.Text,
+    //         StreetAddressTwo = StreetAddressBox2.Text,
+    //         City = CityBox.Text,
+    //         StateProvince = StateProvinceBox.Text,
+    //         ZipCode = ZipCodeBox.Text,
+    //         BusinessType = CategoryPicker.SelectedItem.ToString(),
+    //         OtherBusinessType = OtherBusinessTypeBox.Text
+    //     };
+    //
+    //     // Call the BLL validation method
+    //     string validationMessage = _registerCompanyValidationService.ValidateCompanyInput(inputModel);
+    //
+    //     if (validationMessage == "passed")
+    //     {
+    //         // Call RegisterCompanyDTO object here and initialize it
+    //
+    //         SuccessfulRegistrationCOMPANY.IsVisible = true;
+    //         DisplayAlert("Pending Approval", "Your company registration is currently under review by our team.\nWe appreciate your request and will notify you once the approval process is complete.", "OK");
+    //     }
+    //     else
+    //     {
+    //         SuccessfulRegistrationCOMPANY.IsVisible = false;
+    //         DisplayAlert("Alert", validationMessage, "OK");
+    //     }
+    //
+    //     /*// Write company register information to Debug window
+    //     foreach (string information in companyInformation)
+    //     {
+    //         Debug.WriteLine(information);
+    //     }*/
+    // }
+    
+    
+    
+    
+    private void OnRegisterButtonClicked(object sender, EventArgs e)
         {
-            FirstName = FirstNameBox.Text,
-            LastName = LastNameBox.Text,
-            Password = PasswordBox.Text,
-            BusinessName = BusinessNameBox.Text,
-            ContactNumber = ContactNumberBox.Text,
-            Email = EmailBox.Text,
-            StateEntityRegistration = SERBox.Text,
-            EmployerIdentificationNumber = PINBox.Text,
-            StreetAddressOne = StreetAddressBox1.Text,
-            StreetAddressTwo = StreetAddressBox2.Text,
-            City = CityBox.Text,
-            StateProvince = StateProvinceBox.Text,
-            ZipCode = ZipCodeBox.Text,
-            BusinessType = CategoryPicker.SelectedItem.ToString(),
-            OtherBusinessType = OthersBox.Text
-        };
+            string ownerFirstName = FirstNameBox.Text;
+            string ownerLastName = LastNameBox.Text;
+            string password = PasswordBox.Text;
+            string businessName = BusinessNameBox.Text;
+            string contactNumber = ContactNumberBox.Text;
+            string email = EmailBox.Text;
+            string stateEntityRegistration = SERBox.Text;
+            string employerIdentificationNumber = PINBox.Text;
+            string streetAddressOne = StreetAddressBox1.Text;
+            string streetAddressTwo = StreetAddressBox2.Text;
+            string city = CityBox.Text;
+            string stateProvince = StateProvinceBox.Text;
+            string zipCode = ZipCodeBox.Text;
+            string businessType = CategoryPicker.SelectedItem.ToString();
+            string otherBusinessType = OtherBusinessTypeBox.Text;
+            
+            var output = registerPageHandler.OnRegisterButtonClicked(ownerFirstName, ownerLastName, password, businessName, contactNumber, email, stateEntityRegistration, employerIdentificationNumber, streetAddressOne, streetAddressTwo, city, stateProvince, zipCode, businessType, otherBusinessType);
 
-        // Call the BLL validation method
-        string validationMessage = _registerCompanyValidationService.ValidateCompanyInput(inputModel);
-
-        if (validationMessage == "passed")
-        {
-            // Call RegisterCompanyDTO object here and initialize it
-
-            SuccessfulRegistrationCOMPANY.IsVisible = true;
-            DisplayAlert("Pending Approval", "Your company registration is currently under review by our team.\nWe appreciate your request and will notify you once the approval process is complete.", "OK");
+            if (output.GetType() == typeof(string[])){
+                string[] message = Convert.ToString(output).Split(',');
+                DisplayAlert(message[0], message[1], message[2]);
+                return;
+            }
+            else
+            {
+                BusinessVm business = new BusinessVm();
+                // Display this when registration is validated
+                DisplayAlert("Registration", $"Registered successfully!\nName: {business.OwnerFirstName} {business.OwnerLastName}\nEmail: {business.Email} BusinessName: {business.BusinessName}", "OK");
+                //DisplayAlert("Pending Approval", "Your company registration is currently under review by our team.\nWe appreciate your request and will notify you once the approval process is complete.", "OK");
+                _registerService.CreateBusiness(new BusinessIm()
+                {
+                    OwnerFirstName = ownerFirstName,
+                    OwnerLastName = ownerLastName,
+                    Password = password,
+                    BusinessName = businessName,
+                    ContactNumber = contactNumber,
+                    Email = email,
+                    StateEntityRegistration = stateEntityRegistration,
+                    EmployerIdentificationNumber = employerIdentificationNumber,
+                    StreetAddressOne = streetAddressOne,
+                    StreetAddressTwo = streetAddressTwo,
+                    City = city,
+                    StateProvince = stateProvince,
+                    ZipCode = zipCode,
+                    BusinessType = businessType,
+                    OtherBusinessType = otherBusinessType,
+                });
+                //Navigation.PushAsync(new HomePage());
+            }
         }
-        else
-        {
-            SuccessfulRegistrationCOMPANY.IsVisible = false;
-            DisplayAlert("Alert", validationMessage, "OK");
-        }
-
-        /*// Write company register information to Debug window
-        foreach (string information in companyInformation)
-        {
-            Debug.WriteLine(information);
-        }*/
-    }
+    
+    
+    
+    
 
     // Design methods - enhance user experience
     private void FirstNameBox_Focused(object sender, FocusEventArgs e)

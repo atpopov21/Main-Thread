@@ -59,12 +59,12 @@ public class DbContext
                 StateEntityRegistration = reader.GetString(7),
                 EmployerIdentificationNumber = reader.GetString(8),
                 StreetAddressOne = reader.GetString(9),
-                //StreetAddressTwo = reader.GetString(10),
+                StreetAddressTwo = reader.GetString(10),
                 City = reader.GetString(10),
                 StateProvince = reader.GetString(11),
                 ZipCode = reader.GetString(12),
                 BusinessType = reader.GetString(13),
-                //OtherBusinessType = reader.GetString(15),
+                OtherBusinessType = reader.GetString(15),
             });
         }
         reader.Close();
@@ -95,12 +95,12 @@ public class DbContext
                         StateEntityRegistration = Convert.ToString(reader["StateEntityRegistration"]),
                         EmployerIdentificationNumber = Convert.ToString(reader["EmployerIdentificationNumber"]),
                         StreetAddressOne = Convert.ToString(reader["StreetAddressOne"]),
-                        //StreetAddressTwo = Convert.ToString(reader["StreetAddressTwo"]),
+                        StreetAddressTwo = Convert.ToString(reader["StreetAddressTwo"]),
                         City = Convert.ToString(reader["City"]),
                         StateProvince = Convert.ToString(reader["StateProvince"]),
                         ZipCode = Convert.ToString(reader["ZipCode"]),
                         BusinessType = Convert.ToString(reader["BusinessType"]),
-                        //OtherBusinessType = Convert.ToString(reader["OtherBusinessType"]),
+                        OtherBusinessType = Convert.ToString(reader["OtherBusinessType"]),
                     };
                 }
             }

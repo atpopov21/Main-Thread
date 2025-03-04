@@ -66,7 +66,7 @@
                                     WidthRequest="300"
                                     HeightRequest="35"
                                     ClearButtonVisibility="WhileEditing"
-                                    Completed="LoginButton_Clicked"/>
+                                    Completed="OnLoginButtonClicked"/>
                             </Border>
                             <!-- END OF: Email Section -->
                             
@@ -92,7 +92,7 @@
                                     IsPassword="True"
                                     ClearButtonVisibility="WhileEditing"
                                     TextChanged="PasswordBox_TextChanged"
-                                    Completed="LoginButton_Clicked"/>
+                                    Completed="OnLoginButtonClicked"/>
                             </Border>
                                 <Image
                                     x:Name="ShowEyeImage"
@@ -137,7 +137,7 @@
                                 BackgroundColor="RoyalBlue"
                                 FontSize="Small"
                                 WidthRequest="200"
-                                Clicked="LoginButton_Clicked"/>
+                                Clicked="OnLoginButtonClicked"/>
 
                         </VerticalStackLayout>
                     </Frame>

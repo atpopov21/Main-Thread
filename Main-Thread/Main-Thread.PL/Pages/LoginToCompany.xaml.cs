@@ -1,20 +1,22 @@
 ﻿using Main_Thread.BLL.Contracts.IAuthentication;
 using Main_Thread.BLL.Contracts.IValidation;
 using Main_Thread.BLL.Services.Validation;
+using Main_Thread.BLL.Services.PageHandlers;
 using Main_Thread.PL.Pages.Resources;
-using Main_Thread.Shared.InputModels;
+using Main_Thread.Shared;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics;
+using Main_Thread.Shared.ViewModels;
 
 namespace Main_Thread.PL.Pages;
 
 public partial class LoginToCompany : ContentPage
 {
-    private readonly ILoginService _loginService;
+    private readonly LoginPageHandler _loginService;
     private bool PasswordHidden = true, firstLaunch = true, colourInverted = false;
 
-    public LoginToCompany(ILoginService loginService)
+    public LoginToCompany(LoginPageHandler loginService)
     {
         InitializeComponent();
         InitializePageComponents();
@@ -159,49 +161,37 @@ public partial class LoginToCompany : ContentPage
         return gb;
     }*/
 
-    private async void LoginButton_Clicked(object sender, EventArgs e)
+    private async void OnLoginButtonClicked(object sender, EventArgs e)
     {
-        var inputModel = new LoginToCompanyIM
+        string email = EmailBox.Text;
+        string password = PasswordBox.Text;
+
+        // Check if entry fields are empty
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            Email = EmailBox.Text,
-            Password = PasswordBox.Text
-        };
-
-        // Call the BLL validation method
-        string validationMessage = _loginService.ValidateUserCredentials(inputModel);
-
-        if (validationMessage == "passed")
+            await DisplayAlert("Error", "Please enter both email and password.", "OK");
+            return;
+        } /*(else if () // !!!!!!Check if the email and password entered by the user match in the database!!!!!!
         {
-            // Call LoginToCompanyDTO object here and initialize it
-
-            await DisplayAlert("Successful Login", "Login Successful.\nYou will be redirected to the Home page now.", "OK");
-            await Shell.Current.GoToAsync("//HomePage");
-
-            /*try
-            {
-                // Resolve RegisterCompanyPage from the DI container
-                var registerCompanyPage = _serviceProvider.GetRequiredService<RegisterCompany>();
-
-                // Navigate to RegisterCompanyPage
-                await Shell.Current.GoToAsync(registerCompanyPage);
-            }
-            catch (Exception ex)
-            {
-                // Log or display the error
-                await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
-            }*/
-        }
-        else
-        {
-            await DisplayAlert("Failed Login", validationMessage, "Try Again");
-        }
-
-        /*// Write company register information to Debug window
-        foreach (string information in userCredentials)
-        {
-            Debug.WriteLine(information);
-        }*/
+            await DisplayAlert("Error", "Incorrect email or password.", "OK");
+            return;
+        }*/ // I am commenting this part of the code because it is not finished and the if() statement is empty, DO NOT DELETE IT!
+            
+        // Pull user data by checking for user with matching email and password
+        BusinessVm business = _loginService.LoginButtonFunc(email, password);
+            
+        // Display this when login is successful
+        DisplayAlert("Login", $"Logged in successfully!\nWelcome back {business.OwnerFirstName} {business.OwnerLastName}, owner of {business.BusinessName}!", "OK");
+            
+        // If successful, navigate to the next page(MainPage)
+        await Navigation.PushAsync(new HomePage());
     }
+        
+    // Function to send the user to RegistrationForm page when the "Create an account" button(in footer) clicked
+    // private void OnCreateAnAccountClicked(object sender, EventArgs e)
+    // {
+    //     Navigation.PushAsync(new RegisterCompany()); 
+    // }
 
     private void PasswordBox_TextChanged(object sender, TextChangedEventArgs e)
     {

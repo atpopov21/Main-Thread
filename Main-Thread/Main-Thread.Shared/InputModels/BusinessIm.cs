@@ -9,19 +9,18 @@ using System.Threading.Tasks;
 
 namespace Main_Thread.Shared.InputModels
 {
-    public class RegisterCompanyIM
+    public class BusinessIm
     {
         [Required]
-        [MaxLength(20)]
-        public string FirstName { get; set; }
+        [StringLength(50, ErrorMessage = "First name must be under 50 characters.")]
+        public string OwnerFirstName { get; set; }
 
         [Required]
-        [MaxLength(20)]
-        public string LastName { get; set; }
+        [StringLength(50, ErrorMessage = "Last name must be under 50 characters.")]
+        public string OwnerLastName { get; set; }
 
         [Required]
-        [MinLength(8)]
-        [MaxLength(60)]
+        [StringLength(100, MinimumLength = 8, ErrorMessage = "Password must be at least 8 characters long.")]
         public string Password { get; set; }
 
         [Required]
@@ -34,16 +33,17 @@ namespace Main_Thread.Shared.InputModels
         public string ContactNumber { get; set; }
 
         [Required]
-        [EmailAddress]
-        [MaxLength(40)]
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(10)]
+        [MinLength(9)]
+        [MaxLength(9)]
         public string StateEntityRegistration { get; set; }
 
         [Required]
-        [MaxLength(10)]
+        [MinLength(9)]
+        [MaxLength(9)]
         public string EmployerIdentificationNumber { get; set; }
 
         [Required]
@@ -55,22 +55,23 @@ namespace Main_Thread.Shared.InputModels
         public string? StreetAddressTwo { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(30)]
         public string City { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string StateProvince { get; set; }
-
+        
         [Required]
+        [MinLength(5)]
         [MaxLength(5)]
-        public string ZipCode { get; set; }
+        public string ZipCode { get; set; } 
 
         [Required]
         public string BusinessType { get; set; }
 
         // Optional
-        [MaxLength(60)]
+        [MaxLength(100)]
         public string? OtherBusinessType { get; set; }
     }
 }

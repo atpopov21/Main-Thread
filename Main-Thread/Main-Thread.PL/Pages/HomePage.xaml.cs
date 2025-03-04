@@ -33,6 +33,11 @@ public partial class HomePage : ContentPage
         _timer.Start();
     }
 
+    public HomePage()
+    {
+        throw new NotImplementedException();
+    }
+
     private void InitializePageComponents()
     {
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);

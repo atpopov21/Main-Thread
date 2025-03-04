@@ -12,7 +12,7 @@ namespace Main_Thread.BLL.Services.Validation
 {
     public class RegisterCompanyValidationService : IRegisterCompanyValidationService
     {
-        public string ValidateCompanyInput(RegisterCompanyIM inputModel)
+        public string ValidateCompanyInput(BusinessIm inputModel)
         {
             // Get all properties of the input model
             PropertyInfo[] properties = inputModel.GetType().GetProperties();
@@ -46,22 +46,22 @@ namespace Main_Thread.BLL.Services.Validation
 
 
             // Check for valid input for first name
-            if (!inputModel.FirstName.All(char.IsLetter))
+            if (!inputModel.OwnerFirstName.All(char.IsLetter))
             {
                 return "First name contains invalid characters.\nPlease enter a valid first name.";
             }
-            else if (inputModel.FirstName.Length < 3)
+            else if (inputModel.OwnerFirstName.Length < 3)
             {
                 return "First name is too short.\nPlease enter a valid first name.";
             }
 
 
             // Check for valid input for last name
-            if (!inputModel.LastName.All(char.IsLetter))
+            if (!inputModel.OwnerLastName.All(char.IsLetter))
             {
                 return "Last name contains invalid characters.\nPlease enter a valid last name.";
             }
-            else if (inputModel.LastName.Length < 3)
+            else if (inputModel.OwnerLastName.Length < 3)
             {
                 return "Last name is too short.\nPlease enter a valid last name.";
             }

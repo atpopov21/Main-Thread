@@ -31,12 +31,12 @@ namespace Main_Thread.DAL.Implementations
                     command.Parameters.AddWithValue("@StateEntityRegistration", newBusiness.StateEntityRegistration);
                     command.Parameters.AddWithValue("@EmployerIdentificationNumber", newBusiness.EmployerIdentificationNumber);
                     command.Parameters.AddWithValue("@StreetAddressOne", newBusiness.StreetAddressOne);
-                    //command.Parameters.AddWithValue("@StreetAddressTwo", newBusiness.StreetAddressTwo);
+                    command.Parameters.AddWithValue("@StreetAddressTwo", newBusiness.StreetAddressTwo);
                     command.Parameters.AddWithValue("@City", newBusiness.City);
                     command.Parameters.AddWithValue("@StateProvince", newBusiness.StateProvince);
                     command.Parameters.AddWithValue("@ZipCode", newBusiness.ZipCode);
                     command.Parameters.AddWithValue("@BusinessType", newBusiness.BusinessType);
-                    //command.Parameters.AddWithValue("@OtherBusinessType", newBusiness.OtherBusinessType);
+                    command.Parameters.AddWithValue("@OtherBusinessType", newBusiness.OtherBusinessType);
                     
                     await command.ExecuteNonQueryAsync();
                 }
@@ -59,7 +59,7 @@ namespace Main_Thread.DAL.Implementations
                 business.StateEntityRegistration = updatedBusiness.StateEntityRegistration;
                 business.EmployerIdentificationNumber = updatedBusiness.EmployerIdentificationNumber;
                 business.StreetAddressOne = updatedBusiness.StreetAddressOne;
-                //business.StreetAddressTwo = updatedBusiness.StreetAddressTwo;
+                business.StreetAddressTwo = updatedBusiness.StreetAddressTwo;
                 business.City = updatedBusiness.City;
                 business.StateProvince = updatedBusiness.StateProvince;
                 business.ZipCode = updatedBusiness.ZipCode;
@@ -79,12 +79,12 @@ namespace Main_Thread.DAL.Implementations
                     command.Parameters.AddWithValue("@StateEntityRegistration", updatedBusiness.StateEntityRegistration);
                     command.Parameters.AddWithValue("@EmployerIdentificationNumber", updatedBusiness.EmployerIdentificationNumber);
                     command.Parameters.AddWithValue("@StreetAddressOne", updatedBusiness.StreetAddressOne);
-                    //command.Parameters.AddWithValue("@StreetAddressTwo", updatedBusiness.StreetAddressTwo);
+                    command.Parameters.AddWithValue("@StreetAddressTwo", updatedBusiness.StreetAddressTwo);
                     command.Parameters.AddWithValue("@City", updatedBusiness.City);
                     command.Parameters.AddWithValue("@StateProvince", updatedBusiness.StateProvince);
                     command.Parameters.AddWithValue("@ZipCode", updatedBusiness.ZipCode);
                     command.Parameters.AddWithValue("@BusinessType", updatedBusiness.BusinessType);
-                    //command.Parameters.AddWithValue("@OtherBusinessType", updatedBusiness.OtherBusinessType);
+                    command.Parameters.AddWithValue("@OtherBusinessType", updatedBusiness.OtherBusinessType);
 
                     await command.ExecuteNonQueryAsync();
                 }

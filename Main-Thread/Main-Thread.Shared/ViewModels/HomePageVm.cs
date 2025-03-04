@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Main_Thread.Shared.ViewModels
 {
-    public class HomePageVM
+    public class HomePageVm
     {
         
     }

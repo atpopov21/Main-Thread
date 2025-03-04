@@ -1,57 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Main_Thread.BLL.Contracts;
+using System.Text.RegularExpressions;
 using Main_Thread.BLL.Contracts.IAuthentication;
-using Main_Thread.Shared.InputModels;
+using Main_Thread.DAL.Data;
 using Main_Thread.BLL.Services.Security;
 using Main_Thread.BLL.Contracts.ISecurity;
+using Main_Thread.Shared.ViewModels;
+using Main_Thread.DAL;
+using Main_Thread.Shared;
 
 namespace Main_Thread.BLL.Services.Authentication
 {
     public class LoginService : ILoginService
     {
+        private readonly DbContext _context = new DbContext();
         private readonly ICryptographyService _cryptographyService = new CryptographyService();
 
-        public string ValidateUserCredentials(LoginToCompanyIM inputModel)
-        {
-            // TEMPORARY INITIALIZATION
-            // "realEamils" need to be retreived from the database (ID's are being simulated with the index of each email, which is equal to the password)
-            string[] realEmails = { "ivan@gmail.com", "BADimov21@codingburgas.bg", "michaelWon@abv.bg", "fakeADMIN" };
-            string[] realMatchingPasswords = { "ivanIsHere", "1234567890!Secure", "hippo#21", "fakeADMIN" };
+        public bool CheckPassword(string iPassword, string uPassword) {
+            return _cryptographyService.ComputeSha256Hash(iPassword) == uPassword;
+        }
 
-            // Get all properties of the input model
-            PropertyInfo[] properties = inputModel.GetType().GetProperties();
-            foreach (var property in properties)
+        public bool CheckEmail(string iEmail, string uEmail) {
+            return _cryptographyService.ComputeSha256Hash(iEmail) == uEmail;
+        }
+
+        public BusinessVm LoginValidation(string email, string password) {
+            foreach (var business in _context.Businesses)
             {
-                var value = property.GetValue(inputModel);
-
-                // Check if any field is empty
-                if (string.IsNullOrEmpty(Convert.ToString(value)))
+                if (CheckEmail(email, business.Email) && CheckPassword(password, business.Password))
                 {
-                    return "There are one or multiple empty fields.\nPlease fill them in.";
+                    return new BusinessVm
+                    {
+                        Id = business.Id,
+                        OwnerFirstName = business.OwnerFirstName,
+                        OwnerLastName = business.OwnerLastName,
+                        Password = business.Password,
+                        BusinessName = business.BusinessName,
+                        ContactNumber = business.ContactNumber,
+                        Email = business.Email,
+                        StateEntityRegistration = business.StateEntityRegistration,
+                        EmployerIdentificationNumber = business.EmployerIdentificationNumber,
+                        StreetAddressOne = business.StreetAddressOne,
+                        StreetAddressTwo = business.StreetAddressTwo,
+                        City = business.City,
+                        StateProvince = business.StateProvince,
+                        ZipCode = business.ZipCode,
+                        BusinessType = business.BusinessType,
+                        OtherBusinessType = business.OtherBusinessType,
+                    };
                 }
             }
-
-            // Check if email exists
-            if (!realEmails.Any(email => email == inputModel.Email))
-            {
-                return "Email not found.";
-            }
-
-            // Find index of the entered email
-            int emailIndex = Array.IndexOf(realEmails, inputModel.Email);
-
-            // Check if password matches the user's email
-            if (_cryptographyService.ComputeSha256Hash(realMatchingPasswords[emailIndex]) != _cryptographyService.ComputeSha256Hash(inputModel.Password))
-            {
-                return "Incorrect email or password.";
-            }
-
-            // All validations passed
-            return "passed";
+            return new BusinessVm();
         }
     }
 }
