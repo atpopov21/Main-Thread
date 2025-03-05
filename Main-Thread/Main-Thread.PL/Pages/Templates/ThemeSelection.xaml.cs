@@ -13,17 +13,17 @@ namespace Main_Thread.PL.Pages.Templates
         public ThemeSelection()
         {
             InitializeComponent();
-            ThemeHanlder();
+            ThemeHandler(selectedTheme);
             UpdateTheme(ClientSettingsVisuals.Instance.SelectedTheme);
         }
 
-        private void ThemeHanlder()
+        public void ThemeHandler(string theme)
         {
-            if (selectedTheme == "Light" || selectedTheme == "Светло")
+            if (theme == "Light" || theme == "Светло")
             {
                 ThemeSwitch.IsToggled = false;
             }
-            else if (selectedTheme == "Dark" || selectedTheme == "Тъмно")
+            else if (theme == "Dark" || theme == "Тъмно")
             {
                 ThemeSwitch.IsToggled = true;
             }

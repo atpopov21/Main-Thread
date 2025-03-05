@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Main_Thread.BLL.Services.Validation
 {
-    public class EmployeesManagementService : IEmployeesManagementService
+    public class StockManagementService : IStockManagementService
     {
 
     }

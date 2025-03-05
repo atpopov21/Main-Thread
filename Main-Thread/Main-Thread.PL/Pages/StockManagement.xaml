@@ -1,15 +1,80 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage x:Name="PageReference"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:template="clr-namespace:Main_Thread.PL.Pages.Templates"
              xmlns:resource="clr-namespace:Main_Thread.PL.Pages.Resources"
              xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="Main_Thread.PL.Pages.StockManagement"
              Title="Main Thread | Stock Management">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Stock Management page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView
+        x:Name="Background"
+        BackgroundColor="AliceBlue">
+        <StackLayout Spacing="8">
+            <!-- Display background of page (stripes) -->
+            <template:Background />
+
+            <!-- User interactive space -->
+            <!-- Page header -->
+            <Border
+                Stroke="Black"
+                StrokeShape="RoundRectangle 0, 0, 20, 20"
+                Margin="0, -792, 0, 18">
+                <FlexLayout
+                    BackgroundColor="Black">
+                    <Label
+                        FlexLayout.Grow="1"
+                        x:Name="UserGreeting"
+                        TextColor="White"
+                        FontSize="Small"
+                        FontFamily="OpenSansSemibold"
+                        Padding="30, 14, 0, 12"/>
+
+                    <VerticalStackLayout
+                        FlexLayout.Grow="1">
+                        <Label
+                            x:Name="TimeStamp"
+                            TextColor="White"
+                            FontSize="Small"
+                            FontFamily="OpenSansSemibold"
+                            Padding="50, 7, 0, 0"/>
+
+                        <Label
+                            x:Name="TimeLabel"
+                            TextColor="White"
+                            Margin="57, -5, 0, 0"/>
+                    </VerticalStackLayout>
+
+                    <Button
+                        x:Name="LogoutButton"
+                        FontSize="Small"
+                        CornerRadius="10"
+                        BackgroundColor="IndianRed"
+                        Clicked="LogoutButton_Clicked"
+                        Margin="0, 0, 20, 0"/>
+                </FlexLayout>
+            </Border>
+            <!-- END OF: Page header -->
+            <!-- END OF: User interactive space -->
+
+            <!-- Display language selection -->
+            <template:LanguageSelection
+                x:Name="languageSelection"
+                LanguageChanged="OnLanguageChanged"
+                Margin="0, 0, 0, 0"/>
+
+            <!-- Display theme selection -->
+            <template:ThemeSelection
+                x:Name="themeSelection"
+                ThemeChanged="OnThemeChanged"
+                Margin="210, -55, 0, 800" />
+
+            <!-- Display footer -->
+            <template:Footer
+                x:Name="FooterENG"/>
+            <template:Footer_BG
+                x:Name="FooterBG"
+                IsVisible="False"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -176,31 +176,11 @@ public partial class LoginToCompany : ContentPage
 
             await DisplayAlert("Successful Login", "Login Successful.\nYou will be redirected to the Home page now.", "OK");
             await Shell.Current.GoToAsync("//HomePage");
-
-            /*try
-            {
-                // Resolve RegisterCompanyPage from the DI container
-                var registerCompanyPage = _serviceProvider.GetRequiredService<RegisterCompany>();
-
-                // Navigate to RegisterCompanyPage
-                await Shell.Current.GoToAsync(registerCompanyPage);
-            }
-            catch (Exception ex)
-            {
-                // Log or display the error
-                await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
-            }*/
         }
         else
         {
             await DisplayAlert("Failed Login", validationMessage, "Try Again");
         }
-
-        /*// Write company register information to Debug window
-        foreach (string information in userCredentials)
-        {
-            Debug.WriteLine(information);
-        }*/
     }
 
     private void PasswordBox_TextChanged(object sender, TextChangedEventArgs e)
