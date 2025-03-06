@@ -22,6 +22,15 @@ public partial class LoginToCompany : ContentPage
         _loginService = loginService;
     }
 
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        //InitializePageComponents();
+
+        languageSelection.LanguageHanlder(ClientSettingsVisuals.Instance.SelectedLanguage);
+        themeSelection.ThemeHandler(ClientSettingsVisuals.Instance.SelectedTheme);
+    }
+
     private void InitializePageComponents()
     {
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);

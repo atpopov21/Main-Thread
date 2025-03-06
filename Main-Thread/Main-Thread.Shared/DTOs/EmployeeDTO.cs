@@ -10,6 +10,10 @@ namespace Main_Thread.Shared.DTOs
     public class EmployeeDTO
     {
         [Required]
+        [MinLength(1)]
+        public int ID { get; set; }
+
+        [Required]
         [MaxLength(20)]
         public string FirstName { get; set; }
 

@@ -25,19 +25,18 @@ public partial class StockManagement : ContentPage
         _timer.Start();
     }
 
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+
+        languageSelection.LanguageHanlder(ClientSettingsVisuals.Instance.SelectedLanguage);
+        themeSelection.ThemeHandler(ClientSettingsVisuals.Instance.SelectedTheme);
+    }
+
     private void InitializePageComponents()
     {
         OnLanguageChanged(ClientSettingsVisuals.Instance.SelectedLanguage);
         OnThemeChanged(ClientSettingsVisuals.Instance.SelectedTheme);
-    }
-
-    protected override void OnNavigatedTo(NavigatedToEventArgs args)
-    {
-        base.OnNavigatedTo(args);
-        //InitializePageComponents();
-
-        languageSelection.LanguageHanlder(ClientSettingsVisuals.Instance.SelectedLanguage);
-        themeSelection.ThemeHandler(ClientSettingsVisuals.Instance.SelectedTheme);
     }
 
     private void UpdateTime()

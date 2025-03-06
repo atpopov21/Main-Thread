@@ -38,7 +38,7 @@
                             FontSize="Small"
                             FontFamily="OpenSansSemibold"
                             Padding="50, 7, 0, 0"/>
-
+                        
                         <Label
                             x:Name="TimeLabel"
                             TextColor="White"
@@ -55,19 +55,175 @@
                 </FlexLayout>
             </Border>
             <!-- END OF: Page header -->
+
+            <!-- Employees Management Board -->
+            <Border
+                x:Name="BoardBackground"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 20, 20, 20, 20"
+                BackgroundColor="White"
+                HeightRequest="600"
+                WidthRequest="900"
+                Margin="0, 80, 0, 0">
+                <Border.Shadow>
+                    <Shadow
+                    Brush="Black"
+                    Offset="20, 20"
+                    Radius="20"
+                    Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout>
+                    <!-- Board Header -->
+                    <FlexLayout>
+                        <Label
+                            FlexLayout.Grow="1"
+                            x:Name="BoardHeader"
+                            FontSize="Title"
+                            FontFamily="Arial"
+                            Margin="24, 14, 0, 0"/>
+
+                        <Button
+                            x:Name="AddEmployeeButton"
+                            CornerRadius="5"
+                            BackgroundColor="RoyalBlue"
+                            Margin="0, 8, 24, 0"/>
+                    </FlexLayout>
+
+                    <!-- Separator -->
+                    <BoxView
+                        BackgroundColor="LightGray"
+                        WidthRequest="800"
+                        HeightRequest="2"
+                        Margin="0, 15"/>
+
+                   <!-- Filters -->
+                    <Grid
+                        x:Name="FiltersBackground"
+                        RowDefinitions="Auto"
+                        ColumnDefinitions="71, 177, 160, 150, 140, 120"
+                        BackgroundColor="#f3f3f3"
+                        WidthRequest="800">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            x:Name="FilterID"
+                            FontSize="Small"
+                            FontAttributes="Bold"
+                            Margin="20, 10, 0, 10"/>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            x:Name="FilterName"
+                            FontSize="Small"
+                            FontAttributes="Bold"
+                            Margin="0, 10, 0, 10"/>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            x:Name="FilterDepartment"
+                            FontSize="Small"
+                            FontAttributes="Bold"
+                            Margin="0, 10, 0, 10"/>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="3"
+                            x:Name="FilterContact"
+                            FontSize="Small"
+                            FontAttributes="Bold"
+                            Margin="0, 10, 0, 10"/>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="4"
+                            x:Name="FilterHireDate"
+                            FontSize="Small"
+                            FontAttributes="Bold"
+                            Margin="0, 10, 0, 10"/>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="5"
+                            x:Name="FilterActions"
+                            FontSize="Small"
+                            FontAttributes="Bold"
+                            Margin="0, 10, 20, 10"/>
+                    </Grid>
+                    <!-- END OF: Filters -->
+                    
+                    <!-- Employees -->
+                    <ScrollView>
+                        <VerticalStackLayout>
+                            <Grid
+                                ColumnDefinitions="119, 179, 159, 150, 130, 100"
+                                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    x:Name="EmployeeID"
+                                    Text="0"
+                                    FontSize="Small"
+                                    Margin="68, 17, 0, 0"/>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    x:Name="EmployeeName"
+                                    FontSize="Small"
+                                    Text="Ivan Angelov"
+                                    Margin="0, 17, 0, 0"/>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    x:Name="EmployeeDepartment"
+                                    FontSize="Small"
+                                    Text="Software Engineer"
+                                    Margin="0, 17, 0, 0"/>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="3"
+                                    x:Name="EmployeeContact"
+                                    FontSize="Small"
+                                    Text="089 4672 021"
+                                    Margin="0, 17, 0, 0"/>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="4"
+                                    x:Name="EmployeeHireDate"
+                                    FontSize="Small"
+                                    Text="2025-05-03"
+                                    Margin="0, 17, 0, 0"/>
+                                <Picker
+                                    Grid.Row="0"
+                                    Grid.Column="5"
+                                    x:Name="EmployeeActions"
+                                    HeightRequest="40"
+                                    SelectedIndex="0">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>...</x:String>
+                                            <x:String>View Profile</x:String>
+                                            <x:String>Promote</x:String>
+                                            <x:String>Fire Employee</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </ScrollView>
+                    <!-- END OF: Employees -->
+                </VerticalStackLayout>
+            </Border>
+            <!-- END OF: Employees Management Board -->
             <!-- END OF: User interactive space -->
 
             <!-- Display language selection -->
             <template:LanguageSelection
                 x:Name="languageSelection"
                 LanguageChanged="OnLanguageChanged"
-                Margin="0, 0, 0, 0"/>
+                Margin="0, -688, 0, 0"/>
 
             <!-- Display theme selection -->
             <template:ThemeSelection
                 x:Name="themeSelection"
                 ThemeChanged="OnThemeChanged"
-                Margin="210, -55, 0, 800" />
+                Margin="210, -55, 0, 700" />
 
             <!-- Display footer -->
             <template:Footer
