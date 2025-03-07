@@ -18,7 +18,7 @@ namespace Main_Thread.DAL.Implementations
             {
                 _context.Businesses.Add(newBusiness);
 
-                string query = $"INSERT INTO [Businesses] (OwnerFirstName, OwnerLastName, Password, BusinessName, ContactNumbber, Email, StateEntityRegistration, EmployerIdentificationNumber, StreetAddressOne, /*StreetAddressTwo*/, City, StateProvince, ZipCode, BusinessType, /*OtherBusinessType*/) VALUES (@OwnerFirstName, @OwnerLastName, @Password, @BusinessName, @ContactNumbber, @Email, @StateEntityRegistration, @EmployerIdentificationNumber, @StreetAddressOne, /*@StreetAddressTwo*/, @City, @StateProvince, @ZipCode, @BusinessType, /*@OtherBusinessType*/)";
+                string query = $"INSERT INTO [Businesses] (OwnerFirstName, OwnerLastName, Password, BusinessName, ContactNumbber, Email, StateEntityRegistration, EmployerIdentificationNumber, StreetAddressOne, /*StreetAddressTwo*/, City, StateProvince, ZipCode, BusinessType, /*OtherBusinessType*/) VALUES (@OwnerFirstName, @OwnerLastName, @Password, @BusinessName, @ContactNumbber, @Email, @StateEntityRegistration, @BirthDate, @StreetAddressOne, /*@StreetAddressTwo*/, @City, @StateProvince, @ZipCode, @BusinessType, /*@OtherBusinessType*/)";
 
                 using (SqlCommand command = new SqlCommand(query, _context.Connection))
                 {
@@ -29,7 +29,7 @@ namespace Main_Thread.DAL.Implementations
                     command.Parameters.AddWithValue("@ContactNumber", newBusiness.ContactNumber);
                     command.Parameters.AddWithValue("@Email", newBusiness.Email);
                     command.Parameters.AddWithValue("@StateEntityRegistration", newBusiness.StateEntityRegistration);
-                    command.Parameters.AddWithValue("@EmployerIdentificationNumber", newBusiness.EmployerIdentificationNumber);
+                    command.Parameters.AddWithValue("@BirthDate", newBusiness.BirthDate);
                     command.Parameters.AddWithValue("@StreetAddressOne", newBusiness.StreetAddressOne);
                     //command.Parameters.AddWithValue("@StreetAddressTwo", newBusiness.StreetAddressTwo);
                     command.Parameters.AddWithValue("@City", newBusiness.City);
@@ -57,7 +57,7 @@ namespace Main_Thread.DAL.Implementations
                 business.ContactNumber = updatedBusiness.ContactNumber;
                 business.Email = updatedBusiness.Email;
                 business.StateEntityRegistration = updatedBusiness.StateEntityRegistration;
-                business.EmployerIdentificationNumber = updatedBusiness.EmployerIdentificationNumber;
+                business.BirthDate = updatedBusiness.BirthDate;
                 business.StreetAddressOne = updatedBusiness.StreetAddressOne;
                 //business.StreetAddressTwo = updatedBusiness.StreetAddressTwo;
                 business.City = updatedBusiness.City;
@@ -66,7 +66,7 @@ namespace Main_Thread.DAL.Implementations
                 business.BusinessType = updatedBusiness.BusinessType;
                 business.OtherBusinessType = updatedBusiness.OtherBusinessType;
 
-                string query = $"UPDATE [Businesses] SET [OwnerFirstName] = @OwnerFirstName, [OwnerLastName] = @OwnerLastName, [Password] = @Password, [BusinessName] = @BusinessName, [ContactNumber] = @ContactNumber, [Email] = @Email, [StateEntityRegistration] = @StateEntityRegistration, [EmployerIdentificationNumber] = @EmployerIdentificationNumber, [StreetAddressOne] = @StreetAddressOne, /*[StreetAddressTwo] = @StreetAddressTwo*/, [City] = @City, [StateProvince] = @StateProvince, [ZipCode] = @ZipCode, [BusinessType] = @BusinessType, /*[OtherBusinessType] = @OtherBusinessType*/ WHERE [BusinessId] = @Id";
+                string query = $"UPDATE [Businesses] SET [OwnerFirstName] = @OwnerFirstName, [OwnerLastName] = @OwnerLastName, [Password] = @Password, [BusinessName] = @BusinessName, [ContactNumber] = @ContactNumber, [Email] = @Email, [StateEntityRegistration] = @StateEntityRegistration, [BirthDate] = @BirthDate, [StreetAddressOne] = @StreetAddressOne, /*[StreetAddressTwo] = @StreetAddressTwo*/, [City] = @City, [StateProvince] = @StateProvince, [ZipCode] = @ZipCode, [BusinessType] = @BusinessType, /*[OtherBusinessType] = @OtherBusinessType*/ WHERE [BusinessId] = @Id";
 
                 using (SqlCommand command = new SqlCommand(query, _context.Connection))
                 {
@@ -77,7 +77,7 @@ namespace Main_Thread.DAL.Implementations
                     command.Parameters.AddWithValue("@ContactNumber", updatedBusiness.ContactNumber);
                     command.Parameters.AddWithValue("@Email", updatedBusiness.Email);
                     command.Parameters.AddWithValue("@StateEntityRegistration", updatedBusiness.StateEntityRegistration);
-                    command.Parameters.AddWithValue("@EmployerIdentificationNumber", updatedBusiness.EmployerIdentificationNumber);
+                    command.Parameters.AddWithValue("@BirthDate", updatedBusiness.BirthDate);
                     command.Parameters.AddWithValue("@StreetAddressOne", updatedBusiness.StreetAddressOne);
                     //command.Parameters.AddWithValue("@StreetAddressTwo", updatedBusiness.StreetAddressTwo);
                     command.Parameters.AddWithValue("@City", updatedBusiness.City);

@@ -17,7 +17,7 @@ public class DbContext
 
     public DbContext()
     {
-        string connectionString = "Server=tcp:main-thread-server.database.windows.net,1433;Initial Catalog=MainThread;Persist Security Info=False;User ID=ThreadMain;Password={MainThread@1243};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        string connectionString = "Server=tcp:mainthread-server.database.windows.net,1433;Initial Catalog=MainThread;Persist Security Info=False;User ID=SERVERADMIN;Password={ADMIN-MainThread!123};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
         Connection = new SqlConnection(connectionString);
         Connection.Open();
         
@@ -57,7 +57,7 @@ public class DbContext
                 ContactNumber = reader.GetString(5),
                 Email = reader.GetString(6),
                 StateEntityRegistration = reader.GetString(7),
-                EmployerIdentificationNumber = reader.GetString(8),
+                BirthDate = reader.GetDateTime(8),
                 StreetAddressOne = reader.GetString(9),
                 //StreetAddressTwo = reader.GetString(10),
                 City = reader.GetString(10),
@@ -93,7 +93,7 @@ public class DbContext
                         ContactNumber = Convert.ToString(reader["ContactNumber"]),
                         Email = Convert.ToString(reader["Email"]),
                         StateEntityRegistration = Convert.ToString(reader["StateEntityRegistration"]),
-                        EmployerIdentificationNumber = Convert.ToString(reader["EmployerIdentificationNumber"]),
+                        BirthDate = Convert.ToDateTime(reader["BirthDate"]),
                         StreetAddressOne = Convert.ToString(reader["StreetAddressOne"]),
                         //StreetAddressTwo = Convert.ToString(reader["StreetAddressTwo"]),
                         City = Convert.ToString(reader["City"]),
@@ -269,7 +269,6 @@ public class DbContext
                 FirstName = reader.GetString(1),
                 LastName = reader.GetString(2),
                 BirthDate = reader.GetDateTime(3),
-                PersonalIdentificationNumber = reader.GetString(4),
                 Password = reader.GetString(5),
                 Email = reader.GetString(6),
                 HireDate = reader.GetDateTime(7),
@@ -299,7 +298,6 @@ public class DbContext
                         FirstName = Convert.ToString(reader["FirstName"]),
                         LastName = Convert.ToString(reader["LastName"]),
                         BirthDate = Convert.ToDateTime(reader["BirthDate"]),
-                        PersonalIdentificationNumber = Convert.ToString(reader["PersonalIdentificationNumber"]),
                         Password = Convert.ToString(reader["Password"]),
                         Email = Convert.ToString(reader["Email"]),
                         HireDate = Convert.ToDateTime(reader["HireDate"]),

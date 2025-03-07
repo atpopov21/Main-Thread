@@ -126,14 +126,14 @@ namespace Main_Thread.BLL.Services.Validation
             }
 
 
-            // Check for a valid Employer Identification Number
-            if (!inputModel.EmployerIdentificationNumber.All(char.IsDigit))
+            // Check for a valid Date of Birth
+            if (!(inputModel.BirthDate.Date > new DateTime(2008, 12, 12)))
             {
-                return "Employer Identification Number contains invalid characters.\nPlease enter a valid number.";
+                return "You need to be at least 18 years old to register a company.\nPlease try again.";
             }
-            else if (inputModel.EmployerIdentificationNumber.Length < 10)
+            else if ((inputModel.BirthDate.Date < new DateTime(1900, 12, 12)))
             {
-                return "Employer Identification Number is too short.\nPlease enter a valid number.";
+                return "Date of birth is invalid.\nPlease enter a date of birth.";
             }
 
 

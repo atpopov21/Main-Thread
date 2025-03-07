@@ -44,7 +44,7 @@ namespace Main_Thread.Shared.InputModels
 
         [Required]
         [MaxLength(10)]
-        public string EmployerIdentificationNumber { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Required]
         [MaxLength(60)]
