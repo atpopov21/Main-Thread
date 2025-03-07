@@ -1,0 +1,58 @@
+﻿Main-Thread
+   ├──Main-Thread.BLL
+   │  ├──bin
+   │  │  └──Debug
+   │  ├──Contracts
+   │  │  ├──IAuthentication
+   │  │  ├──IPageHandlers
+   │  │  ├──ISecurity
+   │  │  └──IValidation
+   │  ├──obj
+   │  │  └──Debug
+   │  └──Services
+   │     ├──Authentication
+   │     ├──PageHandlers
+   │     ├──Security
+   │     └──Validation
+   ├──Main-Thread.DAL
+   │  ├──bin
+   │  │  └──Debug
+   │  ├──Contracts
+   │  ├──Data
+   │  ├──Implementations
+   │  ├──Models
+   │  └──obj
+   │     └──Debug
+   ├──Main-Thread.PL
+   │  ├──bin
+   │  │  └──Debug
+   │  ├──obj
+   │  │  ├──.cache
+   │  │  └──Debug
+   │  ├──Pages
+   │  │  ├──Resources
+   │  │  └──Templates
+   │  ├──Platforms
+   │  │  ├──Android
+   │  │  ├──iOS
+   │  │  ├──MacCatalyst
+   │  │  ├──Tizen
+   │  │  └──Windows
+   │  ├──Properties
+   │  └──Resources
+   │     ├──AppIcon
+   │     ├──Fonts
+   │     ├──Images
+   │     ├──Raw
+   │     ├──Splash
+   │     └──Styles
+   └──Main-Thread.Shared
+      ├──bin
+      │  └──Debug
+      ├──DTOs
+      ├──InputModels
+      ├──obj
+      │  └──Debug
+      ├──Resources
+      └──ViewModels
+
