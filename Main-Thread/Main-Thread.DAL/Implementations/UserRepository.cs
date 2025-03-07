@@ -18,14 +18,13 @@ namespace Main_Thread.DAL.Implementations
             {
                 _context.Users.Add(newUser);
 
-                string query = $"INSERT INTO [Users] (FirstName, LastName, BirthDate, PersonalIdentificationNumber, Password, Email, HireDate, Role, BusinessId) VALUES (@FirstName, @LastName, @BirthDate, @PersonalIdentificationNumber, @Password, @Email, @HireDate, @Role, @BusinessId)";
+                string query = $"INSERT INTO [Users] (FirstName, LastName, BirthDate, Password, Email, HireDate, Role, BusinessId) VALUES (@FirstName, @LastName, @BirthDate, @Password, @Email, @HireDate, @Role, @BusinessId)";
 
                 using (SqlCommand command = new SqlCommand(query, _context.Connection))
                 {
                     command.Parameters.AddWithValue("@FirstName", newUser.FirstName);
                     command.Parameters.AddWithValue("@LastName", newUser.LastName);
                     command.Parameters.AddWithValue("@BirthDate", newUser.BirthDate);
-                    command.Parameters.AddWithValue("@PersonalIdentificationNumber", newUser.PersonalIdentificationNumber);
                     command.Parameters.AddWithValue("@Password", newUser.Password);
                     command.Parameters.AddWithValue("@Email", newUser.Email);
                     command.Parameters.AddWithValue("@HireDate", newUser.HireDate);
@@ -47,21 +46,19 @@ namespace Main_Thread.DAL.Implementations
                 user.FirstName = updatedUser.FirstName;
                 user.LastName = updatedUser.LastName;
                 user.BirthDate = updatedUser.BirthDate;
-                user.PersonalIdentificationNumber = updatedUser.PersonalIdentificationNumber;
                 user.Password = updatedUser.Password;
                 user.Email = updatedUser.Email;
                 user.HireDate = updatedUser.HireDate;
                 user.Role = updatedUser.Role;
                 user.BusinessId = updatedUser.BusinessId;
                 
-                string query = $"UPDATE [Users] SET [FirstName] = @FirstName, [LastName] = @LastName, [BirthDate] = @BirthDate, [PersonalIdentificationNumber] = @PersonalIdentificationNumber, [Password] = @Password, [Email] = @Email, [HireDate] = @HireDate, [Role] = @Role, [BusinessId] = @BusinessId WHERE [UserId] = @Id";
+                string query = $"UPDATE [Users] SET [FirstName] = @FirstName, [LastName] = @LastName, [BirthDate] = @BirthDate, [Password] = @Password, [Email] = @Email, [HireDate] = @HireDate, [Role] = @Role, [BusinessId] = @BusinessId WHERE [UserId] = @Id";
 
                 using (SqlCommand command = new SqlCommand(query, _context.Connection))
                 {
                     command.Parameters.AddWithValue("@FirstName", updatedUser.FirstName);
                     command.Parameters.AddWithValue("@LastName", updatedUser.LastName);
                     command.Parameters.AddWithValue("@BirthDate", updatedUser.BirthDate);
-                    command.Parameters.AddWithValue("@PersonalIdentificationNumber", updatedUser.PersonalIdentificationNumber);
                     command.Parameters.AddWithValue("@Password", updatedUser.Password);
                     command.Parameters.AddWithValue("@Email", updatedUser.Email);
                     command.Parameters.AddWithValue("@HireDate", updatedUser.HireDate);

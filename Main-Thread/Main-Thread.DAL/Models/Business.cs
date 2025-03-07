@@ -10,7 +10,7 @@ public class Business
         public string ContactNumber { get; set; }
         public string Email { get; set; }
         public string StateEntityRegistration { get; set; }
-        public string EmployerIdentificationNumber { get; set; }
+        public DateTime BirthDate { get; set; }
         public string StreetAddressOne { get; set; }
         public string? StreetAddressTwo { get; set; }
         public string City { get; set; }

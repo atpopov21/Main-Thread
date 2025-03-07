@@ -13,17 +13,17 @@ namespace Main_Thread.PL.Pages.Templates
         public LanguageSelection()
         {
             InitializeComponent();
-            LanguageHanlder();
+            LanguageHanlder(selectedLanguage);
             UpdateTheme(ClientSettingsVisuals.Instance.SelectedTheme);
         }
 
-        private void LanguageHanlder()
+        public void LanguageHanlder(string language)
         {
-            if (selectedLanguage == "English")
+            if (language == "English")
             {
                 EnglishCheckbox.IsChecked = true;
             }
-            else if (selectedLanguage == "Bulgarian")
+            else if (language == "Bulgarian")
             {
                 BulgarianCheckbox.IsChecked = true;
             }

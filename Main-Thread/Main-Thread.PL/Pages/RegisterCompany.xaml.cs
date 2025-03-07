@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Main_Thread.BLL.Contracts.IValidation;
 using Main_Thread.PL.Pages.Resources;
+using Main_Thread.Shared.DTOs;
 using Main_Thread.Shared.InputModels;
 
 namespace Main_Thread.PL.Pages;
@@ -57,6 +58,15 @@ public partial class RegisterCompany : ContentPage
         InitializePageComponents();
 
         _registerCompanyValidationService = registerCompanyValidationService;
+    }
+
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        //InitializePageComponents();
+
+        languageSelection.LanguageHanlder(ClientSettingsVisuals.Instance.SelectedLanguage);
+        themeSelection.ThemeHandler(ClientSettingsVisuals.Instance.SelectedTheme);
     }
 
     private void InitializePageComponents()
@@ -795,8 +805,6 @@ public partial class RegisterCompany : ContentPage
 
     private void SubmitRegistratonButton_Clicked(object sender, EventArgs e)
     {
-        //bool registrationSuccessful = CheckCredentials();
-
         var inputModel = new RegisterCompanyIM
         {
             FirstName = FirstNameBox.Text,
@@ -806,7 +814,7 @@ public partial class RegisterCompany : ContentPage
             ContactNumber = ContactNumberBox.Text,
             Email = EmailBox.Text,
             StateEntityRegistration = SERBox.Text,
-            EmployerIdentificationNumber = PINBox.Text,
+            /*BirthDate = PINBox.Text,*/
             StreetAddressOne = StreetAddressBox1.Text,
             StreetAddressTwo = StreetAddressBox2.Text,
             City = CityBox.Text,
@@ -822,6 +830,21 @@ public partial class RegisterCompany : ContentPage
         if (validationMessage == "passed")
         {
             // Call RegisterCompanyDTO object here and initialize it
+            RegisterCompanyDTO.Instance.FirstName = inputModel.FirstName;
+            RegisterCompanyDTO.Instance.LastName = inputModel.LastName;
+            RegisterCompanyDTO.Instance.Password = inputModel.Password;
+            RegisterCompanyDTO.Instance.BusinessName = inputModel.BusinessName;
+            RegisterCompanyDTO.Instance.ContactNumber = inputModel.ContactNumber;
+            RegisterCompanyDTO.Instance.Email = inputModel.Email;
+            RegisterCompanyDTO.Instance.StateEntityRegistration = inputModel.StateEntityRegistration;
+            RegisterCompanyDTO.Instance.BirthDate = inputModel.BirthDate;
+            RegisterCompanyDTO.Instance.StreetAddressOne = inputModel.StreetAddressOne;
+            RegisterCompanyDTO.Instance.StreetAddressTwo = inputModel.StreetAddressTwo;
+            RegisterCompanyDTO.Instance.City = inputModel.City;
+            RegisterCompanyDTO.Instance.StateProvince = inputModel.StateProvince;
+            RegisterCompanyDTO.Instance.ZipCode = inputModel.ZipCode;
+            RegisterCompanyDTO.Instance.BusinessType = inputModel.BusinessType;
+            RegisterCompanyDTO.Instance.Others = inputModel.OtherBusinessType;
 
             SuccessfulRegistrationCOMPANY.IsVisible = true;
             DisplayAlert("Pending Approval", "Your company registration is currently under review by our team.\nWe appreciate your request and will notify you once the approval process is complete.", "OK");

@@ -39,12 +39,18 @@ namespace Main_Thread.PL
             services.AddSingleton<ILoginService, LoginService>();
             services.AddSingleton<IHomePageService, HomePageService>();
             services.AddSingleton<ICryptographyService, CryptographyService>();
-
+            services.AddSingleton<IRevenuesAndExpensesService, RevenuesAndExpensesService>();
+            services.AddSingleton<IEmployeesManagementService, EmployeesManagementService>();
+            services.AddSingleton<IStockManagementService, StockManagementService>();
+            
             // Pages
             services.AddSingleton<MainPage>();
             services.AddSingleton<RegisterCompany>();
             services.AddSingleton<LoginToCompany>();
             services.AddSingleton<HomePage>();
+            services.AddSingleton<RevenuesAndExpenses>();
+            services.AddSingleton<EmployeesManagement>();
+            services.AddSingleton<StockManagement>();
 
             return builder.Build();
         }

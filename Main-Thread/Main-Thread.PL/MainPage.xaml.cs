@@ -19,6 +19,15 @@ namespace Main_Thread.PL
             _serviceProvider = serviceProvider;
         }
 
+        protected override void OnNavigatedTo(NavigatedToEventArgs args)
+        {
+            base.OnNavigatedTo(args);
+            //InitializePageComponents();
+
+            languageSelection.LanguageHanlder(ClientSettingsVisuals.Instance.SelectedLanguage);
+            themeSelection.ThemeHandler(ClientSettingsVisuals.Instance.SelectedTheme);
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

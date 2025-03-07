@@ -11,6 +11,10 @@ namespace Main_Thread.Shared.DTOs
 {
     public class RegisterCompanyDTO
     {
+        private static readonly Lazy<RegisterCompanyDTO> _instance = new Lazy<RegisterCompanyDTO>(() => new RegisterCompanyDTO());
+        private RegisterCompanyDTO() { }
+        public static RegisterCompanyDTO Instance => _instance.Value;
+
         [Required]
         [MaxLength(20)]
         public string FirstName { get; set; }
@@ -44,7 +48,7 @@ namespace Main_Thread.Shared.DTOs
 
         [Required]
         [MaxLength(10)]
-        public string EmployerIdentificationNumber { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Required]
         [MaxLength(60)]
