@@ -32,7 +32,7 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="51">
-    <div class="container-xxl bg-white p-0">
+    <div class="container-fluid bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -43,9 +43,9 @@
 
 
         <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0" id="home">
+        <div class="container-fluid position-relative p-0" id="home">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="https://github.com/atpopov21/Main-Thread" target="_blank" class="navbar-brand p-0">
                     <h1 class="m-0">Main Thread</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -65,8 +65,8 @@
                 </div>
             </nav>
 
-            <div class="container-xxl bg-primary hero-header">
-                <div class="container px-lg-5">
+            <div class="container-fluid bg-primary hero-header">
+                <div class="container px-lg-5" style="margin-left: 70px;">
                     <div class="row g-5">
                         <div class="col-lg-8 text-center text-lg-start">
                             <h1 class="text-white mb-4 animated slideInDown">The Revolutionary App That Helps To Control Your Own Business</h1>
@@ -74,7 +74,7 @@
                             <a href="#about" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill me-3 animated slideInLeft">Read More</a>
                             <a href="#contact" class="btn btn-secondary-gradient py-sm-3 px-4 px-sm-5 rounded-pill animated slideInRight">Contact Us</a>
                         </div>
-                        <div class="col-lg-4 d-flex justify-content-center justify-content-lg-end wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="col-lg-4 justify-content-lg-end justify-content-lg-end wow fadeInUp" data-wow-delay="0.3s">
                             <div class="owl-carousel screenshot-carousel">
                                 <img class="img-fluid" src="img/screenshot-1.png" alt="">
                                 <img class="img-fluid" src="img/screenshot-2.png" alt="">
@@ -82,6 +82,50 @@
                                 <img class="img-fluid" src="img/screenshot-4.png" alt="">
                             </div>
                         </div>
+                        <script>
+                            function handleResizeLeftMargin()
+                            {
+                                const element = document.querySelector('.col-lg-4.justify-content-lg-end.justify-content-lg-end.wow.fadeInUp');
+                                if (element)
+                                {
+                                    if (window.innerWidth <= window.screen.width / 2)
+                                    {
+                                        element.style.marginLeft = '';
+                                    }
+                                    else if (window.innerWidth <= window.screen.width - 700)
+                                    {
+                                        element.style.marginLeft = '100px';
+                                    }
+                                    else if (window.innerWidth <= window.screen.width - 600)
+                                    {
+                                        element.style.marginLeft = '200px';
+                                    }
+                                    else if (window.innerWidth <= window.screen.width - 500)
+                                    {
+                                        element.style.marginLeft = '300px';
+                                    }
+                                    else if (window.innerWidth <= window.screen.width - 400)
+                                    {
+                                        element.style.marginLeft = '400px';
+                                    }
+                                    else if (window.innerWidth <= window.screen.width - 300)
+                                    {
+                                        element.style.marginLeft = '500px';
+                                    }
+                                    else if (window.innerWidth <= window.screen.width - 200)
+                                    {
+                                        element.style.marginLeft = '600px';
+                                    }
+                                    else
+                                    {
+                                        element.style.marginLeft = '';
+                                    }
+                                }
+                            }
+                        
+                            handleResizeLeftMargin();
+                            window.addEventListener('resize', handleResizeLeftMargin);
+                        </script>         
                     </div>
                 </div>
             </div>
@@ -90,7 +134,7 @@
 
 
         <!-- About Start -->
-        <div class="container-xxl py-5" id="about">
+        <div class="container-fluid py-5" id="about">
             <div class="container py-5 px-lg-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -129,7 +173,7 @@
 
 
         <!-- Features Start -->
-        <div class="container-xxl py-5" id="feature">
+        <div class="container-fluid py-5" id="feature">
             <div class="container py-5 px-lg-5">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-primary-gradient fw-medium">App Features</h5>
@@ -197,10 +241,10 @@
 
 
         <!-- Screenshot Start -->
-        <div class="container-xxl py-5">
+        <div class="container-fluid py-5">
             <div class="container py-5 px-lg-5">
                 <div class="row g-5 align-items-center">
-                    <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-lg-9 wow fadeInUp" data-wow-delay="0.1s">
                         <h5 class="text-primary-gradient fw-medium">Preview</h5>
                         <h1 class="mb-4">Intuitive & Powerful Business Management Software</h1>
                         <p class="mb-4">Designed for efficiency, our user-friendly interface simplifies complex business operations. From employee management to financial tracking, streamline your workflow and stay in control with ease.</p>
@@ -209,7 +253,7 @@
                         <p class="mb-4"><i class="fa fa-check text-primary-gradient me-3"></i>Boost productivity with seamless automation</p>
                         <a href="#about" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3">Learn More</a>
                     </div>
-                    <div class="col-lg-4 d-flex justify-content-center justify-content-lg-end wow fadeInUp" data-wow-delay="0.3s" style="margin-top: 420px; margin-bottom: 20px;">
+                    <div class="d-flex justify-content-lg-end wow fadeInUp" style="margin-top: -140px;" data-wow-delay="0.3s">
                         <div class="owl-carousel screenshot-carousel">
                             <img class="img-fluid" src="img/screenshot-1.png" alt="">
                             <img class="img-fluid" src="img/screenshot-2.png" alt="">
@@ -217,6 +261,28 @@
                             <img class="img-fluid" src="img/screenshot-4.png" alt="">
                         </div>
                     </div>
+                    
+                    <script>
+                        function handleResize() {
+                            const element = document.querySelector('.d-flex.justify-content-lg-end.wow.fadeInUp');
+                            
+                            // Check if the element exists
+                            if (element)
+                            {
+                                if (window.innerWidth <= window.screen.width / 2)
+                                {
+                                    element.style.marginTop = '';
+                                }
+                                else
+                                {
+                                    element.style.marginTop = '-140px';
+                                }
+                            }
+                        }
+
+                        handleResize();
+                        window.addEventListener('resize', handleResize);
+                    </script>
                 </div>
             </div>
         </div>
@@ -224,7 +290,7 @@
 
 
         <!-- Process Start -->
-        <div class="container-xxl py-5">
+        <div class="container-fluid py-5">
             <div class="container py-5 px-lg-5">
                 <div class="text-center pb-4 wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-primary-gradient fw-medium">How It Works</h5>
@@ -265,7 +331,7 @@
 
 
         <!-- Download Start -->
-        <div class="container-xxl py-5">
+        <div class="container-fluid py-5">
             <div class="container py-5 px-lg-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
@@ -274,7 +340,7 @@
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                         <h5 class="text-primary-gradient fw-medium">Download</h5>
                         <h1 class="mb-4">Download The Latest Version Of Our App</h1>
-                        <p class="mb-4">Get the newest features and improvements by downloading our latest release. Our app is open-source and available on <a href="https://github.com/YOUR-REPO-LINK" target="_blank">GitHub</a>, ensuring full transparency and continuous development. Stay ahead with powerful business management tools.</p>
+                        <p class="mb-4">Get the newest features and improvements by downloading our latest release. Our app is open-source and available on <a href="https://github.com/atpopov21/Main-Thread" target="_blank">GitHub</a>, ensuring full transparency and continuous development. Stay ahead with powerful business management tools.</p>
                         <div class="row g-4">
                     </div>
                 </div>
@@ -284,7 +350,7 @@
 
 
         <!-- Pricing Start -->
-        <div class="container-xxl py-5" id="pricing">
+        <div class="container-fluid py-5" id="pricing">
             <div class="container py-5 px-lg-5">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-primary-gradient fw-medium">Pricing Plan</h5>
@@ -301,7 +367,7 @@
                     </ul>
                     <div class="tab-content text-start">
                         <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row g-4">
+                            <div class="row g-4" style="justify-content: center;">
                                 <div class="col-lg-4">
                                     <div class="bg-light rounded">
                                         <div class="border-bottom p-4 mb-4">
@@ -317,7 +383,7 @@
                                             <div class="d-flex justify-content-between mb-3"><span>Manage Your Company</span><i class="fa fa-check text-primary-gradient pt-1"></i></div>
                                             <div class="d-flex justify-content-between mb-3"><span>Get The Latest Updates</span><i class="fa fa-check text-primary-gradient pt-1"></i></div>
                                             <div class="d-flex justify-content-between mb-2"><span>Use All of The App's Features</span><i class="fa fa-check text-primary-gradient pt-1"></i></div>
-                                            <a href="" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get Started</a>
+                                            <a href="https://github.com/atpopov21/Main-Thread" target="_blank" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get Started</a>
                                         </div>
                                     </div>
                                 </div>
@@ -325,7 +391,7 @@
                             </div>
                         </div>
                         <div id="tab-2" class="tab-pane fade p-0">
-                            <div class="row g-4">
+                            <div class="row g-4" style="justify-content: center;">
                                 <div class="col-lg-4">
                                     <div class="bg-light rounded">
                                         <div class="border-bottom p-4 mb-4">
@@ -341,7 +407,7 @@
                                             <div class="d-flex justify-content-between mb-3"><span>Manage Your Company</span><i class="fa fa-check text-primary-gradient pt-1"></i></div>
                                             <div class="d-flex justify-content-between mb-3"><span>Get The Latest Updates</span><i class="fa fa-check text-primary-gradient pt-1"></i></div>
                                             <div class="d-flex justify-content-between mb-2"><span>Use All of The App's Features</span><i class="fa fa-check text-primary-gradient pt-1"></i></div>
-                                            <a href="" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get Started</a>
+                                            <a href="https://github.com/atpopov21/Main-Thread" target="_blank" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get Started</a>
                                         </div>
                                     </div>
                                 </div>
@@ -355,7 +421,7 @@
 
 
         <!-- Testimonial Start -->
-        <div class="container-xxl py-5" id="review">
+        <div class="container-fluid py-5" id="review">
             <div class="container py-5 px-lg-5">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-primary-gradient fw-medium">Testimonial</h5>
@@ -437,7 +503,7 @@
 
 
         <!-- Contact Start -->
-        <div class="container-xxl py-5" id="contact">
+        <div class="container-fluid py-5" id="contact">
             <div class="container py-5 px-lg-5">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-primary-gradient fw-medium">Contact Us</h5>
@@ -498,9 +564,9 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h4 class="text-white mb-4">Popular Links</h4>
-                        <a class="btn btn-link" href="https://github.com/atpopov21/Main-Thread.git">Our repo</a>
-                        <a class="btn btn-link" href="https://github.com/atpopov21/Main-Thread/discussions">Our App Discussions</a>
-                        <a class="btn btn-link" href="https://github.com/atpopov21/Main-Thread?tab=security-ov-file#security-policy">Privacy Policy</a>
+                        <a class="btn btn-link" href="https://github.com/atpopov21/Main-Thread.git" target="_blank">Our repo</a>
+                        <a class="btn btn-link" href="https://github.com/atpopov21/Main-Thread/discussions" target="_blank">Our App Discussions</a>
+                        <a class="btn btn-link" href="https://github.com/atpopov21/Main-Thread?tab=security-ov-file#security-policy" target="_blank">Privacy Policy</a>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h4 class="text-white mb-4">Newsletter</h4>
@@ -516,16 +582,16 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Main Thread</a>, All Right Reserved. 
+                            &copy; <a class="border-bottom" href="https://github.com/atpopov21/Main-Thread" target="_blank">Main Thread</a>, All Right Reserved. 
 							
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+							Designed By <a class="border-bottom" href="https://htmlcodex.com" target="_blank">HTML Codex</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
                                 <a href="#home">Home</a>
-                                <a href="https://github.com/atpopov21/Main-Thread/discussions">Help</a>
-                                <a href="https://github.com/atpopov21/Main-Thread/discussions">FQAs</a>
+                                <a href="https://github.com/atpopov21/Main-Thread/discussions" target="_blank">Help</a>
+                                <a href="https://github.com/atpopov21/Main-Thread/discussions" target="_blank">FQAs</a>
                             </div>
                         </div>
                     </div>

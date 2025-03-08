@@ -64,7 +64,7 @@ namespace Main_Thread.DAL.Implementations
                 business.StateProvince = updatedBusiness.StateProvince;
                 business.ZipCode = updatedBusiness.ZipCode;
                 business.BusinessType = updatedBusiness.BusinessType;
-                business.OtherBusinessType = updatedBusiness.OtherBusinessType;
+                //business.OtherBusinessType = updatedBusiness.OtherBusinessType;
 
                 string query = $"UPDATE [Businesses] SET [OwnerFirstName] = @OwnerFirstName, [OwnerLastName] = @OwnerLastName, [Password] = @Password, [BusinessName] = @BusinessName, [ContactNumber] = @ContactNumber, [Email] = @Email, [StateEntityRegistration] = @StateEntityRegistration, [BirthDate] = @BirthDate, [StreetAddressOne] = @StreetAddressOne, /*[StreetAddressTwo] = @StreetAddressTwo*/, [City] = @City, [StateProvince] = @StateProvince, [ZipCode] = @ZipCode, [BusinessType] = @BusinessType, /*[OtherBusinessType] = @OtherBusinessType*/ WHERE [BusinessId] = @Id";
 
