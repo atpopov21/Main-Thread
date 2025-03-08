@@ -203,8 +203,8 @@ This compiles and runs the application, allowing you to use all of its functiona
        <td><b>Back-end developer, Database Engineer, Designer</b></td>
     </tr>
     <tr>
-       <td align="center"><img src="https://github.com/user-attachments/assets/39aa493b-8e6c-41be-a01b-861afd3f9872" alt="Application Creator Picture"/><br><b>Aleksandar Popov</b><br><i>(Creator of <b>Main Thread</b>)</i></td>
-       <td align="center"><img src="https://github.com/user-attachments/assets/b1c195a3-62a2-4365-a95e-de5ce5c1d6a7" alt="Back-end Developer Picture"/><br><b>Gabriel Dimitrov</b></a></td>
+       <td align="center"><a href="https://github.com/atpopov21"><img src="https://github.com/user-attachments/assets/39aa493b-8e6c-41be-a01b-861afd3f9872" alt="Application Creator Picture"/></a><br><b>Aleksandar Popov</b><br><i>(Creator of <b>Main Thread</b>)</i></td>
+       <td align="center"><a href="https://github.com/GGDimitrov21"><img src="https://github.com/user-attachments/assets/b1c195a3-62a2-4365-a95e-de5ce5c1d6a7" alt="Back-end Developer Picture"/></a><br><b>Gabriel Dimitrov</b></td>
      </tr>
   </table>
 </div>
