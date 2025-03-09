@@ -118,6 +118,7 @@ Main Thread is a powerful management software for businesses like restaurants, p
 <a href="https://www.jetbrains.com/rider/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/JetBrains_Rider_Icon.svg/2048px-JetBrains_Rider_Icon.svg.png" height="70" alt="JetBrains Rider logo"/></a>
 <a href="https://github.com/"><img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png" height="70" alt="Github"/></a>
 <a href="https://git-scm.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2048px-Git_icon.svg.png" height="70" alt="Git"/></a>
+<a href="https://azure.microsoft.com/en-us/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png" height="70" alt="Azure Logo"/></a>
 <a href="https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16"><img src="https://img.utdstc.com/icon/981/2d8/9812d89705787310adf08f0edf758921b8d551e8329c8d8c5eeabf4d06b08378:200" height="70" alt="SSMS logo"/></a>
 <a href="https://www.figma.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1200px-Figma-logo.svg.png" height="70" alt="Figma logo"/></a>
 
