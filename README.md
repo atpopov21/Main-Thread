@@ -2,7 +2,7 @@
   <img src="https://github.com/user-attachments/assets/75006648-bce5-40e0-a3ec-6a0a64581f34" height="600px"/>
 </p>
 
-🌍 **Translate this page:** <a href="https://translate.google.com/translate?sl=auto&tl=bg&u=https://github.com/atpopov21/Main-Thread" target="_blank">🇧🇬 Български</a>
+🌍 **Translate this page:** <a href="https://translate.google.com/translate?sl=auto&tl=bg&u=https://github.com/atpopov21/Main-Thread/tree/dev" target="_blank">🇧🇬 Български</a>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
