@@ -156,7 +156,7 @@ Main Thread is a powerful management software for businesses like restaurants, p
   ```
 
 <b>🚀 Starting the application:</b><br>
-- To start the web interface of the application, you must first have the <b>.NET SDK<b> and required dependencies installed. If you don't have the necessary dotnet packages installed, please install them by opening the Terminal on your computer and entering the following command:
+- To start the web interface of the application, you must first have the <b>.NET SDK</b> and required dependencies installed. If you don't have the necessary dotnet packages installed, please install them by opening the Terminal on your computer and entering the following command:
  ```bash
 dotnet workload install maui-windows
 ```
